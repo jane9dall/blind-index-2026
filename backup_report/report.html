@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Index 2026 | Annual Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="report.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="master-style.css">
+</head>
+
+<body>
+    <!-- master-wrapper removed -->
+    <nav class="global-nav report-nav">
+        <div class="nav-inner">
+            <button id="menu-btn" class="menu-btn" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+            <div class="nav-left">
+                <a href="report.html" class="nav-link active">ANNUAL REPORT</a>
+                <a href="test.html" class="nav-link">COMPANY INDEX</a>
+                <a href="#" class="nav-link">CONTACT US</a>
+            </div>
+            <div class="nav-brand">blind</div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button id="close-sidebar-btn" class="close-btn">&times;</button>
+            <div class="blind-logo">blind</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="report.html" class="sidebar-link active">ANNUAL REPORT</a>
+            <a href="test.html" class="sidebar-link">COMPANY INDEX</a>
+            <a href="#" class="sidebar-link">CONTACT US</a>
+        </nav>
+    </aside>
+
+    <nav class="floating-menu">
+        <a href="#intro" class="menu-dot active" data-step="0" title="OVERVIEW"></a>
+        <a href="#step-1" class="menu-dot" data-step="1" title="TOP PLAYERS"></a>
+        <a href="#step-2" class="menu-dot" data-step="2" title="ANALYSIS"></a>
+        <a href="#step-3" class="menu-dot" data-step="3" title="DEEP DIVE"></a>
+    </nav>
+
+    <header class="report-header" id="intro" data-step="0">
+        <div class="header-content">
+            <p class="overline">Blind Index 2026</p>
+            <h1>The Year of<br>Great Turbulence</h1>
+            <p class="intro-text">
+                처음 만나는 거대한 AI 난기류,<br>
+                흐려지는 일의 경계와 격변하는 직장
+            </p>
+            <div class="scroll-indicator">SCROLL TO EXPLORE</div>
+        </div>
+    </header>
+
+    <!-- Step 1: Company Ranking Chart -->
+    <section class="replication-container" id="step-1" data-step="1">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">재직자 평판 최상위 기업 10</h2>
+                    <p class="ranking-subtitle">일년 간 블라인드 지수가 가장 높았던 10개 기업입니다.<br>부문별 상세 결과는 <a href="test.html"
+                            style="color: #D92525; text-decoration: underline;">이곳에서</a> 조회할 수 있습니다.</p>
+
+                    <div class="company-ranking-chart">
+                        <div class="ranking-item">
+                            <div class="rank-badge">1</div>
+                            <div class="company-bar" data-width="85%" data-tooltip="에너지 공기업 1위&#10;복지 만족도 최상위">
+                                <div class="company-info">
+                                    <span class="company-name">한국가스공사</span>
+                                </div>
+                                <span class="company-score">85점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">2</div>
+                            <div class="company-bar" data-width="82%">
+                                <span class="company-name">SAP코리아</span>
+                                <span class="company-score">82점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">3</div>
+                            <div class="company-bar" data-width="82%">
+                                <span class="company-name">한국남동발전</span>
+                                <span class="company-score">82점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">4</div>
+                            <div class="company-bar" data-width="82%">
+                                <span class="company-name">한전원자력연료</span>
+                                <span class="company-score">82점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">5</div>
+                            <div class="company-bar" data-width="80%">
+                                <span class="company-name">구글코리아</span>
+                                <span class="company-score">80점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">6</div>
+                            <div class="company-bar" data-width="79%">
+                                <span class="company-name">한국주택금융공사</span>
+                                <span class="company-score">79점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">7</div>
+                            <div class="company-bar" data-width="78%">
+                                <span class="company-name">라인플러스</span>
+                                <span class="company-score">78점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">8</div>
+                            <div class="company-bar" data-width="78%">
+                                <span class="company-name">기술보증기금</span>
+                                <span class="company-score">78점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">9</div>
+                            <div class="company-bar" data-width="76%">
+                                <span class="company-name">한국중부발전</span>
+                                <span class="company-score">76점</span>
+                            </div>
+                        </div>
+
+                        <div class="ranking-item">
+                            <div class="rank-badge">10</div>
+                            <div class="company-bar" data-width="75%">
+                                <span class="company-name">한국전력기술</span>
+                                <span class="company-score">75점</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 2: Distribution Graph -->
+    <section class="replication-container" id="step-2" data-step="2">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">여전히 하향 평준화된 행복</h2>
+                    <p class="ranking-subtitle" style="margin-bottom: 6rem;">100점 만점 기준 평균 44점, 70점 이상 상위 기업과의 격차 심화</p>
+
+                    <div class="company-ranking-chart">
+                        <!-- 정규분포 그래프 -->
+                        <div style="grid-column: 1 / -1; padding: 0;">
+                            <svg width="100%" viewBox="0 0 900 350" preserveAspectRatio="xMinYMin meet"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="max-width: 700px; margin: 0; display: block; overflow: visible;">
+                                <!-- X-axis labels -->
+                                <text x="100" y="285" text-anchor="middle" font-size="25" fill="#999">0점</text>
+                                <text x="450" y="285" text-anchor="middle" font-size="25" fill="#999">50점</text>
+                                <text x="800" y="285" text-anchor="middle" font-size="25" fill="#999">100점</text>
+
+                                <!-- X-axis line -->
+                                <line x1="100" y1="250" x2="800" y2="250" stroke="#e0e0e0" stroke-width="1.5" />
+
+                                <!-- Normal distribution curve (shifted left, peak at 44 ≈ 430) -->
+                                <defs>
+                                    <linearGradient id="distGradient" x1="388" y1="-40" x2="388" y2="250"
+                                        gradientUnits="userSpaceOnUse">
+                                        <!-- 시작부터 중간까지 진하게 유지 -->
+                                        <stop offset="0%" stop-color="#D92525" stop-opacity="0.9" />
+                                        <stop offset="20%" stop-color="#D92525" stop-opacity="0.8" />
+                                        <stop offset="30%" stop-color="#D92525" stop-opacity="0.7" />
+                                        <stop offset="40%" stop-color="#D92525" stop-opacity="0.7" />
+                                        <stop offset="50%" stop-color="#D92525" stop-opacity="0.5" />
+                                        <stop offset="60%" stop-color="#D92525" stop-opacity="0.4" />
+                                        <stop offset="70%" stop-color="#D92525" stop-opacity="0.3" />
+                                        <stop offset="80%" stop-color="#D92525" stop-opacity="0.2" />
+                                        <stop offset="90%" stop-color="#D92525" stop-opacity="0.1" />
+                                        <stop offset="100%" stop-color="#FA6262" stop-opacity="0.1" />
+                                    </linearGradient>
+                                </defs>
+                                <g id="graph-group">
+                                    <animateTransform id="anim-slide" attributeName="transform" type="translate"
+                                        from="50 0" to="0 0" dur="1.0s" fill="freeze" calcMode="spline"
+                                        keySplines="0.1 0.9 0.2 1" keyTimes="0;1" begin="indefinite" />
+                                    <!-- 그래프 테두리 선 -->
+                                    <path d="M 130,250 
+                                    C 250,230 338,0 388,0 
+                                    C 438,0 538,250 646,250" fill="none" stroke="#D92525" stroke-width="0.3"
+                                        opacity="0.7" stroke-linecap="round" />
+
+                                    <!-- Filled area -->
+                                    <path d="M 130,250 
+                                    C 250,230 338,0 388,0 
+                                    C 438,0 538,250 646,250
+                                    L 646,250 L 130,250 Z" fill="url(#distGradient)" />
+
+                                    <!-- 1. Mean marker line (moves up) -->
+                                    <line id="anim-line" x1="388" y1="250" x2="388" y2="250" stroke="#ffffff"
+                                        stroke-width="2" stroke-dasharray="3,3" opacity="0.7">
+                                        <animate id="anim-line-growth" attributeName="y1" from="250" to="0"
+                                            begin="indefinite" dur="0.3s" fill="freeze" />
+                                    </line>
+
+                                    <!-- 2. Circles & Text (Fade in after line) -->
+                                    <g id="delayed-elements" opacity="0">
+                                        <animate id="anim-fade" attributeName="opacity" from="0" to="1"
+                                            begin="indefinite" dur="0.3s" fill="freeze" />
+
+                                        <!-- 중심 고정 원 -->
+                                        <circle cx="388" cy="0" r="8" fill="#D92525" />
+                                        <!-- 퍼져나가는 동심원 1 -->
+                                        <circle cx="388" cy="0" r="8" fill="#D92525" stroke="none">
+                                            <animate attributeName="r" values="8;20;8" dur="2s"
+                                                repeatCount="indefinite" />
+                                            <animate attributeName="fill-opacity" values="0.8;0;0.8" dur="2s"
+                                                repeatCount="indefinite" />
+                                        </circle>
+                                        <!-- 퍼져나가는 동심원 2 (약간 지연) -->
+                                        <circle cx="388" cy="0" r="8" fill="#FC6565" stroke="none" stroke-width="2">
+                                            <animate attributeName="r" values="8;20;8" dur="2s" begin="0.5s"
+                                                repeatCount="indefinite" />
+                                            <animate attributeName="fill-opacity" values="1;0;1" dur="2s" begin="0.5s"
+                                                repeatCount="indefinite" />
+                                        </circle>
+                                        <text x="386" y="-30" text-anchor="middle" font-size="28" fill="#D92525"
+                                            font-weight="600">한국 평균 44점</text>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- 그래프 설명 텍스트 -->
+                        <div style="grid-column: 1 / -1; margin-top: -1rem;">
+                            <p style="color: #666; font-size: 1rem; line-height: 1.8;">
+                                한국 직장인들의 평균 블라인드 지수는 44점을 기록하며, 뚜렷한 하향 평준화 경향을 유지하고 있습니다.
+                                70점을 상회하는 상위 기업들과의 조직 경험 초격차는 더욱 가속화되었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 3: Gender Gap -->
+    <section class="replication-container" id="step-3" data-step="3">
+        <!-- Part 1: Chart (Grey Background) -->
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h3 class="chart-title-internal">남녀 직장인의 직급별 지수 격차(%)</h3>
+                    <div class="chart-legend">
+                        <div class="legend-item"><span class="dot male"></span>남성(점)</div>
+                        <div class="legend-item"><span class="dot female"></span>여성(점)</div>
+                        <div class="legend-item"><span class="line-legend"></span>성별 격차(%)</div>
+                    </div>
+
+                    <div class="gender-chart">
+                        <!-- Entry Level -->
+                        <div class="chart-group">
+                            <div class="bars-wrapper">
+                                <div class="bar-col">
+                                    <div class="g-bar male" style="height: 49%;"><span>49</span></div>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="g-bar female" style="height: 44%;"><span>44</span></div>
+                                </div>
+                                <!-- Gap Line -->
+                                <div class="gap-line" style="bottom: 49%; height: 5%; left: 25%; width: 50%;">
+                                    <span class="gap-label">10%</span>
+                                </div>
+                            </div>
+                            <div class="group-label">신입급</div>
+                        </div>
+
+                        <!-- Associate -->
+                        <div class="chart-group">
+                            <div class="bars-wrapper">
+                                <div class="bar-col">
+                                    <div class="g-bar male" style="height: 39%;"><span>39</span></div>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="g-bar female" style="height: 36%;"><span>36</span></div>
+                                </div>
+                                <div class="gap-line" style="bottom: 39%; height: 3%; left: 25%; width: 50%;">
+                                    <span class="gap-label">10%</span>
+                                </div>
+                            </div>
+                            <div class="group-label">사원급</div>
+                        </div>
+
+                        <!-- Senior Associate -->
+                        <div class="chart-group">
+                            <div class="bars-wrapper">
+                                <div class="bar-col">
+                                    <div class="g-bar male" style="height: 39%;"><span>39</span></div>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="g-bar female" style="height: 35%;"><span>35</span></div>
+                                </div>
+                                <div class="gap-line" style="bottom: 39%; height: 4%; left: 25%; width: 50%;">
+                                    <span class="gap-label">11%</span>
+                                </div>
+                            </div>
+                            <div class="group-label">대리급</div>
+                        </div>
+
+                        <!-- Manager -->
+                        <div class="chart-group">
+                            <div class="bars-wrapper">
+                                <div class="bar-col">
+                                    <div class="g-bar male" style="height: 42%;"><span>42</span></div>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="g-bar female" style="height: 39%;"><span>39</span></div>
+                                </div>
+                                <div class="gap-line" style="bottom: 42%; height: 3%; left: 25%; width: 50%;">
+                                    <span class="gap-label">6%</span>
+                                </div>
+                            </div>
+                            <div class="group-label">과장급</div>
+                        </div>
+
+                        <!-- Senior Manager -->
+                        <div class="chart-group">
+                            <div class="bars-wrapper">
+                                <div class="bar-col">
+                                    <div class="g-bar male" style="height: 53%;"><span>53</span></div>
+                                </div>
+                                <div class="bar-col">
+                                    <div class="g-bar female" style="height: 45%;"><span>45</span></div>
+                                </div>
+                                <div class="gap-line" style="bottom: 53%; height: 8%; left: 25%; width: 50%;">
+                                    <span class="gap-label">19%</span>
+                                </div>
+                            </div>
+                            <div class="group-label">차·부장급</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 2: Text (White Background) -->
+        <div class="replication-section white-bg">
+            <div class="content-wrapper text-content">
+                <h2 class="rep-title-kor">여성, 남성 대비 모든 항목에서 만족도 낮아</h2>
+                <p class="rep-body-text">
+                    성별 격차는 전년 대비 더 커졌습니다. 남성(43점)과 여성(38점)의 지수 격차는 7%에서 12%로 벌어졌습니다.
+                </p>
+                <p class="rep-body-text">
+                    여성은 직장내유대를 제외한 모든 항목에서 남성 대비 점수가 낮게 드러났습니다.
+                    특히 여성일 때 가장 점수가 낮았던 항목은 <strong>스트레스</strong>(최근 1년 내에 번아웃을 경험했는지),
+                    <strong>윤리</strong>(문제가 있을 때 회사가 합당한 조치를 취할 것이라고 믿는지), 그리고 <strong>표현의자유</strong>(회사에서 내 생각을 솔직하게 말할
+                    수 있는지)였습니다.
+                </p>
+                <p class="rep-body-text">
+                    직급으로 나눠보았을 때 성별 격차가 가장 큰 연차는 <strong>대리</strong>(경력 5년 이상 9년 미만)였습니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="report-footer">
+        <p>© 2026 Blind Index. All rights reserved.</p>
+    </footer>
+    <!-- Email Gate Overlay -->
+    <div id="email-gate-overlay" class="email-gate-overlay">
+        <div class="email-gate-content">
+            <h2>더 많은 인사이트를 확인하세요</h2>
+            <p>나머지 리포트를 보시려면 이메일을 입력해주세요</p>
+            <form id="email-gate-form" class="email-gate-form">
+                <input type="text" id="gate-company" name="company" placeholder="회사명" required>
+                <input type="text" id="gate-name" name="name" placeholder="이름" required>
+                <input type="text" id="gate-position" name="position" placeholder="직함" required>
+                <input type="email" id="gate-email" name="email" placeholder="이메일" required>
+                <input type="tel" id="gate-phone" name="phone" placeholder="전화번호 (예: 010-1234-5678)" required>
+                <button type="submit">계속 읽기</button>
+            </form>
+            <div id="gate-message" class="gate-message"></div>
+        </div>
+    </div>
+    <script src="report.js?v=2"></script>
+</body>
+
+</html>
