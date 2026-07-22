@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css">
+    <link rel="stylesheet" href="report.css?v=5">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -20,38 +20,9 @@
     <!-- master-wrapper removed -->
     <nav class="global-nav report-nav">
         <div class="nav-inner">
-            <button id="menu-btn" class="menu-btn" aria-label="Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </button>
-            <div class="nav-left">
-                <a href="report.html" class="nav-link active">ANNUAL REPORT</a>
-                <a href="test.html" class="nav-link">COMPANY INDEX</a>
-                <a href="#" class="nav-link">CONTACT US</a>
-            </div>
             <div class="nav-brand">blind</div>
         </div>
     </nav>
-
-    <!-- Sidebar -->
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <button id="close-sidebar-btn" class="close-btn">&times;</button>
-            <div class="blind-logo">blind</div>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="report.html" class="sidebar-link active">ANNUAL REPORT</a>
-            <a href="test.html" class="sidebar-link">COMPANY INDEX</a>
-            <a href="#" class="sidebar-link">CONTACT US</a>
-        </nav>
-    </aside>
 
     <nav class="floating-menu">
         <a href="#intro" class="menu-dot active" data-step="0" title="OVERVIEW"></a>
@@ -78,7 +49,7 @@
             <div class="content-wrapper">
                 <div class="rep-chart-area">
                     <h2 class="ranking-title">재직자 평판 최상위 기업 10</h2>
-                    <p class="ranking-subtitle">일년 간 블라인드 지수가 가장 높았던 10개 기업입니다.<br>부문별 상세 결과는 <a href="test.html"
+                    <p class="ranking-subtitle">일년 간 블라인드 지수가 가장 높았던 10개 기업입니다.<br>부문별 상세 결과는 <a href="../" target="_top"
                             style="color: #D92525; text-decoration: underline;">이곳에서</a> 조회할 수 있습니다.</p>
 
                     <div class="company-ranking-chart">
@@ -214,14 +185,14 @@
                                         from="50 0" to="0 0" dur="1.0s" fill="freeze" calcMode="spline"
                                         keySplines="0.1 0.9 0.2 1" keyTimes="0;1" begin="indefinite" />
                                     <!-- 그래프 테두리 선 -->
-                                    <path d="M 130,250 
-                                    C 250,230 338,0 388,0 
+                                    <path d="M 130,250
+                                    C 250,230 338,0 388,0
                                     C 438,0 538,250 646,250" fill="none" stroke="#D92525" stroke-width="0.3"
                                         opacity="0.7" stroke-linecap="round" />
 
                                     <!-- Filled area -->
-                                    <path d="M 130,250 
-                                    C 250,230 338,0 388,0 
+                                    <path d="M 130,250
+                                    C 250,230 338,0 388,0
                                     C 438,0 538,250 646,250
                                     L 646,250 L 130,250 Z" fill="url(#distGradient)" />
 
@@ -398,6 +369,7 @@
     <!-- Email Gate Overlay -->
     <div id="email-gate-overlay" class="email-gate-overlay">
         <div class="email-gate-content">
+            <button type="button" id="gate-close" class="gate-close" aria-label="닫기">&times;</button>
             <h2>더 많은 인사이트를 확인하세요</h2>
             <p>나머지 리포트를 보시려면 이메일을 입력해주세요</p>
             <form id="email-gate-form" class="email-gate-form">
@@ -411,7 +383,7 @@
             <div id="gate-message" class="gate-message"></div>
         </div>
     </div>
-    <script src="report.js?v=2"></script>
+    <script src="report.js?v=5"></script>
 </body>
 
 </html>

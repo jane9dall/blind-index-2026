@@ -1223,3 +1223,24 @@ h1 {
 .pulse-circle {
     animation: pulse 2s ease-in-out infinite;
 }
+/* 이메일 게이트 닫기 버튼 */
+.email-gate-content {
+    position: relative;
+}
+
+.gate-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 1.1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+}
+
+.gate-close:hover {
+    color: #333;
+}

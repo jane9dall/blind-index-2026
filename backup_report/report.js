@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (chartData[stepIndex]) renderChart(stepIndex);
 
-                // Step 2 애니메이션 트리거
+                // 분포 그래프 애니메이션 트리거
                 if (entry.target.id === 'step-2') {
                     // 이미 애니메이션이 실행되었다면 중단
                     if (entry.target.dataset.animated === 'true') return;
@@ -162,17 +162,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hasSubmitted = localStorage.getItem('emailGateSubmitted');
 
+    // 닫기(X) 버튼: 게이트를 닫고 이번 방문 동안 다시 띄우지 않음 (마지막 섹션 블러는 유지)
+    let gateDismissed = false;
+    const gateCloseBtn = document.getElementById('gate-close');
+    if (gateCloseBtn) {
+        gateCloseBtn.addEventListener('click', () => {
+            emailGateOverlay.classList.remove('active');
+            gateDismissed = true;
+        });
+    }
+
     // 마지막 섹션(step-3)이 화면에 절반 이상 보이면 게이트 표시.
     // 스크롤 이벤트 기반으로 판정: 로딩 직후 임시 레이아웃으로 인한 오작동이 없고 iframe 안에서도 안정적으로 동작.
     if (stepLast && !hasSubmitted) {
         const checkGate = () => {
+            if (gateDismissed) return; // 사용자가 닫았으면 다시 띄우지 않음
             if (window.scrollY < 200) return; // 실제로 스크롤을 내린 경우에만
             const r = stepLast.getBoundingClientRect();
             const visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
             const needed = Math.min(r.height, window.innerHeight) * 0.5;
             if (visible >= needed) {
                 emailGateOverlay.classList.add('active');
-                // Lock content from Step 3 onwards
+                // Lock content from the last step onwards
                 document.querySelectorAll('#step-3').forEach(el => {
                     el.classList.add('content-locked');
                 });
