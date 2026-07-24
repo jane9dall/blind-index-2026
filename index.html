@@ -162,78 +162,81 @@ button{font-family:inherit}
 <!-- ============ COMPANY DETAIL ============ -->
 <sc-if value="{{ isCompany }}">
 <div style="max-width:1200px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 80px">
-  <button onClick="{{ goHome }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;color:#8a8a90;padding:0;margin-bottom:18px;font-weight:500">← 돌아가기</button>
+  <button onClick="{{ goHome }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;color:#848B97;padding:0;margin-bottom:18px;font-weight:500">← 돌아가기</button>
 
   <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap">
     <span style="width:48px;height:48px;border-radius:11px;background:{{ co.logoBg }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ co.hasLogo }}"><img src="{{ co.logo }}" alt="{{ co.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ co.noLogo }}"><span style="color:{{ co.logoColor }};font-weight:700;font-size:16px">{{ co.mono }}</span></sc-if></span>
     <div>
-      <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:26px;margin:0;letter-spacing:-0.01em;color:#181819">{{ co.name }}</h1>
-      <div style="font-size:13.5px;color:#8a8a90;margin-top:2px">{{ co.industryFull }}</div>
+      <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:26px;margin:0;letter-spacing:-0.01em;color:#1B1D22">{{ co.name }}</h1>
+      <div style="font-size:13.5px;color:#848B97;margin-top:2px">{{ co.industryFull }}</div>
     </div>
-    <button style="margin-left:auto;background:#fff;border:1px solid #e0e0e3;border-radius:9px;padding:9px 15px;font-size:13.5px;font-weight:600;color:#3a3a3e;cursor:pointer;display:flex;align-items:center;gap:6px">↑ 공유</button>
+    <button style="margin-left:auto;background:#fff;border:1px solid #DCDFE5;border-radius:9px;padding:9px 15px;font-size:13.5px;font-weight:600;color:#3E434C;cursor:pointer;display:flex;align-items:center;gap:6px">↑ 공유</button>
   </div>
 
   <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
     <main style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
 
-      <section style="background:#fff;border:1px solid #ececee;border-radius:16px;padding:26px 28px 22px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#9a9aa0;margin-bottom:8px">전체 기업 분포 속 위치</div>
+      <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:26px 28px 22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:8px">전체 기업 분포 속 위치</div>
         <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
-          <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:700;font-size:46px;margin:0;letter-spacing:-0.01em;color:#181819">한국 상위 {{ co.top }}%</h2>
+          <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:700;font-size:46px;margin:0;letter-spacing:-0.01em;color:#1B1D22">한국 상위 {{ co.top }}%</h2>
           <div style="display:inline-flex;align-items:center;gap:5px;background:#fdeeef;color:#c11b23;border-radius:7px;padding:5px 10px;font-size:12.5px;font-weight:700;margin-bottom:9px">▼ 낮을수록 상위</div>
         </div>
-        <p style="font-size:14.5px;color:#6b6b70;margin:6px 0 4px">점수가 공개된 등록 기업 중 약 <b style="color:#c11b23;font-weight:700">{{ co.pctBelow }}%</b>보다 높은 직장 경험 점수입니다.</p>
+        <p style="font-size:14.5px;color:#69707E;margin:6px 0 4px">점수가 공개된 <b style="color:#3E434C;font-weight:600">897개 기업</b> 중 약 <b style="color:#3E434C;font-weight:700">{{ co.pctBelow }}%</b>보다 높은 직장 경험 점수입니다.</p>
         <div style="margin:6px -6px 0">{{ distEl }}</div>
-        <div style="display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:8px;padding-top:16px;border-top:1px solid #f2f2f4">
+        <div style="display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:8px;padding-top:16px;border-top:1px solid #EDEFF3">
           <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 230px">
             <span style="flex-shrink:0;width:11px;height:11px;border-radius:3px;background:rgba(229,32,42,0.20);border:1px solid #E5202A;margin-top:3px"></span>
-            <p style="font-size:12.5px;line-height:1.55;color:#6b6b70;margin:0">색칠된 영역은 {{ co.name }}보다 <b style="color:#c11b23">점수가 높은 상위 {{ co.top }}% 기업</b> 구간입니다.</p>
+            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">초록 영역은 {{ co.name }}보다 <b style="color:#c11b23">점수가 높은 상위 {{ co.top }}% 기업</b> 구간입니다.</p>
           </div>
           <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 200px">
-            <span style="flex-shrink:0;width:11px;height:2px;background:#b6b6bc;border-top:1px dashed #9a9aa0;margin-top:8px"></span>
-            <p style="font-size:12.5px;line-height:1.55;color:#6b6b70;margin:0">점선은 전체 등록 기업의 <b style="color:#3a3a3e">실제 평균 점수</b>를 나타냅니다.</p>
+            <span style="flex-shrink:0;width:11px;height:2px;background:#A9B0BB;border-top:1px dashed #959CA8;margin-top:8px"></span>
+            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">점선은 전체 기업 <b style="color:#3E434C">평균 44점</b>을 나타냅니다.</p>
           </div>
           <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 200px">
             <span style="flex-shrink:0;width:3px;height:13px;background:#E5202A;border-radius:2px;margin-top:2px"></span>
-            <p style="font-size:12.5px;line-height:1.55;color:#6b6b70;margin:0">세로 마커가 {{ co.name }}의 위치(<b style="color:#c11b23">{{ co.overall }}점</b>)입니다.</p>
+            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">세로 마커가 {{ co.name }}의 위치(<b style="color:#c11b23">{{ co.overall }}점</b>)입니다.</p>
           </div>
         </div>
       </section>
 
-      <section style="background:#fff;border:1px solid #ececee;border-radius:16px;padding:24px 28px 8px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#9a9aa0;margin-bottom:10px">블라인드 지수 2026</div>
+      <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 28px 8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:10px">블라인드 지수 2026</div>
         <div style="display:flex;align-items:baseline;gap:7px;margin-bottom:20px">
-          <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:46px;font-weight:700;color:#181819;line-height:1">{{ co.overall }}</span>
-          <span style="font-size:16px;color:#a0a0a6">/ 100</span>
+          <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:46px;font-weight:700;color:#1B1D22;line-height:1">{{ co.overall }}</span>
+          <span style="font-size:16px;color:#959CA8">/ 100</span>
         </div>
         <sc-for list="{{ co.headline }}" as="m" hint-placeholder-count="4">
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:15px">
-            <span style="flex:0 0 84px;font-size:13.5px;color:#3a3a3e;font-weight:500">{{ m.name }}</span>
-            <div style="flex:1;height:6px;background:#f0eded;border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ m.fill }};background:#1c1c1e;border-radius:3px"></div></div>
-            <span style="flex:0 0 auto;font-size:13px;font-weight:700;color:#c11b23;font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
+            <span style="flex:0 0 84px;font-size:13.5px;color:#3E434C;font-weight:500">{{ m.name }}</span>
+            <div style="flex:1;height:6px;background:#EAECF0;border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ m.fill }};background:#8A92A0;border-radius:3px"></div></div>
+            <span style="flex:0 0 auto;font-size:13px;font-weight:700;color:{{ m.color }};font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
           </div>
         </sc-for>
       </section>
 
       <div>
         <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
-          <h2 style="font-size:17px;font-weight:700;margin:0;color:#181819">영역별 직장 경험 · 한국 상위 %</h2>
-          <span style="font-size:12px;color:#9a9aa0">n%가 낮을수록 더 높은 위치</span>
+          <h2 style="font-size:17px;font-weight:700;margin:0;color:#1B1D22">영역별 직장 경험 · 한국 상위 %</h2>
+          <span style="font-size:12px;color:#959CA8">n%가 낮을수록 더 높은 위치</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
           <sc-for list="{{ areaGroups }}" as="a" hint-placeholder-count="3">
-            <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:18px 18px 8px">
+            <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:18px 18px 8px">
               <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px">
-                <h3 style="font-size:15px;font-weight:700;margin:0;color:#181819">{{ a.name }}</h3>
-                <span style="font-size:11px;color:#a0a0a6">{{ a.sub }}</span>
+                <h3 style="font-size:15px;font-weight:700;margin:0;color:#1B1D22">{{ a.name }}</h3>
+                <span style="font-size:11px;color:#959CA8">{{ a.sub }}</span>
               </div>
               <sc-for list="{{ a.rows }}" as="r" hint-placeholder-count="3">
-                <div style="margin-bottom:14px">
-                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                    <span style="display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:#3a3a3e"><span style="width:6px;height:6px;border-radius:50%;background:{{ a.color }}"></span>{{ r.name }}</span>
-                    <span style="font-size:13px;font-weight:700;color:#59616C;font-variant-numeric:tabular-nums">상위 {{ r.top }}%</span>
+                <div style="padding:9px 0 11px;border-top:1px solid #EDEFF3">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+                    <span style="font-size:13.5px;font-weight:500;color:#3E434C">{{ r.name }}</span>
+                    <span style="display:flex;align-items:baseline;gap:3px;font-variant-numeric:tabular-nums"><span style="font-size:11px;color:#A9B0BB;font-weight:600">상위</span><span style="font-size:14px;font-weight:700;color:{{ r.color }}">{{ r.top }}%</span></span>
                   </div>
-                  <div style="height:6px;background:#e6e8eb;border-radius:4px;overflow:hidden"><div style="height:100%;width:{{ r.fill }};background:{{ a.color }};border-radius:4px"></div></div>
+                  <div style="position:relative;height:22px;margin:0 4px">
+                    <div style="position:absolute;top:50%;left:0;right:0;height:3px;background:#EAECF0;border-radius:2px;transform:translateY(-50%)"></div>
+                    <div style="position:absolute;top:50%;left:{{ r.pos }};width:2px;height:15px;border-radius:2px;background:#E5202A;transform:translate(-50%,-50%)"></div>
+                  </div>
                 </div>
               </sc-for>
             </div>
@@ -241,63 +244,63 @@ button{font-family:inherit}
         </div>
       </div>
 
-      <section style="background:#fff;border:1px solid #ececee;border-radius:16px;padding:24px 24px 20px">
-        <h2 style="font-size:17px;font-weight:700;margin:0 0 4px;text-align:center;color:#181819">항목별 종합 비교</h2>
-        <p style="font-size:12.5px;color:#9a9aa0;text-align:center;margin:0 0 6px">주요 경험 지표를 업계 · 전체 평균과 비교합니다</p>
+      <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 24px 20px">
+        <h2 style="font-size:17px;font-weight:700;margin:0 0 4px;text-align:center;color:#1B1D22">항목별 종합 비교</h2>
+        <p style="font-size:12.5px;color:#959CA8;text-align:center;margin:0 0 6px">주요 경험 지표를 업계 · 전체 평균과 비교합니다</p>
         <div style="max-width:420px;margin:0 auto">{{ radar6El }}</div>
         <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin-top:6px">
           <sc-for list="{{ radarLegend }}" as="l" hint-placeholder-count="3">
-            <span style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#5a5a5e"><span style="width:9px;height:9px;border-radius:50%;background:{{ l.color }}"></span>{{ l.name }}</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#5D646F"><span style="width:9px;height:9px;border-radius:50%;background:{{ l.color }}"></span>{{ l.name }}</span>
           </sc-for>
         </div>
       </section>
 
-      <div style="background:#f4f4f5;border:1px solid #ececee;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <p style="font-size:14px;color:#5a5a5e;margin:0;flex:1 1 300px"><b style="color:#26262a;font-weight:700">HR 담당자이신가요?</b> 경쟁사 비교와 조직별 개선 우선순위를 엔터프라이즈 대시보드에서 확인하세요.</p>
+      <div style="background:#EDEFF3;border:1px solid #E6E8EC;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <p style="font-size:14px;color:#5D646F;margin:0;flex:1 1 300px"><b style="color:#2B2F36;font-weight:700">HR 담당자이신가요?</b> 경쟁사 비교와 조직별 개선 우선순위를 엔터프라이즈 대시보드에서 확인하세요.</p>
         <button onClick="{{ goSolution }}" style="background:#2563EB;color:#fff;border:none;border-radius:9px;padding:11px 18px;font-size:13.5px;font-weight:600;cursor:pointer">기업 솔루션 알아보기 →</button>
       </div>
     </main>
 
     <aside style="flex:0 0 320px;min-width:280px;display:flex;flex-direction:column;gap:16px">
-      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:18px 20px 10px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#181819">재직자가 함께 고려한 기업</h3>
-        <p style="font-size:12px;color:#a0a0a6;margin:0 0 8px">같은 업계에서 지수 위치가 가까운 등록 기업입니다.</p>
+      <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:18px 20px 10px">
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">재직자가 함께 고려한 기업</h3>
+        <p style="font-size:12px;color:#959CA8;margin:0 0 8px">이 회사 재직자가 자주 비교한 기업입니다.</p>
         <sc-for list="{{ co.wanted }}" as="w" hint-placeholder-count="3">
-          <button onClick="{{ w.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #f4f4f6;cursor:pointer;padding:9px 2px" style-hover="background:#fafafb">
+          <button onClick="{{ w.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:9px 2px" style-hover="background:#fafafb">
             <span style="width:28px;height:28px;border-radius:7px;background:{{ w.tint }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ w.hasLogo }}"><img src="{{ w.logo }}" alt="{{ w.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ w.noLogo }}"><span style="color:#4a4a4e;font-weight:700;font-size:12px">{{ w.mono }}</span></sc-if></span>
-            <span style="font-size:13.5px;font-weight:600;color:#26262a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ w.name }}</span>
-            <span style="margin-left:auto;color:#8a8a90;font-size:11px;font-weight:600;flex-shrink:0">상위 {{ w.top }}%</span>
+            <span style="font-size:13.5px;font-weight:600;color:#2B2F36;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ w.name }}</span>
+            <span style="margin-left:auto;border:1px solid #D9DCE2;color:#576070;border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700;flex-shrink:0">▲ 추천</span>
           </button>
         </sc-for>
       </div>
-      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:20px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 4px;color:#181819">블라인드 입사 선호도</h3>
+      <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:20px">
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 4px;color:#1B1D22">블라인드 입사 선호도</h3>
         <sc-if value="{{ co.hasPref }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 2px">
-            <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:38px;font-weight:700;color:#c11b23;line-height:1">{{ co.prefYes }}%</span>
-            <span style="font-size:13px;color:#6b6b70">이 회사에서 일하고 싶다고 응답</span>
+            <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:38px;font-weight:700;color:#23262C;line-height:1">{{ co.prefYes }}%</span>
+            <span style="font-size:13px;color:#69707E">이 회사에서 일하고 싶다고 응답</span>
           </div>
           <div style="display:flex;align-items:center;gap:12px;margin:14px 0 2px">
-            <div style="flex:1;height:8px;background:#dedede;border-radius:5px;overflow:hidden">
-              <div style="height:100%;width:{{ co.prefFill }};background:#E5202A;border-radius:5px"></div>
+            <div style="flex:1;height:8px;background:#EAECF0;border-radius:5px;overflow:hidden">
+              <div style="height:100%;width:{{ co.prefFill }};background:#8A92A0;border-radius:5px"></div>
             </div>
-            <span style="flex-shrink:0;font-size:12px;color:#8a8a90">비추천 {{ co.prefNo }}%</span>
+            <span style="flex-shrink:0;font-size:12px;color:#848B97">비추천 {{ co.prefNo }}%</span>
           </div>
         </sc-if>
         <sc-if value="{{ co.noPref }}">
           <div style="margin-top:12px">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-              <span style="width:7px;height:7px;border-radius:50%;background:#c4c4c9;flex-shrink:0"></span>
-              <span style="font-size:13.5px;font-weight:700;color:#5a5a5e">공개 응답 비율 미수집</span>
+              <span style="width:7px;height:7px;border-radius:50%;background:#C1C7D1;flex-shrink:0"></span>
+              <span style="font-size:13.5px;font-weight:700;color:#5D646F">공개 응답 비율 미수집</span>
             </div>
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-              <div style="flex:1;height:8px;background:#eef0f0;border-radius:5px;overflow:hidden;position:relative">
-                <div style="position:absolute;inset:0;background:repeating-linear-gradient(-45deg,#e4e6e6 0 6px,#eef0f0 6px 12px)"></div>
+              <div style="flex:1;height:8px;background:#EAECF0;border-radius:5px;overflow:hidden;position:relative">
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(-45deg,#DEE1E7 0 6px,#EAECF0 6px 12px)"></div>
               </div>
-              <span style="flex-shrink:0;font-size:12px;color:#b6b6bc">— %</span>
+              <span style="flex-shrink:0;font-size:12px;color:#A9B0BB">— %</span>
             </div>
-            <p style="font-size:12px;color:#8a8a90;line-height:1.6;margin:0 0 12px">아직 신뢰할 수 있는 표본에 도달하지 않았습니다. 익명 응답이 기준치를 넘으면 찬성 · 비추천 비율을 공개합니다.</p>
-            <div style="display:flex;align-items:center;gap:6px;padding-top:12px;border-top:1px solid #f2f2f4;font-size:11.5px;color:#a0a0a6">
+            <p style="font-size:12px;color:#848B97;line-height:1.6;margin:0 0 12px">아직 신뢰할 수 있는 표본에 도달하지 않았습니다. 익명 응답이 기준치를 넘으면 찬성 · 비추천 비율을 공개합니다.</p>
+            <div style="display:flex;align-items:center;gap:6px;padding-top:12px;border-top:1px solid #EDEFF3;font-size:11.5px;color:#959CA8">
               <span style="width:5px;height:5px;border-radius:50%;background:#E5202A"></span>
               데이터가 없는 값은 임의로 추정하지 않습니다.
             </div>
@@ -305,15 +308,15 @@ button{font-family:inherit}
         </sc-if>
       </div>
 
-      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:20px 20px 12px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#181819">같은 업계 다른 기업과 비교</h3>
-        <p style="font-size:12px;color:#a0a0a6;margin:0 0 10px">{{ co.industry }} 분야에서 현재 기업과 나란히 봅니다.</p>
+      <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:20px 20px 12px">
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">같은 업계 다른 기업과 비교</h3>
+        <p style="font-size:12px;color:#959CA8;margin:0 0 10px">{{ co.industry }} 분야에서 현재 기업과 나란히 봅니다.</p>
         <sc-for list="{{ co.peers }}" as="p" hint-placeholder-count="4">
-          <button onClick="{{ p.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #f4f4f6;cursor:pointer;padding:10px 2px" style-hover="background:#fafafb">
+          <button onClick="{{ p.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:10px 2px" style-hover="background:#fafafb">
             <span style="width:30px;height:30px;border-radius:7px;background:{{ p.tint }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ p.hasLogo }}"><img src="{{ p.logo }}" alt="{{ p.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ p.noLogo }}"><span style="color:#4a4a4e;font-weight:700;font-size:12px">{{ p.mono }}</span></sc-if></span>
-            <span style="font-size:13.5px;font-weight:600;color:#26262a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.name }}</span>
+            <span style="font-size:13.5px;font-weight:600;color:#2B2F36;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.name }}</span>
             <span style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:2px">
-              <span style="font-size:12px;font-weight:700;color:#c11b23;font-variant-numeric:tabular-nums">상위 {{ p.top }}%</span>
+              <span style="font-size:12px;font-weight:700;color:#576070;font-variant-numeric:tabular-nums">상위 {{ p.top }}%</span>
               <span style="font-size:10.5px;font-weight:600;color:{{ p.cmpColor }}">{{ p.cmpLabel }}</span>
             </span>
           </button>
@@ -617,8 +620,10 @@ class Component extends DCLogic {
     const c=D.byId[this.state.selected]||D.byId['SK하이닉스']||D.cos[0];
     const forceEmpty=!!this.props.forceEmptyPreference;
     const hasPref=!forceEmpty && !!c.vote;
-    const areaGroups=this.areaDefs.map(a=>({ name:a.name, sub:a.sub, color:a.color,
-      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, fill:Math.min(82,100-t)+'%' }; }) }));
+    const rampFn=(t)=> t<=4?'#2B2F36' : t<=12?'#576070' : '#98A0AE';
+    const posFn=(t)=> ((1-Math.min(t,30)/30)*92+4).toFixed(1)+'%';
+    const areaGroups=this.areaDefs.map(a=>({ name:a.name, sub:a.sub,
+      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, color:rampFn(t), pos:posFn(t) }; }).sort((x,y)=>x.top-y.top) }));
     const peers=D.cos.filter(p=>p.industry===c.industry && p.id!==c.id).slice(0,5).map(p=>{
       const higher=p.top<c.top, lower=p.top>c.top;
       return { id:p.id, name:p.name, mono:p.mono, logo:p.logo, hasLogo:p.hasLogo, noLogo:p.noLogo, tint:p.tint, top:p.top, open:()=>this.go('company',p.id),
@@ -628,7 +633,7 @@ class Component extends DCLogic {
       .sort((a,b)=>Math.abs(a.overall-c.overall)-Math.abs(b.overall-c.overall))
       .slice(0,3).map(p=>({name:p.name,mono:p.mono,logo:p.logo,hasLogo:p.hasLogo,noLogo:p.noLogo,tint:p.tint,top:p.top,open:()=>this.go('company',p.id)}));
     const hNames=['직무만족도','조직몰입도','이직의도','스트레스'];
-    const headline=hNames.map((n,i)=>{ const t=c.headlineTop[i]; return { name:n, top:t, fill:(100-t)+'%' }; });
+    const headline=hNames.map((n,i)=>{ const t=c.headlineTop[i]; return { name:n, top:t, color:rampFn(t), fill:(100-t)+'%' }; });
     const co={ name:c.name, mono:c.mono, logo:c.logo, hasLogo:c.hasLogo, noLogo:c.noLogo, top:c.top, overall:c.overall, pctBelow:100-c.top, industry:c.industry, industryFull:c.industry,
       logoBg:c.logoBg||c.tint, logoColor:c.logoColor||'#4a4a4e',
       hasPref, noPref:!hasPref, prefYes:c.vote?.up, prefNo:c.vote?.down, prefFill:(c.vote?.up||0)+'%', peers, wanted, headline };
