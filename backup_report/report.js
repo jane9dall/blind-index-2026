@@ -156,6 +156,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailGateOverlay = document.getElementById('email-gate-overlay');
     const emailGateForm = document.getElementById('email-gate-form');
     const gateMessage = document.getElementById('gate-message');
+    const emailGateClose = document.getElementById('email-gate-close');
+
+    const closeEmailGate = () => {
+        emailGateOverlay.classList.remove('active');
+        document.querySelectorAll('.content-locked').forEach(el => el.classList.remove('content-locked'));
+    };
+
+    if (emailGateClose) emailGateClose.addEventListener('click', closeEmailGate);
+    if (emailGateOverlay) emailGateOverlay.addEventListener('click', event => {
+        if (event.target === emailGateOverlay) closeEmailGate();
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && emailGateOverlay?.classList.contains('active')) closeEmailGate();
+    });
 
     // Gate at Step 3 (Gender Gap - Last Step)
     const stepLast = document.getElementById('step-3');
