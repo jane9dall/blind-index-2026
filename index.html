@@ -233,7 +233,7 @@ button{font-family:inherit}
                     <span style="display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:#3a3a3e"><span style="width:6px;height:6px;border-radius:50%;background:{{ a.color }}"></span>{{ r.name }}</span>
                     <span style="font-size:13px;font-weight:700;color:{{ a.color }};font-variant-numeric:tabular-nums">상위 {{ r.top }}%</span>
                   </div>
-                  <div style="height:5px;background:#f0eded;border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ r.fill }};background:{{ a.color }};border-radius:3px"></div></div>
+                  <div style="height:6px;background:#dfe2e6;border-radius:4px;overflow:hidden"><div style="height:100%;width:{{ r.fill }};background:{{ a.color }};border-radius:4px"></div></div>
                 </div>
               </sc-for>
             </div>
@@ -473,9 +473,9 @@ class Component extends DCLogic {
 
   itemNames = ['업무자율성','업무의미감','업무중요도','상사관계','동료관계','직장내유대','워라밸','표현의자유','복지','윤리','심리적안전감'];
   areaDefs = [
-    {name:'일', sub:'자율 · 의미 · 중요도', from:0, to:3, color:'#2F343B'},
-    {name:'관계', sub:'상사 · 동료 · 유대', from:3, to:6, color:'#4B525C'},
-    {name:'문화', sub:'워라밸 · 복지 · 안전감', from:6, to:11, color:'#626A75'}
+    {name:'일', sub:'자율 · 의미 · 중요도', from:0, to:3, color:'#626A75'},
+    {name:'관계', sub:'상사 · 동료 · 유대', from:3, to:6, color:'#717985'},
+    {name:'문화', sub:'워라밸 · 복지 · 안전감', from:6, to:11, color:'#808895'}
   ];
   tints = ['#EEF1F5','#F1EFEA','#EDF2EF','#F2EEF1','#EEF0EF','#F0EFEA','#EDEFF2'];
   excludedNames = new Set(['수의사','의사','변호사','약사','간호사','공무원','직업군인','한의사','치과위생사']);
@@ -618,7 +618,7 @@ class Component extends DCLogic {
     const forceEmpty=!!this.props.forceEmptyPreference;
     const hasPref=!forceEmpty && !!c.vote;
     const areaGroups=this.areaDefs.map(a=>({ name:a.name, sub:a.sub, color:a.color,
-      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, fill:(100-t)+'%' }; }) }));
+      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, fill:Math.min(82,100-t)+'%' }; }) }));
     const peers=D.cos.filter(p=>p.industry===c.industry && p.id!==c.id).slice(0,5).map(p=>{
       const higher=p.top<c.top, lower=p.top>c.top;
       return { id:p.id, name:p.name, mono:p.mono, logo:p.logo, hasLogo:p.hasLogo, noLogo:p.noLogo, tint:p.tint, top:p.top, open:()=>this.go('company',p.id),
