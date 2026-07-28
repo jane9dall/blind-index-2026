@@ -8,15 +8,25 @@ function doPost(e) {
   const params = (e && e.parameter) || {};
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
 
-  if (params.action === 'share_visit') {
+  if (params.action === 'visit_log') {
     const sheet = getOrCreateSheet_(spreadsheet, '방문로그', [
-      '기록 시각', '회사명', '클릭 시각 (ISO)', '공유 링크'
+      '서버 기록 시각', '이벤트', '회사명', '클라이언트 시각 (ISO)',
+      '방문 페이지', '리퍼러', '사용자 에이전트', '언어', '시간대', '화면 크기',
+      'IP 주소', 'IP 기반 위치'
     ]);
     sheet.appendRow([
       new Date(),
+      params.event || 'page_view',
       params.company || '',
-      params.clickedAt || '',
-      params.page || ''
+      params.clientAt || '',
+      params.page || '',
+      params.referrer || '',
+      params.userAgent || '',
+      params.language || '',
+      params.timezone || '',
+      params.viewport || '',
+      params.ip || '',
+      params.location || ''
     ]);
     return json_({ ok: true });
   }
@@ -26,6 +36,24 @@ function doPost(e) {
   ]);
   demoSheet.appendRow([new Date(), params.company || '', params.name || '', params.email || '']);
   return json_({ ok: true });
+}
+
+// Apps Script 편집기에서 방문로그 저장 여부를 확인할 때 이 함수를 실행합니다.
+function testVisitLog() {
+  return doPost({
+    parameter: {
+      action: 'visit_log',
+      event: 'test_visit',
+      company: '테스트 기업',
+      clientAt: new Date().toISOString(),
+      page: 'https://example.com/?company=test&ref=share',
+      referrer: 'https://example.com/',
+      userAgent: 'Apps Script test',
+      language: 'ko-KR',
+      timezone: 'Asia/Seoul',
+      viewport: '1280x800'
+    }
+  });
 }
 
 function getOrCreateSheet_(spreadsheet, name, headers) {

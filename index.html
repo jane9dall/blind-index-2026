@@ -525,7 +525,11 @@ class Component extends DCLogic {
     const companyId=params.get('company');
     if(companyId && this.data.byId[companyId]){
       this.setState({screen:'company',selected:companyId});
-      if(params.get('ref')==='share') this.logShareVisit(companyId);
+      this.logVisit(companyId,params.get('ref')==='share'?'share_link_open':'company_view');
+    } else if(companyId) {
+      this.logVisit(companyId,'invalid_company_link');
+    } else {
+      this.logVisit('','page_view');
     }
     this._onResize();
   }
@@ -539,12 +543,20 @@ class Component extends DCLogic {
     url.searchParams.delete('ref');
     window.history.pushState({},'',url);
     this.setState(st);
+    this.logVisit(sel || '',screen==='company'?'company_view':screen+'_view');
     window.scrollTo(0,0);
   }
 
-  logShareVisit(company){
+  logVisit(company,event){
     const endpoint='https://script.google.com/macros/s/AKfycbxMpoGnVgrJMJAyXw1jNEUnHOFVLx8KWib9cFaEFpqlzQXfl6qvzUDMF44GXtsFC5WxWQ/exec';
-    const payload=new URLSearchParams({action:'share_visit',company,clickedAt:new Date().toISOString(),page:window.location.href});
+    let referrer='';
+    try { const ref=new URL(document.referrer); referrer=ref.origin+ref.pathname; } catch(_) {}
+    const payload=new URLSearchParams({
+      action:'visit_log', event, company, clientAt:new Date().toISOString(),
+      page:window.location.href, referrer, userAgent:navigator.userAgent.slice(0,500),
+      language:navigator.language||'', timezone:Intl.DateTimeFormat().resolvedOptions().timeZone||'',
+      viewport:`${window.innerWidth}x${window.innerHeight}`
+    });
     if(navigator.sendBeacon){ navigator.sendBeacon(endpoint,payload); return; }
     fetch(endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:payload.toString()}).catch(()=>{});
   }
