@@ -187,7 +187,7 @@ button{font-family:inherit}
         <div style="display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:8px;padding-top:16px;border-top:1px solid #EDEFF3">
           <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 230px">
             <span style="flex-shrink:0;width:11px;height:11px;border-radius:3px;background:rgba(229,32,42,0.20);border:1px solid #E5202A;margin-top:3px"></span>
-            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">초록 영역은 {{ co.name }}보다 <b style="color:#c11b23">점수가 높은 상위 {{ co.top }}% 기업</b> 구간입니다.</p>
+            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">색칠된 영역은 {{ co.name }}보다 <b style="color:#c11b23">점수가 높은 상위 {{ co.top }}% 기업</b> 구간입니다.</p>
           </div>
           <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 200px">
             <span style="flex-shrink:0;width:11px;height:2px;background:#A9B0BB;border-top:1px dashed #959CA8;margin-top:8px"></span>
@@ -528,17 +528,26 @@ class Component extends DCLogic {
     return (p && p!=='전체') ? p : null;
   }
 
-  buildDist(overall, top, mean){
+  buildDist(overall, top, companies){
     const h=React.createElement;
     const W=760, H=248, L=44, R=44, top0=42, baseY=H-42, plotW=W-L-R, plotH=baseY-top0;
-    const sigma=17;
+    const scores=companies.map(c=>c.overall).filter(Number.isFinite);
+    const mean=scores.reduce((sum,score)=>sum+score,0)/Math.max(scores.length,1);
+    const variance=scores.reduce((sum,score)=>sum+(score-mean)*(score-mean),0)/Math.max(scores.length,1);
+    const std=Math.sqrt(variance);
+    // Silverman's rule: the curve is calculated from every published company score,
+    // rather than using a fixed normal-distribution shape.
+    const bandwidth=Math.max(2.5,Math.min(12,1.06*std*Math.pow(Math.max(scores.length,1),-0.2)));
     const x=v=> L + (v/100)*plotW;
-    const dens=v=> Math.exp(-((v-mean)*(v-mean))/(2*sigma*sigma));
-    const y=v=> baseY - dens(v)*plotH;
-    const N=100, pts=[];
-    for(let i=0;i<=N;i++){ const v=i/N*100; pts.push([x(v), y(v)]); }
+    const density=v=>scores.reduce((sum,score)=>sum+Math.exp(-0.5*((v-score)/bandwidth)**2),0);
+    const N=100, raw=[];
+    for(let i=0;i<=N;i++){ const v=i/N*100; raw.push({v,density:density(v)}); }
+    const maxDensity=Math.max(...raw.map(point=>point.density),1);
+    const y=v=>baseY-(density(v)/maxDensity)*plotH;
+    const pts=raw.map(point=>[x(point.v),baseY-(point.density/maxDensity)*plotH]);
     const curve = pts.map((p,i)=> (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
-    const tail=[]; for(let i=0;i<=N;i++){ const v=i/N*100; if(v>=overall){ tail.push([x(v), y(v)]); } }
+    const tail=[[x(overall),y(overall)]];
+    raw.forEach(point=>{ if(point.v>overall) tail.push([x(point.v),baseY-(point.density/maxDensity)*plotH]); });
     const shade = tail.length? ('M'+x(overall).toFixed(1)+' '+baseY+' '+ tail.map(p=>'L'+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ') +' L'+x(100).toFixed(1)+' '+baseY+' Z') : '';
     const mx=x(overall), meanx=x(mean);
     const G='#E5202A';
@@ -557,7 +566,7 @@ class Component extends DCLogic {
       pill,
       h('text',{key:'t0', x:L, y:baseY+18, fill:'#a0a0a6', fontSize:11, fontFamily:'Pretendard,sans-serif'},'0점'),
       h('text',{key:'t100', x:W-R, y:baseY+18, textAnchor:'end', fill:'#a0a0a6', fontSize:11, fontFamily:'Pretendard,sans-serif'},'100점'),
-      h('text',{key:'tm', x:meanx, y:baseY+18, textAnchor:'middle', fill:'#8a8a90', fontSize:11, fontWeight:600, fontFamily:'Pretendard,sans-serif'},'평균 '+mean+'점'),
+      h('text',{key:'tm', x:meanx, y:baseY+18, textAnchor:'middle', fill:'#8a8a90', fontSize:11, fontWeight:600, fontFamily:'Pretendard,sans-serif'},'평균 '+Math.round(mean)+'점'),
       h('text',{key:'tlo', x:meanx, y:baseY+34, textAnchor:'middle', fill:'#b0b0b6', fontSize:10.5, fontFamily:'Pretendard,sans-serif'},'대부분의 기업 구간'),
       h('text',{key:'thi', x:x((overall+100)/2), y:baseY+34, textAnchor:'middle', fill:G, fontSize:10.5, fontWeight:600, fontFamily:'Pretendard,sans-serif'},'상위 '+top+'% 구간')
     ]);
@@ -693,7 +702,7 @@ class Component extends DCLogic {
       selectedItem:item, rankScopeLabel: '전체 기업 기준',
       itemTabs, itemFilters, industries, itemRanking, overallRanking,
       clearIndustry:()=>this.setState({industry:null}), allIndBg: ind?'transparent':'#fdeeef', allIndColor: ind?'#4a4a4e':red,
-      co, areaGroups, dataStats:{companyCount:D.cos.length,voteCompanyCount:D.voteCompanyCount,averageScore:D.averageScore,indicatorCount:this.itemNames.length}, distEl:this.buildDist(c.overall, c.top, D.averageScore), radar6El:this.buildRadar6(380,c,D.cos),
+      co, areaGroups, dataStats:{companyCount:D.cos.length,voteCompanyCount:D.voteCompanyCount,averageScore:D.averageScore,indicatorCount:this.itemNames.length}, distEl:this.buildDist(c.overall, c.top, D.cos), radar6El:this.buildRadar6(380,c,D.cos),
       radarLegend:[{name:'전체 평균',color:'#c4c4c9'},{name:c.industry+' 평균',color:'#5a6478'},{name:c.name,color:'#E5202A'}],
       diagnoseAreas, compareWays, deliverables, trustItems
     };
