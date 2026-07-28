@@ -170,7 +170,13 @@ button{font-family:inherit}
       <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:26px;margin:0;letter-spacing:-0.01em;color:#1B1D22">{{ co.name }}</h1>
       <div style="font-size:13.5px;color:#848B97;margin-top:2px">{{ co.industryFull }}</div>
     </div>
-    <button style="margin-left:auto;background:#fff;border:1px solid #DCDFE5;border-radius:9px;padding:9px 15px;font-size:13.5px;font-weight:600;color:#3E434C;cursor:pointer;display:flex;align-items:center;gap:6px">↑ 공유</button>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+      <sc-if value="{{ shareNotice }}"><span role="status" style="font-size:12.5px;font-weight:600;color:#16745B;animation:bfade .2s ease">복사됐습니다</span></sc-if>
+      <button onClick="{{ shareCompany }}" aria-label="{{ co.name }} 정보 복사" title="공유 정보 복사" style="background:#fff;border:1px solid #DCDFE5;border-radius:9px;padding:9px 13px;font-size:13.5px;font-weight:600;color:#3E434C;cursor:pointer;display:flex;align-items:center;gap:7px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3"></path><path d="m7 8 5-5 5 5"></path><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"></path></svg>
+        <span>공유</span>
+      </button>
+    </div>
   </div>
 
   <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
@@ -472,7 +478,7 @@ button{font-family:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860},&quot;defaultItem&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;업무자율성&quot;,&quot;업무의미감&quot;,&quot;업무중요도&quot;,&quot;상사관계&quot;,&quot;동료관계&quot;,&quot;직장내유대&quot;,&quot;워라밸&quot;,&quot;표현의자유&quot;,&quot;복지&quot;,&quot;윤리&quot;,&quot;심리적안전감&quot;],&quot;default&quot;:&quot;업무자율성&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;항목별 TOP 10 기본 항목&quot;},&quot;rankIndustry&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;전체&quot;,&quot;IT&quot;,&quot;금융&quot;,&quot;제조&quot;,&quot;공공기관&quot;,&quot;유통·서비스&quot;],&quot;default&quot;:&quot;전체&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;기본 산업 필터&quot;},&quot;forceEmptyPreference&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;기업 상세&quot;,&quot;label&quot;:&quot;입사 선호도 미수집 상태 미리보기&quot;}}">
 class Component extends DCLogic {
-  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, leadCompany:'', leadName:'', leadEmail:'', leadSubmitting:false, leadMessage:'제출 시 개인정보 처리방침에 동의하는 것으로 간주됩니다.', leadError:false };
+  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, shareNotice:false, leadCompany:'', leadName:'', leadEmail:'', leadSubmitting:false, leadMessage:'제출 시 개인정보 처리방침에 동의하는 것으로 간주됩니다.', leadError:false };
 
   itemNames = ['업무자율성','업무의미감','업무중요도','상사관계','동료관계','직장내유대','워라밸','표현의자유','복지','윤리','심리적안전감'];
   areaDefs = [
@@ -515,11 +521,33 @@ class Component extends DCLogic {
     this._onResize = ()=>{ const m = window.innerWidth<900; if(m!==this.state.isMobile) this.setState({isMobile:m, navOpen:false}); };
     window.addEventListener('scroll', this._onScroll, {passive:true});
     window.addEventListener('resize', this._onResize);
+    const params=new URLSearchParams(window.location.search);
+    const companyId=params.get('company');
+    if(companyId && this.data.byId[companyId]){
+      this.setState({screen:'company',selected:companyId});
+      if(params.get('ref')==='share') this.logShareVisit(companyId);
+    }
     this._onResize();
   }
-  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onResize); }
+  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onResize); clearTimeout(this._shareTimer); }
 
-  go(screen, sel){ const st={screen, navOpen:false}; if(sel) st.selected=sel; this.setState(st); window.scrollTo(0,0); }
+  go(screen, sel){
+    const st={screen, navOpen:false};
+    if(sel) st.selected=sel;
+    const url=new URL(window.location.href);
+    if(screen==='company' && sel) url.searchParams.set('company',sel); else url.searchParams.delete('company');
+    url.searchParams.delete('ref');
+    window.history.pushState({},'',url);
+    this.setState(st);
+    window.scrollTo(0,0);
+  }
+
+  logShareVisit(company){
+    const endpoint='https://script.google.com/macros/s/AKfycbxMpoGnVgrJMJAyXw1jNEUnHOFVLx8KWib9cFaEFpqlzQXfl6qvzUDMF44GXtsFC5WxWQ/exec';
+    const payload=new URLSearchParams({action:'share_visit',company,clickedAt:new Date().toISOString(),page:window.location.href});
+    if(navigator.sendBeacon){ navigator.sendBeacon(endpoint,payload); return; }
+    fetch(endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:payload.toString()}).catch(()=>{});
+  }
 
   effItem(){ return this.state.item || this.props.defaultItem || '업무자율성'; }
   effIndustry(){
@@ -682,6 +710,28 @@ class Component extends DCLogic {
       }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
         .catch(()=>this.setState({leadSubmitting:false,leadMessage:'전송에 실패했습니다. 잠시 후 다시 시도해주세요.',leadError:true}));
     };
+    const shareCompany=()=>{
+      const url=new URL(window.location.href);
+      url.searchParams.set('company',c.id);
+      url.searchParams.set('ref','share');
+      const text=`Blind Index | ${c.name}\n직장 경험 지수 ${c.overall}점 · 한국 상위 ${c.top}%\n${url.toString()}`;
+      const fallbackCopy=()=>{
+        const textarea=document.createElement('textarea');
+        textarea.value=text;
+        textarea.style.cssText='position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied=document.execCommand('copy');
+        textarea.remove();
+        return copied ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+      };
+      const copyPromise=navigator.clipboard?.writeText ? navigator.clipboard.writeText(text) : fallbackCopy();
+      copyPromise.then(()=>{
+        clearTimeout(this._shareTimer);
+        this.setState({shareNotice:true});
+        this._shareTimer=setTimeout(()=>this.setState({shareNotice:false}),2500);
+      }).catch(()=>window.prompt('아래 내용을 복사해주세요.',text));
+    };
 
     return {
       isHome, isCompany, isSolution,
@@ -697,6 +747,7 @@ class Component extends DCLogic {
       leadCompany:this.state.leadCompany, leadName:this.state.leadName, leadEmail:this.state.leadEmail,
       setLeadCompany:e=>this.setState({leadCompany:e.target.value}), setLeadName:e=>this.setState({leadName:e.target.value}), setLeadEmail:e=>this.setState({leadEmail:e.target.value}), submitLead,
       leadSubmitting:this.state.leadSubmitting, leadButtonLabel:this.state.leadSubmitting?'제출 중...':'데모 신청하기', leadButtonOpacity:this.state.leadSubmitting?'0.65':'1', leadMessage:this.state.leadMessage, leadMessageColor:this.state.leadError?'#c11b23':'#a0a0a6',
+      shareCompany, shareNotice:this.state.shareNotice,
       searchGo:()=>{ if(firstMatch) this.go('company',firstMatch.id); },
       showResults:q.length>0, results, noResults:q.length>0&&results.length===0, suggestions,
       selectedItem:item, rankScopeLabel: '전체 기업 기준',
