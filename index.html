@@ -653,7 +653,12 @@ class Component extends DCLogic {
     const mkRow=(c,rank)=>({ rank, id:c.id, name:c.name, mono:c.mono, logo:c.logo, hasLogo:c.hasLogo, noLogo:c.noLogo, tint:c.tint, industry:c.industry, open:()=>this.go('company',c.id), rankColor: rank<=3?red:'#b0b0b6' });
 
     const itemRanking = [...pool].sort((a,b)=> a.itemTop[itemIdx]-b.itemTop[itemIdx]).slice(0,10).map((c,i)=>mkRow(c,i+1));
-    const overallRanking = [...pool].sort((a,b)=> b.overall-a.overall).slice(0,10).map((c,i)=>mkRow(c,i+1));
+    let prevOverall=null, prevRank=0;
+    const overallRanking = [...pool].sort((a,b)=> b.overall-a.overall).slice(0,10).map((c,i)=>{
+      const rank = (c.overall===prevOverall) ? prevRank : i+1;
+      prevOverall=c.overall; prevRank=rank;
+      return mkRow(c, rank);
+    });
 
     const itemTabs=this.itemNames.map(n=>({ name:n, onClick:()=>this.setState({item:n}), active:n===item,
       bg:n===item?'#1c1c1e':'#fff', color:n===item?'#fff':'#5a5a5e', border:n===item?'#1c1c1e':'#e7e7ea', weight:n===item?700:500 }));
