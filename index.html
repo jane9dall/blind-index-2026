@@ -46,16 +46,16 @@ button{font-family:inherit}
 
   <sc-if value="{{ desktopNav }}" hint-placeholder-val="{{ true }}">
   <div style="display:flex;align-items:stretch;gap:30px">
-    <button onClick="{{ goHome }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:15px;font-weight:600;letter-spacing:-0.01em;color:{{ navScoreColor }};padding:0 2px;display:flex;align-items:center">
-      회사 점수보기
+    <button onClick="{{ goHome }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:0 2px;display:flex;align-items:center">
+      COMPANY INDEX
       <sc-if value="{{ navScoreActive }}"><span style="position:absolute;left:-2px;right:-2px;bottom:-1px;height:2px;background:#E5202A"></span></sc-if>
     </button>
-    <button onClick="{{ goSolution }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:15px;font-weight:600;letter-spacing:-0.01em;color:{{ navSolutionColor }};padding:0 2px;display:flex;align-items:center">
-      기업 솔루션
+    <button onClick="{{ goSolution }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:0 2px;display:flex;align-items:center">
+      SOLUTIONS
       <sc-if value="{{ navSolutionActive }}"><span style="position:absolute;left:-2px;right:-2px;bottom:-1px;height:2px;background:#E5202A"></span></sc-if>
     </button>
-    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:15px;font-weight:600;letter-spacing:-0.01em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
-      애뉴얼 리포트
+    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
+      ANNUAL REPORT
     </button>
   </div>
   <div style="flex:1"></div>
@@ -76,9 +76,9 @@ button{font-family:inherit}
 
 <sc-if value="{{ navOpen }}">
 <div style="position:sticky;top:62px;z-index:49;background:#fff;border-bottom:1px solid #ececee;padding:8px 20px 16px;display:flex;flex-direction:column">
-  <button onClick="{{ goHome }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:16px;font-weight:600;color:{{ navScoreColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">회사 점수보기</button>
-  <button onClick="{{ goSolution }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:16px;font-weight:600;color:{{ navSolutionColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">기업 솔루션</button>
-  <button onClick="{{ goReport }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:16px;font-weight:600;color:#1c1c1e;padding:14px 4px;border-bottom:1px solid #f2f2f4">애뉴얼 리포트</button>
+  <button onClick="{{ goHome }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">COMPANY INDEX</button>
+  <button onClick="{{ goSolution }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">SOLUTIONS</button>
+  <button onClick="{{ goReport }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:14px 4px;border-bottom:1px solid #f2f2f4">ANNUAL REPORT</button>
 </div>
 </sc-if>
 
@@ -758,7 +758,7 @@ class Component extends DCLogic {
     return {
       isHome, isCompany, isSolution,
       desktopNav:!this.state.isMobile, mobileNav:this.state.isMobile, navOpen:this.state.navOpen,
-      currentLabel: isSolution?'기업 솔루션':'회사 점수보기',
+      currentLabel: isSolution?'SOLUTIONS':'COMPANY INDEX',
       navScoreActive:scoreActive, navSolutionActive:solActive,
       navScoreColor:scoreActive?red:charcoal, navSolutionColor:solActive?red:charcoal,
       navShadow:this.state.scrolled?'0 1px 12px rgba(0,0,0,0.06)':'none',
