@@ -1318,6 +1318,15 @@ h1 {
 
 /* ===== 추가 맛보기 섹션 (PDF p4·5·7·8·9·12) ===== */
 
+/* 데이터 밀도가 높은 섹션은 넓은 래퍼 사용 (master-style의 600px 제한 해제) */
+#step-1 .content-wrapper,
+#step-4 .content-wrapper,
+#step-5 .content-wrapper,
+#step-7 .content-wrapper,
+#step-8 .content-wrapper {
+    max-width: 1000px;
+}
+
 /* 블라인드 지수란 */
 .factor-grid {
     display: flex;
