@@ -168,6 +168,11 @@ body {
     transform: none;
 }
 
+/* master-style의 left:10% 강제 배치를 화면 좌측 고정으로 재정의 */
+nav.floating-menu {
+    left: 1.5rem !important;
+}
+
 /* 사이드 네비게이터를 그릴 여백이 없는 폭에서는 숨김 */
 @media (max-width: 1200px) {
     .floating-menu {
