@@ -1230,26 +1230,6 @@ h1 {
         min-height: 0;
     }
 
-    #step-1-5 .replication-container {
-        min-height: auto !important;
-    }
-}
-
-/* Step 1.5는 콘텐츠 높이만큼만 */
-#step-1-5 .replication-section {
-    min-height: auto;
-}
-
-/* 큰 모니터 (1440px 높이 이상)에서 그래프 크기 키우기 */
-@media (min-width: 769px) and (min-height: 900px) {
-    .content-wrapper {
-        max-width: 1200px;
-    }
-
-    .company-ranking-chart {
-        gap: 1rem 0.8rem;
-    }
-
     .ranking-title {
         font-size: 2.2rem;
         margin-bottom: 0.6rem;
@@ -1276,6 +1256,26 @@ h1 {
     #step-9 .rep-body-text {
         font-size: 1.05rem;
         margin-bottom: 1rem;
+    }
+
+    #step-1-5 .replication-container {
+        min-height: auto !important;
+    }
+}
+
+/* Step 1.5는 콘텐츠 높이만큼만 */
+#step-1-5 .replication-section {
+    min-height: auto;
+}
+
+/* 큰 모니터 (1440px 높이 이상)에서 그래프 크기 키우기 */
+@media (min-width: 769px) and (min-height: 900px) {
+    .content-wrapper {
+        max-width: 1200px;
+    }
+
+    .company-ranking-chart {
+        gap: 1rem 0.8rem;
     }
 
     .ranking-item {
