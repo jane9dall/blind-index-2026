@@ -1,11 +1,18 @@
 /**
  * Blind Index Google Apps Script web-app handler.
  *
- * 대상 스프레드시트: 1bC_olKtDlKzwP8RjYuU9dCjcIQk5JHHJbLZWJuoW6RM
- * 배포 방법: 웹 앱으로 배포 (실행: 나, 액세스: 모든 사용자) 후
- * 발급된 /exec URL을 index.html과 report.js의 엔드포인트에 넣습니다.
+ * - 리포트 팝업 제출  → "리포트 요청" 탭
+ * - 솔루션 상담 신청  → "상담 신청" 탭
+ * - 방문/공유 유입 로그 → "방문로그" 탭
+ *
+ * 배포 방법: 시트에서 확장 프로그램 → Apps Script에 붙여넣고
+ * 웹 앱으로 배포 (실행: 나, 액세스: 모든 사용자).
+ * 코드 수정 후에는 배포 → 배포 관리 → 연필 → "버전: 새 버전"으로
+ * 갱신해야 기존 /exec URL에 반영됩니다.
  */
 var SPREADSHEET_ID = '1J-0g24ix9eeCs83k1INXwikOngvUMt_HclY1RnvhW_g';
+
+var SUBMIT_HEADERS = ['기록 시각', '회사명', '담당자명', '직함', '회사 이메일', '모바일 번호', '제출 페이지'];
 
 // 스크립트가 시트에 붙어(container-bound) 있으면 그 시트를, 아니면 위 ID의 시트를 사용
 function getSpreadsheet_() {
@@ -43,32 +50,44 @@ function doPost(e) {
     return json_({ ok: true });
   }
 
-  // 리포트 이메일 게이트(리포트 요청) / 솔루션스 상담 폼(솔루션 신청) 공용
-  const sheet = getOrCreateSheet_(spreadsheet, '신청', [
-    '기록 시각', '구분', '회사명', '담당자명', '직함', '회사 이메일', '모바일 번호'
-  ]);
+  // 구분값에 따라 탭 분리: 솔루션 신청 → "상담 신청", 그 외 → "리포트 요청"
+  const tabName = params.type === '솔루션 신청' ? '상담 신청' : '리포트 요청';
+  const sheet = getOrCreateSheet_(spreadsheet, tabName, SUBMIT_HEADERS);
   sheet.appendRow([
     new Date(),
-    params.type || '기타',
     params.company || '',
     params.name || '',
     params.position || '',
     params.email || '',
-    params.phone || ''
+    params.phone || '',
+    params.page || ''
   ]);
   return json_({ ok: true });
 }
 
 // Apps Script 편집기에서 저장 여부를 확인할 때 실행하는 테스트 함수입니다.
+// 실행하면 "리포트 요청"과 "상담 신청" 탭에 각각 테스트 행이 1건씩 들어갑니다.
 function testSubmission() {
-  return doPost({
+  doPost({
     parameter: {
       type: '리포트 요청',
       company: '테스트 기업',
       name: '홍길동',
       position: '매니저',
       email: 'test@example.com',
-      phone: '010-0000-0000'
+      phone: '010-0000-0000',
+      page: 'https://example.com/report.html'
+    }
+  });
+  return doPost({
+    parameter: {
+      type: '솔루션 신청',
+      company: '테스트 기업',
+      name: '홍길동',
+      position: '매니저',
+      email: 'test@example.com',
+      phone: '010-0000-0000',
+      page: 'https://example.com/?screen=solution'
     }
   });
 }

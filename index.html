@@ -832,7 +832,7 @@ class Component extends DCLogic {
       this.setState({leadSubmitting:true,leadMessage:'제출 중...',leadError:false});
       fetch('https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams({type:'솔루션 신청',company,name,position,phone,email}).toString()
+        body:new URLSearchParams({type:'솔루션 신청',company,name,position,phone,email,page:window.location.href}).toString()
       }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
         .catch(()=>this.setState({leadSubmitting:false,leadMessage:'전송에 실패했습니다. 잠시 후 다시 시도해주세요.',leadError:true}));
     };

@@ -294,7 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     name: name,
                     position: position,
                     email: email,
-                    phone: phone
+                    phone: phone,
+                    page: window.location.href
                 })
             }).then(() => {
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
