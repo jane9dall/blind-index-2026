@@ -100,7 +100,7 @@ button{font-family:inherit}
         <div style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:6px 6px 6px 18px;box-shadow:0 12px 36px -12px rgba(0,0,0,0.5)">
           <span style="color:#b6b6bc;font-size:18px">⌕</span>
           <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="회사 이름을 검색해보세요" style="flex:1;border:none;outline:none;font-family:inherit;font-size:15.5px;color:#1c1c1e;background:none;padding:12px 0"/>
-          <button onClick="{{ searchGo }}" style="background:#2563EB;color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:14.5px;font-weight:600;cursor:pointer">검색</button>
+          <button onClick="{{ searchGo }}" style="background:#1c1c1e;color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:14.5px;font-weight:600;cursor:pointer">검색</button>
         </div>
         <sc-if value="{{ showResults }}">
         <div style="position:absolute;left:0;right:0;top:66px;z-index:50;background:#fff;border:1px solid #e4e4e7;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,0.20);padding:6px;max-height:320px;overflow:auto">
@@ -222,7 +222,7 @@ button{font-family:inherit}
         <sc-for list="{{ co.headline }}" as="m" hint-placeholder-count="4">
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:15px">
             <span style="flex:0 0 84px;font-size:13.5px;color:#3E434C;font-weight:500">{{ m.name }}</span>
-            <span style="flex:1 1 auto;min-width:0;font-size:11.5px;color:#A9B0BB;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.desc }}</span>
+            <span style="flex:0 0 190px;font-size:11.5px;color:#A9B0BB;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.desc }}</span>
             <div style="flex:0 0 150px;height:6px;background:#EAECF0;border-radius:3px;overflow:hidden"><div style="height:6px;width:{{ m.fill }};background:#D92525;border-radius:3px"></div></div>
             <span style="flex:0 0 62px;text-align:right;font-size:13px;font-weight:700;color:#3E434C;font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
           </div>
@@ -231,7 +231,7 @@ button{font-family:inherit}
 
       <div>
         <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
-          <h2 style="font-size:17px;font-weight:700;margin:0;color:#1B1D22">영역별 직장 경험 · 한국 상위 %</h2>
+          <h2 style="font-size:17px;font-weight:700;margin:0;color:#1B1D22">요인별 한국 상위 %</h2>
           <span style="font-size:12px;color:#959CA8">n%가 낮을수록 더 높은 위치</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
@@ -259,8 +259,8 @@ button{font-family:inherit}
       </div>
 
       <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 24px 20px">
-        <h2 style="font-size:17px;font-weight:700;margin:0 0 4px;text-align:center;color:#1B1D22">항목별 종합 비교</h2>
-        <p style="font-size:12.5px;color:#959CA8;text-align:center;margin:0 0 6px">주요 경험 지표를 업계 · 전체 평균과 비교합니다</p>
+        <h2 style="font-size:17px;font-weight:700;margin:0 0 4px;text-align:center;color:#1B1D22">요인별 종합 비교</h2>
+        <p style="font-size:12.5px;color:#959CA8;text-align:center;margin:0 0 6px">주요 지표를 업계 · 전체 평균과 비교합니다</p>
         <div style="max-width:420px;margin:0 auto">{{ radar6El }}</div>
         <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin-top:6px">
           <sc-for list="{{ radarLegend }}" as="l" hint-placeholder-count="3">
@@ -271,7 +271,7 @@ button{font-family:inherit}
 
       <div style="background:#EDEFF3;border:1px solid #E6E8EC;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
         <p style="font-size:14px;color:#5D646F;margin:0;flex:1 1 300px"><b style="color:#2B2F36;font-weight:700">HR 담당자이신가요?</b> 경쟁사 비교와 조직별 개선 우선순위를 엔터프라이즈 대시보드에서 확인하세요.</p>
-        <button onClick="{{ goSolution }}" style="background:#2563EB;color:#fff;border:none;border-radius:9px;padding:11px 18px;font-size:13.5px;font-weight:600;cursor:pointer">기업 솔루션 알아보기 →</button>
+        <button onClick="{{ goSolution }}" style="background:#1c1c1e;color:#fff;border:none;border-radius:9px;padding:11px 18px;font-size:13.5px;font-weight:600;cursor:pointer">기업 솔루션 알아보기 →</button>
       </div>
     </main>
 
@@ -543,8 +543,9 @@ class Component extends DCLogic {
       const seed = idx+1;
       const mono=name.replace(/코리아|플러스|하이닉스/,'').trim().slice(0,2);
       const logo=window.COMPANY_LOGOS?.[name] || window.COMPANY_LOGOS?.[logoAliases[name]] || null;
-      const itemTop=this.itemNames.map((_,i)=>number(row[10+i]));
-      const headlineTop=[6,7,8,9].map(i=>number(row[i]));
+      const clampTop=v=>v===null?null:Math.max(1,v);
+      const itemTop=this.itemNames.map((_,i)=>clampTop(number(row[10+i])));
+      const headlineTop=[6,7,8,9].map(i=>clampTop(number(row[i])));
       const vote=window.COMPANY_VOTES?.[name] || window.COMPANY_VOTES?.[logoAliases[name]] || null;
       return {id:name,name,industry:row[1]||'미분류',overall,top,responseCount:number(row[2])||0,seed,mono,logo,hasLogo:!!logo,noLogo:!logo,tint:this.tints[idx%this.tints.length],itemTop,headlineTop,vote};
     }).filter(Boolean).filter(c=>c.itemTop.every(v=>v!==null) && c.headlineTop.every(v=>v!==null));
@@ -663,7 +664,7 @@ class Component extends DCLogic {
     const industry=all.filter(c=>c.industry===company.industry);
     const industryAvg=idx.map(i=>Math.round(industry.reduce((sum,c)=>sum+asScore(c.itemTop[i]),0)/Math.max(industry.length,1)));
     const series=[
-      {color:'#d6d6da',fill:'rgba(210,210,214,0.16)',vals:avg,dot:false},
+      {color:'#a0a7b4',fill:'rgba(160,167,180,0.15)',vals:avg,dot:false},
       {color:'#5a6478',fill:'rgba(90,100,120,0.12)',vals:industryAvg,dot:true},
       {color:'#D92525',fill:'rgba(217,37,37,0.12)',vals:idx.map(i=>asScore(company.itemTop[i])),dot:true}
     ];
@@ -813,7 +814,7 @@ class Component extends DCLogic {
       itemTabs, itemFilters, industries, itemRanking, overallRanking,
       clearIndustry:()=>this.setState({industry:null}), allIndBg: ind?'transparent':'#fbecec', allIndColor: ind?'#4a4a4e':red,
       co, areaGroups, dataStats:{companyCount:D.cos.length,voteCompanyCount:D.voteCompanyCount,averageScore:D.averageScore,indicatorCount:this.itemNames.length}, distEl:this.buildDist(c.overall, c.top, D.cos), radar6El:this.buildRadar6(380,c,D.cos),
-      radarLegend:[{name:'전체 평균',color:'#c4c4c9'},{name:c.industry+' 평균',color:'#5a6478'},{name:c.name,color:'#D92525'}],
+      radarLegend:[{name:'한국 평균',color:'#a0a7b4'},{name:c.industry+' 평균',color:'#5a6478'},{name:c.name,color:'#D92525'}],
       diagnoseAreas, compareWays, deliverables, trustItems
     };
   }
