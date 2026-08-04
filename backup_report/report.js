@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // 구글 시트로 데이터 전송
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwi1JyQGw1Dr4y1E7SwfnCUeGWC2Y4l9Ccp9HZYkM5ypE3ktuM_SIrKP-04ExvVC4tw/exec';
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec';
 
             gateMessage.textContent = '제출 중...';
             gateMessage.className = 'gate-message';
