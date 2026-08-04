@@ -12,7 +12,8 @@
  */
 var SPREADSHEET_ID = '1J-0g24ix9eeCs83k1INXwikOngvUMt_HclY1RnvhW_g';
 
-var SUBMIT_HEADERS = ['기록 시각', '회사명', '담당자명', '직함', '회사 이메일', '모바일 번호', '제출 페이지'];
+// 시트의 실제 열 순서와 동일해야 합니다
+var SUBMIT_HEADERS = ['담당자명', '직함', '회사명', '모바일 번호', '회사 이메일', '제출일시', '제출 페이지'];
 
 // 스크립트가 시트에 붙어(container-bound) 있으면 그 시트를, 아니면 위 ID의 시트를 사용
 function getSpreadsheet_() {
@@ -54,12 +55,12 @@ function doPost(e) {
   const tabName = params.type === '솔루션 신청' ? '상담 신청' : '리포트 요청';
   const sheet = getOrCreateSheet_(spreadsheet, tabName, SUBMIT_HEADERS);
   sheet.appendRow([
-    new Date(),
-    params.company || '',
     params.name || '',
     params.position || '',
-    params.email || '',
+    params.company || '',
     params.phone || '',
+    params.email || '',
+    new Date(),
     params.page || ''
   ]);
   return json_({ ok: true });
