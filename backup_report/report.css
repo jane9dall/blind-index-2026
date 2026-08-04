@@ -1378,7 +1378,7 @@ h1 {
 .factor-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.5rem;
     margin-top: 0;
 }
 
@@ -1431,7 +1431,7 @@ h1 {
 }
 
 .factor-group.outcome {
-    background: #f2f2f4;
+    margin-bottom: 0.4rem;
 }
 
 .factor-group.outcome h4 {
@@ -1485,6 +1485,12 @@ h1 {
     border: 1px solid #e8e8ea;
     border-radius: 12px;
     overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.industry-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .industry-card h4 {
@@ -1538,6 +1544,12 @@ h1 {
     border: 1px solid #e8e8ea;
     border-radius: 10px;
     padding: 0.5rem 0.9rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.riser-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .riser-tag {
