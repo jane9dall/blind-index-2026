@@ -47,14 +47,14 @@ button{font-family:inherit}
 
   <sc-if value="{{ desktopNav }}" hint-placeholder-val="{{ true }}">
   <div style="display:flex;align-items:stretch;gap:30px">
-    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
+    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
       ANNUAL REPORT
     </button>
-    <button onClick="{{ goHome }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:0 2px;display:flex;align-items:center">
+    <button onClick="{{ goHome }}" style="position:relative;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:0 2px;display:flex;align-items:center">
       COMPANY INDEX
       <sc-if value="{{ navScoreActive }}"><span style="position:absolute;left:-2px;right:-2px;bottom:-1px;height:2px;background:#D92525"></span></sc-if>
     </button>
-    <button onClick="{{ goSolution }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:0 2px;display:flex;align-items:center">
+    <button onClick="{{ goSolution }}" style="position:relative;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:0 2px;display:flex;align-items:center">
       SOLUTIONS
       <sc-if value="{{ navSolutionActive }}"><span style="position:absolute;left:-2px;right:-2px;bottom:-1px;height:2px;background:#D92525"></span></sc-if>
     </button>
@@ -63,7 +63,7 @@ button{font-family:inherit}
   </sc-if>
 
   <sc-if value="{{ mobileNav }}">
-  <div style="display:flex;align-items:center;justify-content:center;flex:1;font-size:14px;font-weight:600;color:#1c1c1e">{{ currentLabel }}</div>
+  <div style="display:flex;align-items:center;justify-content:center;flex:1;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e">{{ currentLabel }}</div>
   <div style="display:flex;align-items:center;justify-content:flex-end;flex:1">
     <button onClick="{{ toggleNav }}" aria-label="menu" style="background:none;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;gap:4px">
       <span style="width:20px;height:2px;background:#1c1c1e;border-radius:2px"></span>
@@ -77,9 +77,9 @@ button{font-family:inherit}
 
 <sc-if value="{{ navOpen }}">
 <div style="position:sticky;top:62px;z-index:49;background:#fff;border-bottom:1px solid #ececee;padding:8px 20px 16px;display:flex;flex-direction:column">
-  <button onClick="{{ goReport }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:14px 4px;border-bottom:1px solid #f2f2f4">ANNUAL REPORT</button>
-  <button onClick="{{ goHome }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">COMPANY INDEX</button>
-  <button onClick="{{ goSolution }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">SOLUTIONS</button>
+  <button onClick="{{ goReport }}" style="text-align:left;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:14px 4px;border-bottom:1px solid #f2f2f4">ANNUAL REPORT</button>
+  <button onClick="{{ goHome }}" style="text-align:left;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">COMPANY INDEX</button>
+  <button onClick="{{ goSolution }}" style="text-align:left;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">SOLUTIONS</button>
 </div>
 </sc-if>
 
@@ -129,7 +129,7 @@ button{font-family:inherit}
       <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px">
         <h2 style="font-size:19px;font-weight:700;margin:0;letter-spacing:-0.01em;color:#181819">요인별 우수 기업</h2>
       </div>
-      <p style="font-size:13.5px;color:#8a8a90;margin:0 0 16px">현재 <b style="color:#D92525;font-weight:600">{{ selectedItem }}</b> 기준입니다. 항목을 선택해 다른 경험 지표를 확인하세요.</p>
+      <p style="font-size:13.5px;color:#8a8a90;margin:0 0 16px">현재 <b style="color:#1B1D22;font-weight:600">{{ selectedItem }}</b> 기준입니다. 항목을 선택해 다른 경험 지표를 확인하세요.</p>
       <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px">
         <sc-for list="{{ itemTabs }}" as="t" hint-placeholder-count="11">
           <button onClick="{{ t.onClick }}" style="background:{{ t.bg }};color:{{ t.color }};border:1px solid {{ t.border }};border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px;font-weight:{{ t.weight }}">{{ t.name }}</button>
@@ -141,7 +141,7 @@ button{font-family:inherit}
             <span style="width:20px;text-align:center;font-size:13px;font-weight:700;color:{{ row.rankColor }};font-variant-numeric:tabular-nums">{{ row.rank }}</span>
             <span style="width:30px;height:30px;border-radius:7px;background:{{ row.tint }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ row.hasLogo }}"><img src="{{ row.logo }}" alt="{{ row.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ row.noLogo }}"><span style="color:#4a4a4e;font-weight:700;font-size:13px">{{ row.mono }}</span></sc-if></span>
             <span style="font-size:14.5px;font-weight:600;color:#26262a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ row.name }}</span>
-            <span style="margin-left:auto;flex-shrink:0;font-size:13px;font-weight:700;color:#D92525;font-variant-numeric:tabular-nums">상위 {{ row.itemPct }}%</span>
+            <span style="margin-left:auto;flex-shrink:0;font-size:13.5px;font-weight:700;color:#1B1D22;font-variant-numeric:tabular-nums">상위 {{ row.itemPct }}%</span>
           </button>
         </sc-for>
       </div>
@@ -151,7 +151,7 @@ button{font-family:inherit}
       <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px">
         <h2 style="font-size:19px;font-weight:700;margin:0;letter-spacing:-0.01em;color:#181819">올해의 우수 기업 10</h2>
       </div>
-      <p style="font-size:13.5px;color:#8a8a90;margin:0 0 20px">일 · 관계 · 문화를 <b style="color:#D92525;font-weight:600">종합한 블라인드 지수</b> 기준입니다. 1위가 가장 높은 직장 경험 점수입니다.</p>
+      <p style="font-size:13.5px;color:#8a8a90;margin:0 0 20px">일 · 관계 · 문화를 <b style="color:#1B1D22;font-weight:600">종합한 블라인드 지수</b> 기준입니다. 1위가 가장 높은 직장 경험 점수입니다.</p>
       <div style="display:grid;grid-template-columns:1fr">
         <sc-for list="{{ overallRanking }}" as="row" hint-placeholder-count="10">
           <button onClick="{{ row.open }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #f2f2f4;cursor:pointer;padding:11px 4px" style-hover="background:#fafafb">
@@ -689,7 +689,7 @@ class Component extends DCLogic {
     const ind=this.effIndustry();
     const pool = D.cos;
 
-    const mkRow=(c,rank)=>({ rank, id:c.id, name:c.name, mono:c.mono, logo:c.logo, hasLogo:c.hasLogo, noLogo:c.noLogo, tint:c.tint, industry:c.industry, score:c.overall, open:()=>this.go('company',c.id), rankColor: rank<=3?red:'#b0b0b6' });
+    const mkRow=(c,rank)=>({ rank, id:c.id, name:c.name, mono:c.mono, logo:c.logo, hasLogo:c.hasLogo, noLogo:c.noLogo, tint:c.tint, industry:c.industry, score:c.overall, open:()=>this.go('company',c.id), rankColor:'#b0b0b6' });
 
     const itemRanking = [...pool].sort((a,b)=> a.itemTop[itemIdx]-b.itemTop[itemIdx]).slice(0,10).map((c,i)=>({ ...mkRow(c,i+1), itemPct:c.itemTop[itemIdx] }));
     let prevOverall=null, prevRank=0;
