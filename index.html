@@ -50,12 +50,12 @@ button{font-family:inherit}
       COMPANY INDEX
       <sc-if value="{{ navScoreActive }}"><span style="position:absolute;left:-2px;right:-2px;bottom:-1px;height:2px;background:#E5202A"></span></sc-if>
     </button>
+    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
+      ANNUAL REPORT
+    </button>
     <button onClick="{{ goSolution }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:0 2px;display:flex;align-items:center">
       SOLUTIONS
       <sc-if value="{{ navSolutionActive }}"><span style="position:absolute;left:-2px;right:-2px;bottom:-1px;height:2px;background:#E5202A"></span></sc-if>
-    </button>
-    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
-      ANNUAL REPORT
     </button>
   </div>
   <div style="flex:1"></div>
@@ -77,8 +77,8 @@ button{font-family:inherit}
 <sc-if value="{{ navOpen }}">
 <div style="position:sticky;top:62px;z-index:49;background:#fff;border-bottom:1px solid #ececee;padding:8px 20px 16px;display:flex;flex-direction:column">
   <button onClick="{{ goHome }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">COMPANY INDEX</button>
-  <button onClick="{{ goSolution }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">SOLUTIONS</button>
   <button onClick="{{ goReport }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:14px 4px;border-bottom:1px solid #f2f2f4">ANNUAL REPORT</button>
+  <button onClick="{{ goSolution }}" style="text-align:left;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">SOLUTIONS</button>
 </div>
 </sc-if>
 
