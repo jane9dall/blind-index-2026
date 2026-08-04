@@ -129,8 +129,8 @@ body {
         color: var(--blind-red);
     }
 
-    .fab-stack {
-        bottom: calc(1.6rem + 58px);
+    div.fab-stack {
+        bottom: calc(1rem + 62px);
     }
 
     .report-footer {
