@@ -186,7 +186,7 @@ button{font-family:inherit}
       <div style="font-size:13.5px;color:#848B97;margin-top:2px">{{ co.industryFull }}</div>
     </div>
     <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
-      <sc-if value="{{ shareNotice }}"><span role="status" style="font-size:12.5px;font-weight:600;color:#16745B;animation:bfade .2s ease">복사됐습니다</span></sc-if>
+      <sc-if value="{{ shareNotice }}"><span role="status" style="font-size:12.5px;font-weight:600;color:#D92525;animation:bfade .2s ease">복사됐습니다</span></sc-if>
       <button onClick="{{ shareCompany }}" aria-label="{{ co.name }} 정보 복사" title="공유 정보 복사" style="background:#fff;border:1px solid #DCDFE5;border-radius:9px;padding:9px 13px;font-size:13.5px;font-weight:600;color:#3E434C;cursor:pointer;display:flex;align-items:center;gap:7px">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3"></path><path d="m7 8 5-5 5 5"></path><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"></path></svg>
         <span>공유</span>
@@ -198,30 +198,16 @@ button{font-family:inherit}
     <main style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
 
       <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:26px 28px 22px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:8px">전체 기업 분포 속 위치</div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:8px">대한민국 전체 기업 중</div>
         <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
-          <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:700;font-size:46px;margin:0;letter-spacing:-0.01em;color:#1B1D22">한국 상위 {{ co.top }}%</h2>
+          <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:700;font-size:46px;margin:0;letter-spacing:-0.01em;color:#1B1D22">상위 {{ co.top }}%</h2>
         </div>
-        <p style="font-size:14.5px;color:#69707E;margin:6px 0 4px">올해 점수가 공개된 전체 기업 중 약 <b style="color:#3E434C;font-weight:700">{{ co.pctBelow }}%</b>보다 높은 직장 경험 점수입니다.</p>
+        <p style="font-size:14.5px;color:#69707E;margin:6px 0 4px">전체 기업 중 약 <b style="color:#3E434C;font-weight:700">{{ co.pctBelow }}%</b>보다 높은 직장 경험 점수입니다.</p>
         <div style="margin:6px -6px 0">{{ distEl }}</div>
-        <div style="display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:8px;padding-top:16px;border-top:1px solid #EDEFF3">
-          <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 230px">
-            <span style="flex-shrink:0;width:11px;height:11px;border-radius:3px;background:rgba(217,37,37,0.20);border:1px solid #D92525;margin-top:3px"></span>
-            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">색칠된 영역은 {{ co.name }}보다 <b style="color:#D92525">점수가 높은 상위 {{ co.top }}% 기업</b> 구간입니다.</p>
-          </div>
-          <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 200px">
-            <span style="flex-shrink:0;width:11px;height:2px;background:#A9B0BB;border-top:1px dashed #959CA8;margin-top:8px"></span>
-            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">점선은 전체 기업 <b style="color:#3E434C">평균 44점</b>을 나타냅니다.</p>
-          </div>
-          <div style="display:flex;gap:8px;align-items:flex-start;flex:1 1 200px">
-            <span style="flex-shrink:0;width:3px;height:13px;background:#D92525;border-radius:2px;margin-top:2px"></span>
-            <p style="font-size:12.5px;line-height:1.55;color:#69707E;margin:0">세로 마커가 {{ co.name }}의 위치(<b style="color:#D92525">{{ co.overall }}점</b>)입니다.</p>
-          </div>
-        </div>
       </section>
 
       <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 28px 8px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:10px">블라인드 지수 2026</div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:10px">결과 쪼개보기</div>
         <div style="display:flex;align-items:baseline;gap:7px;margin-bottom:20px">
           <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:46px;font-weight:700;color:#1B1D22;line-height:1">{{ co.overall }}</span>
           <span style="font-size:16px;color:#959CA8">점 / 100점</span>
@@ -261,9 +247,9 @@ button{font-family:inherit}
       </section>
 
       <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 24px 20px">
-        <h2 style="font-size:17px;font-weight:700;margin:0 0 4px;text-align:center;color:#1B1D22">요인별 종합 비교</h2>
-        <p style="font-size:12.5px;color:#959CA8;text-align:center;margin:0 0 6px">주요 지표를 업계 · 전체 평균과 비교합니다</p>
-        <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin-top:10px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:8px">요인별 종합 비교</div>
+        <p style="font-size:12.5px;color:#959CA8;margin:0 0 6px">주요 지표를 업계 · 전체 평균과 비교합니다</p>
+        <div style="display:flex;justify-content:flex-start;flex-wrap:wrap;gap:8px 20px;margin-top:10px">
           <sc-for list="{{ radarLegend }}" as="l" hint-placeholder-count="3">
             <span style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#5D646F"><span style="width:9px;height:9px;border-radius:50%;background:{{ l.color }}"></span>{{ l.name }}</span>
           </sc-for>
@@ -278,19 +264,8 @@ button{font-family:inherit}
     </main>
 
     <aside style="flex:0 0 320px;min-width:280px;display:flex;flex-direction:column;gap:16px">
-      <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:18px 20px 10px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">재직자가 함께 고려한 기업</h3>
-        <p style="font-size:12px;color:#959CA8;margin:0 0 8px">이 회사 재직자가 자주 비교한 기업입니다.</p>
-        <sc-for list="{{ co.wanted }}" as="w" hint-placeholder-count="3">
-          <button onClick="{{ w.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:9px 2px" style-hover="background:#fafafb">
-            <span style="width:28px;height:28px;border-radius:7px;background:{{ w.tint }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ w.hasLogo }}"><img src="{{ w.logo }}" alt="{{ w.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ w.noLogo }}"><span style="color:#4a4a4e;font-weight:700;font-size:12px">{{ w.mono }}</span></sc-if></span>
-            <span style="font-size:13.5px;font-weight:600;color:#2B2F36;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ w.name }}</span>
-            <span style="margin-left:auto;border:1px solid #D9DCE2;color:#576070;border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700;flex-shrink:0">▲ 추천</span>
-          </button>
-        </sc-for>
-      </div>
       <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:20px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 4px;color:#1B1D22">블라인드 입사 선호도</h3>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 4px;color:#1B1D22">입사 선호도</h3>
         <sc-if value="{{ co.hasPref }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 2px">
             <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:38px;font-weight:700;color:#23262C;line-height:1">{{ co.prefYes }}%</span>
@@ -324,8 +299,20 @@ button{font-family:inherit}
         </sc-if>
       </div>
 
+      <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:18px 20px 10px">
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">재직자가 함께 고려한 기업</h3>
+        <p style="font-size:12px;color:#959CA8;margin:0 0 8px">이 회사 재직자가 자주 비교한 기업입니다.</p>
+        <sc-for list="{{ co.wanted }}" as="w" hint-placeholder-count="3">
+          <button onClick="{{ w.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:9px 2px" style-hover="background:#fafafb">
+            <span style="width:28px;height:28px;border-radius:7px;background:{{ w.tint }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ w.hasLogo }}"><img src="{{ w.logo }}" alt="{{ w.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ w.noLogo }}"><span style="color:#4a4a4e;font-weight:700;font-size:12px">{{ w.mono }}</span></sc-if></span>
+            <span style="font-size:13.5px;font-weight:600;color:#2B2F36;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ w.name }}</span>
+            <span style="margin-left:auto;border:1px solid #D9DCE2;color:#576070;border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700;flex-shrink:0">▲ 추천</span>
+          </button>
+        </sc-for>
+      </div>
+
       <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:20px 20px 12px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">같은 업계 다른 기업과 비교</h3>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">같은 업계 다른 기업</h3>
         <p style="font-size:12px;color:#959CA8;margin:0 0 10px">{{ co.industry }} 분야에서 현재 기업과 나란히 봅니다.</p>
         <sc-for list="{{ co.peers }}" as="p" hint-placeholder-count="4">
           <button onClick="{{ p.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:10px 2px" style-hover="background:#fafafb">
@@ -651,8 +638,7 @@ class Component extends DCLogic {
       h('text',{key:'t0', x:L, y:baseY+18, fill:'#a0a0a6', fontSize:11, fontFamily:'Pretendard,sans-serif'},'0점'),
       h('text',{key:'t100', x:W-R, y:baseY+18, textAnchor:'end', fill:'#a0a0a6', fontSize:11, fontFamily:'Pretendard,sans-serif'},'100점'),
       h('text',{key:'tm', x:meanx, y:baseY+18, textAnchor:'middle', fill:'#8a8a90', fontSize:11, fontWeight:600, fontFamily:'Pretendard,sans-serif'},'평균 '+Math.round(mean)+'점'),
-      h('text',{key:'tlo', x:meanx, y:baseY+34, textAnchor:'middle', fill:'#b0b0b6', fontSize:10.5, fontFamily:'Pretendard,sans-serif'},'대부분의 기업 구간'),
-      h('text',{key:'thi', x:x((overall+100)/2), y:baseY+34, textAnchor:'middle', fill:G, fontSize:10.5, fontWeight:600, fontFamily:'Pretendard,sans-serif'},'상위 '+top+'% 구간')
+      h('text',{key:'tlo', x:meanx, y:baseY+34, textAnchor:'middle', fill:'#b0b0b6', fontSize:10.5, fontFamily:'Pretendard,sans-serif'},'대부분의 기업 구간')
     ]);
   }
 
@@ -721,8 +707,9 @@ class Component extends DCLogic {
     const rampFn=(t)=> t<=4?'#2B2F36' : t<=12?'#576070' : '#98A0AE';
     const posFn=(t)=> ((1-Math.min(t,30)/30)*92+4).toFixed(1)+'%';
     const hiddenAreaItems=new Set(['복지','워라밸']);
+    const areaRowOrder=['업무자율성','업무의미감','업무중요도','상사관계','동료관계','직장내유대','윤리','심리적안전감','표현의자유'];
     const areaGroups=this.areaDefs.map(a=>({ name:a.name, sub:a.sub,
-      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, color:rampFn(t), pos:posFn(t) }; }).filter(r=>!hiddenAreaItems.has(r.name)).sort((x,y)=>x.top-y.top) }));
+      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, color:rampFn(t), pos:posFn(t) }; }).filter(r=>!hiddenAreaItems.has(r.name)).sort((x,y)=>areaRowOrder.indexOf(x.name)-areaRowOrder.indexOf(y.name)) }));
     const peers=D.cos.filter(p=>p.industry===c.industry && p.id!==c.id).slice(0,5).map(p=>{
       const higher=p.top<c.top, lower=p.top>c.top;
       return { id:p.id, name:p.name, mono:p.mono, logo:p.logo, hasLogo:p.hasLogo, noLogo:p.noLogo, tint:p.tint, top:p.top, open:()=>this.go('company',p.id),
