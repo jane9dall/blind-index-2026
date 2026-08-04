@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blind Index 2026 | 직장 경험 데이터</title>
+<title>블라인드 지수 | Blind Index</title>
 <meta name="description" content="기업별 일 · 관계 · 문화 데이터를 바탕으로 실제 직장 경험을 탐색하는 블라인드 지수 2026.">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/branding/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./assets/branding/favicon-16.png">
@@ -314,7 +314,10 @@ button{font-family:inherit}
           <button onClick="{{ w.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:9px 2px" style-hover="background:#fafafb">
             <span style="width:28px;height:28px;border-radius:7px;background:{{ w.tint }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ w.hasLogo }}"><img src="{{ w.logo }}" alt="{{ w.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ w.noLogo }}"><span style="color:#4a4a4e;font-weight:700;font-size:12px">{{ w.mono }}</span></sc-if></span>
             <span style="font-size:13.5px;font-weight:600;color:#2B2F36;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ w.name }}</span>
-            <span style="margin-left:auto;font-size:12px;font-weight:700;color:#576070;font-variant-numeric:tabular-nums;flex-shrink:0">상위 {{ w.top }}%</span>
+            <span style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0">
+              <span style="font-size:12px;font-weight:700;color:#576070;font-variant-numeric:tabular-nums">상위 {{ w.top }}%</span>
+              <span style="font-size:10.5px;font-weight:600;color:{{ w.cmpColor }}">{{ w.cmpLabel }}</span>
+            </span>
           </button>
         </sc-for>
       </div>
@@ -744,7 +747,11 @@ class Component extends DCLogic {
     });
     const wanted=D.cos.filter(p=>p.industry===c.industry && p.id!==c.id)
       .sort((a,b)=>Math.abs(a.overall-c.overall)-Math.abs(b.overall-c.overall))
-      .slice(0,3).map(p=>({name:p.name,mono:p.mono,logo:p.logo,hasLogo:p.hasLogo,noLogo:p.noLogo,tint:p.tint,top:p.top,open:()=>this.go('company',p.id)}));
+      .slice(0,3).map(p=>{
+        const higher=p.top<c.top, lower=p.top>c.top;
+        return {name:p.name,mono:p.mono,logo:p.logo,hasLogo:p.hasLogo,noLogo:p.noLogo,tint:p.tint,top:p.top,open:()=>this.go('company',p.id),
+          cmpLabel: higher?'▲ 더 높음':(lower?'▼ 더 낮음':'· 비슷함'), cmpColor: higher?'#D92525':(lower?'#2563EB':'#a0a0a6')};
+      });
     const hNames=['직무만족도','조직몰입도','이직의도','스트레스'];
     const hDescs=['회사에서의 일에 만족하는지','회사에 소속감을 느끼는지','최근 1년 내 이직을 시도했는지','최근 1년 내 번아웃을 경험했는지'];
     const headline=hNames.map((n,i)=>{ const t=c.headlineTop[i]; return { name:n, desc:hDescs[i], top:t, color:rampFn(t), fill:(100-t)+'%' }; });
@@ -836,6 +843,24 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<div id="mobile-notice" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(20,20,22,0.6);align-items:center;justify-content:center;padding:24px">
+  <div style="background:#fff;border-radius:16px;padding:28px 24px;max-width:340px;text-align:center;font-family:Pretendard,-apple-system,sans-serif">
+    <div style="font-size:16px;font-weight:700;color:#1c1c1e;margin-bottom:10px">PC 화면에 최적화된 페이지입니다</div>
+    <p style="font-size:13.5px;line-height:1.65;color:#6b6b70;margin:0 0 18px">모바일 · 태블릿에서는 일부 배치와 줄바꿈이 다르게 보일 수 있습니다. PC에서 보시면 가장 좋습니다.</p>
+    <button id="mobile-notice-ok" style="width:100%;background:#D92525;color:#fff;border:none;border-radius:9px;padding:12px;font-size:14px;font-weight:600;cursor:pointer">이대로 볼게요</button>
+  </div>
+</div>
+<script>
+(function(){
+  var n=document.getElementById('mobile-notice');
+  if(!n) return;
+  if(window.innerWidth<1024 && !sessionStorage.getItem('pcNoticeOk')){ n.style.display='flex'; }
+  document.getElementById('mobile-notice-ok').addEventListener('click',function(){
+    try{ sessionStorage.setItem('pcNoticeOk','1'); }catch(e){}
+    n.style.display='none';
+  });
+})();
 </script>
 </body>
 </html>
