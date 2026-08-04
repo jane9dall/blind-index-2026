@@ -51,7 +51,7 @@ button{font-family:inherit}
 <nav style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #ececee;box-shadow:{{ navShadow }};height:62px">
   <div style="height:100%;max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px);display:flex;align-items:stretch">
   <div style="display:flex;align-items:center;flex:1">
-    <button onClick="{{ goReport }}" style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0">
+    <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0">
       <img src="./assets/branding/apple-touch-icon.png" alt="Blind" style="width:28px;height:28px;border-radius:7px;display:block"/>
       <span style="font-family:'Outfit',Pretendard,sans-serif;font-weight:700;font-size:17.5px;letter-spacing:-0.02em;color:#1c1c1e">Blind Index</span>
     </button>
@@ -59,12 +59,12 @@ button{font-family:inherit}
 
   <sc-if value="{{ desktopNav }}" hint-placeholder-val="{{ true }}">
   <div style="display:flex;align-items:stretch;gap:30px">
-    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
-      ANNUAL REPORT
-    </button>
     <button onClick="{{ goHome }}" style="position:relative;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:0 2px;display:flex;align-items:center">
       COMPANY INDEX
       <sc-if value="{{ navScoreActive }}"><span style="position:absolute;left:-2px;right:-2px;bottom:-1px;height:2px;background:#D92525"></span></sc-if>
+    </button>
+    <button onClick="{{ goReport }}" style="position:relative;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:0 2px;display:flex;align-items:center">
+      ANNUAL REPORT
     </button>
     <button onClick="{{ goSolution }}" style="position:relative;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:0 2px;display:flex;align-items:center">
       SOLUTIONS
@@ -89,8 +89,8 @@ button{font-family:inherit}
 
 <sc-if value="{{ navOpen }}">
 <div style="position:sticky;top:62px;z-index:49;background:#fff;border-bottom:1px solid #ececee;padding:8px 20px 16px;display:flex;flex-direction:column">
-  <button onClick="{{ goReport }}" style="text-align:left;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:14px 4px;border-bottom:1px solid #f2f2f4">ANNUAL REPORT</button>
   <button onClick="{{ goHome }}" style="text-align:left;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navScoreColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">COMPANY INDEX</button>
+  <button onClick="{{ goReport }}" style="text-align:left;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#1c1c1e;padding:14px 4px;border-bottom:1px solid #f2f2f4">ANNUAL REPORT</button>
   <button onClick="{{ goSolution }}" style="text-align:left;background:none;border:none;cursor:pointer;font-family:'Outfit',Pretendard,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.05em;color:{{ navSolutionColor }};padding:14px 4px;border-bottom:1px solid #f2f2f4">SOLUTIONS</button>
 </div>
 </sc-if>
@@ -491,15 +491,20 @@ button{font-family:inherit}
       </div>
       <div style="flex:1 1 340px;min-width:280px;background:#fff;border-radius:14px;padding:24px">
         <div style="display:flex;flex-direction:column;gap:11px">
-          <input value="{{ leadCompany }}" onChange="{{ setLeadCompany }}" placeholder="회사명*" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
-          <input value="{{ leadName }}" onChange="{{ setLeadName }}" placeholder="담당자명*" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
-          <input value="{{ leadPhone }}" onChange="{{ setLeadPhone }}" placeholder="연락처*" type="tel" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
-          <input value="{{ leadEmail }}" onChange="{{ setLeadEmail }}" placeholder="이메일*" type="email" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          <div style="display:flex;gap:11px">
+            <input value="{{ leadCompany }}" onChange="{{ setLeadCompany }}" placeholder="회사명*" style="flex:1;min-width:0;border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+            <input value="{{ leadPhone }}" onChange="{{ setLeadPhone }}" placeholder="전화번호*" type="tel" style="flex:1;min-width:0;border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          </div>
+          <div style="display:flex;gap:11px">
+            <input value="{{ leadName }}" onChange="{{ setLeadName }}" placeholder="담당자명*" style="flex:1;min-width:0;border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+            <input value="{{ leadPosition }}" onChange="{{ setLeadPosition }}" placeholder="직함*" style="flex:1;min-width:0;border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          </div>
+          <input value="{{ leadEmail }}" onChange="{{ setLeadEmail }}" placeholder="회사 이메일*" type="email" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
           <div style="background:#f7f7f8;border:1px solid #ececee;border-radius:9px;padding:12px 14px;text-align:left">
             <div style="font-size:12px;font-weight:700;color:#5a5a5e;margin-bottom:6px">개인정보 수집·이용 안내</div>
             <ul style="margin:0 0 8px;padding-left:16px;font-size:11.5px;line-height:1.65;color:#777">
               <li>수집 주체: Teamblind Hub LLC</li>
-              <li>수집 항목: 회사명, 담당자명, 연락처, 이메일</li>
+              <li>수집 항목: 회사명, 담당자명, 직함, 회사 이메일, 전화번호</li>
               <li>수집 목적: 상담 및 문의처리</li>
               <li>보유·이용기간: 개인정보의 이용 목적 달성 시 또는 수집 동의 철회시까지</li>
             </ul>
@@ -526,7 +531,7 @@ button{font-family:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860},&quot;defaultItem&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;업무자율성&quot;,&quot;업무의미감&quot;,&quot;업무중요도&quot;,&quot;상사관계&quot;,&quot;동료관계&quot;,&quot;직장내유대&quot;,&quot;워라밸&quot;,&quot;표현의자유&quot;,&quot;복지&quot;,&quot;윤리&quot;,&quot;심리적안전감&quot;],&quot;default&quot;:&quot;업무자율성&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;항목별 TOP 10 기본 항목&quot;},&quot;rankIndustry&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;전체&quot;,&quot;IT&quot;,&quot;금융&quot;,&quot;제조&quot;,&quot;공공기관&quot;,&quot;유통·서비스&quot;],&quot;default&quot;:&quot;전체&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;기본 산업 필터&quot;},&quot;forceEmptyPreference&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;기업 상세&quot;,&quot;label&quot;:&quot;입사 선호도 미수집 상태 미리보기&quot;}}">
 class Component extends DCLogic {
-  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, shareNotice:false, leadCompany:'', leadName:'', leadPhone:'', leadEmail:'', leadSubmitting:false, leadMessage:'', leadError:false };
+  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, shareNotice:false, leadCompany:'', leadName:'', leadPosition:'', leadPhone:'', leadEmail:'', leadSubmitting:false, leadMessage:'', leadError:false };
 
   itemNames = ['업무자율성','업무의미감','업무중요도','상사관계','동료관계','직장내유대','워라밸','표현의자유','복지','윤리','심리적안전감'];
   areaDefs = [
@@ -789,16 +794,21 @@ class Component extends DCLogic {
       {title:'민감 정보 비공개', desc:'기업별 민감 지표는 내부 진단 목적으로만 제한 공개합니다.'}
     ];
     const submitLead=()=>{
-      const company=this.state.leadCompany.trim(), name=this.state.leadName.trim(), phone=this.state.leadPhone.trim(), email=this.state.leadEmail.trim();
-      if(!company || !name || !phone || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-        this.setState({leadMessage:'회사명, 담당자명, 연락처, 올바른 이메일을 입력해주세요.',leadError:true});
+      const company=this.state.leadCompany.trim(), name=this.state.leadName.trim(), position=this.state.leadPosition.trim(), phone=this.state.leadPhone.trim(), email=this.state.leadEmail.trim();
+      if(!company || !name || !position || !phone || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        this.setState({leadMessage:'모든 항목을 입력해주세요.',leadError:true});
+        return;
+      }
+      const publicDomains=['gmail.com','naver.com','daum.net','hanmail.net','yahoo.com','outlook.com','hotmail.com'];
+      if(publicDomains.includes((email.split('@')[1]||'').toLowerCase())){
+        this.setState({leadMessage:'회사 이메일 주소를 입력해주세요.',leadError:true});
         return;
       }
       this.setState({leadSubmitting:true,leadMessage:'제출 중...',leadError:false});
       fetch('https://script.google.com/macros/s/AKfycbxMpoGnVgrJMJAyXw1jNEUnHOFVLx8KWib9cFaEFpqlzQXfl6qvzUDMF44GXtsFC5WxWQ/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams({company,name,phone,email}).toString()
-      }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
+        body:new URLSearchParams({company,name,position,phone,email}).toString()
+      }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
         .catch(()=>this.setState({leadSubmitting:false,leadMessage:'전송에 실패했습니다. 잠시 후 다시 시도해주세요.',leadError:true}));
     };
     const shareCompany=()=>{
@@ -835,8 +845,8 @@ class Component extends DCLogic {
       orderLeft:0, orderMain: this.state.isMobile?0:1, orderRight: this.state.isMobile?1:2,
       query:this.state.query, setQuery:e=>this.setState({query:e.target.value}),
       scrollToDemo:()=>document.getElementById('demo-request')?.scrollIntoView({behavior:'smooth',block:'center'}),
-      leadCompany:this.state.leadCompany, leadName:this.state.leadName, leadPhone:this.state.leadPhone, leadEmail:this.state.leadEmail,
-      setLeadCompany:e=>this.setState({leadCompany:e.target.value}), setLeadName:e=>this.setState({leadName:e.target.value}), setLeadPhone:e=>this.setState({leadPhone:e.target.value}), setLeadEmail:e=>this.setState({leadEmail:e.target.value}), submitLead,
+      leadCompany:this.state.leadCompany, leadName:this.state.leadName, leadPosition:this.state.leadPosition, leadPhone:this.state.leadPhone, leadEmail:this.state.leadEmail,
+      setLeadCompany:e=>this.setState({leadCompany:e.target.value}), setLeadName:e=>this.setState({leadName:e.target.value}), setLeadPosition:e=>this.setState({leadPosition:e.target.value}), setLeadPhone:e=>this.setState({leadPhone:e.target.value}), setLeadEmail:e=>this.setState({leadEmail:e.target.value}), submitLead,
       leadSubmitting:this.state.leadSubmitting, leadButtonLabel:this.state.leadSubmitting?'제출 중...':'개인정보 수집·이용에 동의하고 상담 신청', leadButtonOpacity:this.state.leadSubmitting?'0.65':'1', leadMessage:this.state.leadMessage, leadMessageColor:this.state.leadError?'#D92525':'#a0a0a6',
       shareCompany, shareNotice:this.state.shareNotice,
       searchGo:()=>{ if(firstMatch) this.go('company',firstMatch.id); },

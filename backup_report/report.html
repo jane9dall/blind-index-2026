@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=30">
+    <link rel="stylesheet" href="report.css?v=31">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -27,18 +27,23 @@
                 <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
         </button>
-        <a class="nav-brand" href="#intro">blind</a>
+        <a class="nav-brand" href="../index.html">blind</a>
+        <div class="report-menu">
+            <a class="nav-link" href="../index.html">Company Index</a>
+            <a class="nav-link active" href="#intro">Annual Report</a>
+            <a class="nav-link" href="../index.html?screen=solution">Solutions</a>
+        </div>
     </nav>
 
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a class="blind-logo" href="#intro" style="text-decoration: none;">blind</a>
+            <a class="blind-logo" href="../index.html" style="text-decoration: none;">blind</a>
             <button class="close-btn" id="close-sidebar-btn" aria-label="닫기">&times;</button>
         </div>
         <nav class="sidebar-nav">
-            <a class="sidebar-link active" href="#intro">Annual Report</a>
             <a class="sidebar-link" href="../index.html">Company Index</a>
+            <a class="sidebar-link active" href="#intro">Annual Report</a>
             <a class="sidebar-link" href="../index.html?screen=solution">Solutions</a>
         </nav>
     </aside>
@@ -53,20 +58,6 @@
                 <path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
             </svg>
         </button>
-        <a class="fab" href="../index.html" aria-label="Company Index" title="Company Index">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="7" />
-                <path d="m21 21-4.3-4.3" />
-            </svg>
-        </a>
-        <a class="fab" href="../index.html?screen=solution" aria-label="Solutions" title="Solutions">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="7" width="18" height="13" rx="2" />
-                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-            </svg>
-        </a>
     </div>
 
     <nav class="floating-menu">
@@ -742,7 +733,7 @@
                     <input type="tel" id="gate-phone" name="phone" placeholder="전화번호*" required>
                 </div>
                 <div class="gate-row">
-                    <input type="text" id="gate-name" name="name" placeholder="이름*" required>
+                    <input type="text" id="gate-name" name="name" placeholder="담당자명*" required>
                     <input type="text" id="gate-position" name="position" placeholder="직함*" required>
                 </div>
                 <input type="email" id="gate-email" name="email" placeholder="회사 이메일*" required>
@@ -750,11 +741,13 @@
                     <p class="gate-consent-title">개인정보 수집·이용 안내</p>
                     <ul>
                         <li>수집 주체: Teamblind Hub LLC</li>
-                        <li>수집 항목: 회사명, 이름, 직함, 회사 이메일, 전화번호</li>
+                        <li>수집 항목: 회사명, 담당자명, 직함, 회사 이메일, 전화번호</li>
                         <li>이용 목적: 블라인드 지수 리포트 전문 제공 및 관련 안내</li>
                         <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
                         <li>동의를 거부하실 수 있으며, 이 경우 리포트 전문 수신이 제한됩니다.</li>
                     </ul>
+                    <p class="gate-consent-extra">blindHub에서 수집하는 개인 정보는 블라인드(blind) 서비스와는 무관하며, 블라인드 사용자를 식별하는데 사용할 수
+                        없습니다.</p>
                 </div>
                 <button type="submit">개인정보 수집·이용에 동의하고 전문 받기</button>
             </form>
