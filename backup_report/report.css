@@ -938,30 +938,9 @@ h1 {
     gap: 0.65rem;
 }
 
-.gate-field {
-    position: relative;
-    display: flex;
+.gate-row input {
     flex: 1;
     min-width: 0;
-}
-
-.gate-field input {
-    width: 100%;
-}
-
-.gate-field .req {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--blind-red);
-    font-weight: 700;
-    pointer-events: none;
-    transition: opacity 0.2s;
-}
-
-.gate-field input:not(:placeholder-shown)+.req {
-    opacity: 0;
 }
 
 .email-gate-form input {

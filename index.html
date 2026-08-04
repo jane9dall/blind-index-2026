@@ -192,7 +192,7 @@ button{font-family:inherit}
       <div style="font-size:13.5px;color:#848B97;margin-top:2px">{{ co.industryFull }}</div>
     </div>
     <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
-      <sc-if value="{{ shareNotice }}"><span role="status" style="font-size:12.5px;font-weight:600;color:#D92525;animation:bfade .2s ease">복사됐습니다</span></sc-if>
+      <sc-if value="{{ shareNotice }}"><span role="status" style="font-size:12.5px;font-weight:600;color:#D92525;animation:bfade .2s ease">링크가 복사됐어요!</span></sc-if>
       <button onClick="{{ shareCompany }}" aria-label="{{ co.name }} 정보 복사" title="공유 정보 복사" style="background:#fff;border:1px solid #DCDFE5;border-radius:9px;padding:9px 13px;font-size:13.5px;font-weight:600;color:#3E434C;cursor:pointer;display:flex;align-items:center;gap:7px">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3"></path><path d="m7 8 5-5 5 5"></path><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"></path></svg>
         <span>공유</span>
@@ -280,8 +280,8 @@ button{font-family:inherit}
             <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:38px;font-weight:700;color:#23262C;line-height:1">{{ co.prefYes }}%</span>
           </div>
           <div style="display:flex;align-items:center;gap:12px;margin:14px 0 2px">
-            <div style="flex:1;height:8px;background:#EAECF0;border-radius:5px;overflow:hidden">
-              <div style="height:100%;width:{{ co.prefFill }};background:#8A92A0;border-radius:5px"></div>
+            <div style="flex:1;height:6px;background:#EAECF0;border-radius:3px;overflow:hidden">
+              <div class="bar-fill" style="height:6px;width:{{ co.prefFill }};background:#D92525;border-radius:3px"></div>
             </div>
             <span style="flex-shrink:0;font-size:12px;color:#848B97">비추천 {{ co.prefNo }}%</span>
           </div>
@@ -308,7 +308,7 @@ button{font-family:inherit}
       </div>
 
       <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:18px 20px 10px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">재직자가 함께 고려한 기업</h3>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">재직자들이 함께 조회한 기업</h3>
         <p style="font-size:12px;color:#959CA8;margin:0 0 8px">이 회사 재직자가 자주 비교한 기업입니다.</p>
         <sc-for list="{{ co.wanted }}" as="w" hint-placeholder-count="3">
           <button onClick="{{ w.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:9px 2px" style-hover="background:#fafafb">
