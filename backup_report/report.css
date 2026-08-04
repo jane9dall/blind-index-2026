@@ -178,10 +178,6 @@ nav.floating-menu {
     background: var(--blind-red);
 }
 
-.floating-menu.dark-theme .menu-dot::after {
-    background: rgba(255, 255, 255, 0.88);
-}
-
 /* Header */
 .report-header {
     height: 100vh;
