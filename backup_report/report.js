@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Theme Logic
-                if (stepIndex >= 1 && stepIndex <= 8) {
+                if (stepIndex >= 1 && stepIndex <= 9) {
                     floatingMenu.classList.add('dark-theme');
                     nav.classList.add('dark-theme');
                 } else {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Animate Gender Chart (Gender Gap)
-                if (stepIndex === 8) {
+                if (stepIndex === 9) {
                     const genderBars = document.querySelectorAll('.g-bar');
                     genderBars.forEach((bar, index) => {
                         // Store original height if not already stored
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (chartData[stepIndex]) renderChart(stepIndex);
 
                 // 분포 그래프 애니메이션 트리거
-                if (entry.target.id === 'step-6') {
+                if (entry.target.id === 'step-7') {
                     // 이미 애니메이션이 실행되었다면 중단
                     if (entry.target.dataset.animated === 'true') return;
 
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuBtn.addEventListener('click', () => toggleSidebar(true));
         closeBtn.addEventListener('click', () => toggleSidebar(false));
         overlay.addEventListener('click', () => toggleSidebar(false));
-        sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+        sidebar.querySelectorAll('.sidebar-link, .blind-logo').forEach(link => {
             link.addEventListener('click', () => toggleSidebar(false));
         });
     }
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const deepDiveDot = document.getElementById('deep-dive-dot');
     if (deepDiveDot) {
         deepDiveDot.addEventListener('click', (e) => {
-            if (localStorage.getItem('emailGateSubmitted')) return; // 기본 앵커 이동
+            if (localStorage.getItem('emailGateSubmitted')) return; // 기본 앵커 이동 (#step-9)
             e.preventDefault();
             emailGateOverlay.classList.add('active');
         });
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Gate at the last step (Gender Gap)
-    const stepLast = document.getElementById('step-8');
+    const stepLast = document.getElementById('step-9');
 
     const hasSubmitted = localStorage.getItem('emailGateSubmitted');
 
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (visible >= needed) {
                 emailGateOverlay.classList.add('active');
                 // Lock content from the last step onwards
-                document.querySelectorAll('#step-8').forEach(el => {
+                document.querySelectorAll('#step-9').forEach(el => {
                     el.classList.add('content-locked');
                 });
                 window.removeEventListener('scroll', checkGate);

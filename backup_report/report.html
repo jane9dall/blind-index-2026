@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=23">
+    <link rel="stylesheet" href="report.css?v=24">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -27,13 +27,13 @@
                 <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
         </button>
-        <a class="nav-brand" href="../index.html">blind</a>
+        <a class="nav-brand" href="#intro">blind</a>
     </nav>
 
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <span class="blind-logo">blind</span>
+            <a class="blind-logo" href="#intro" style="text-decoration: none;">blind</a>
             <button class="close-btn" id="close-sidebar-btn" aria-label="닫기">&times;</button>
         </div>
         <nav class="sidebar-nav">
@@ -46,8 +46,8 @@
     <nav class="floating-menu">
         <a href="#intro" class="menu-dot active" data-step="0" title="TOP"></a>
         <a href="#step-1" class="menu-dot" data-step="1" title="SUMMARY"></a>
-        <a href="#step-6" class="menu-dot" data-step="6" title="ANALYSIS"></a>
-        <a href="#step-8" class="menu-dot" id="deep-dive-dot" title="DEEP DIVE"></a>
+        <a href="#step-7" class="menu-dot" data-step="7" title="ANALYSIS"></a>
+        <a href="#step-9" class="menu-dot" id="deep-dive-dot" title="DEEP DIVE"></a>
     </nav>
 
     <header class="report-header" id="intro" data-step="0">
@@ -323,6 +323,22 @@
                                 <li>미래에셋증권<span class="pct">상위 76%</span></li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 5: 경쟁사 비교 2 (PDF p8) -->
+    <section class="replication-container" id="step-5" data-step="5">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">경쟁사 비교</h2>
+                    <p class="ranking-subtitle">업계별 주요 기업의 블라인드 지수입니다.<br>퍼센트(%)는 전체 한국 기업 중 해당 기업의 상위 백분율입니다. 1%에 가까울수록
+                        점수가 높습니다.</p>
+
+                    <div class="industry-grid">
                         <div class="industry-card">
                             <h4>게임</h4>
                             <ul>
@@ -393,8 +409,8 @@
         </div>
     </section>
 
-    <!-- Step 5: 전년 대비 크게 오른 기업 (PDF p9) -->
-    <section class="replication-container" id="step-5" data-step="5">
+    <!-- Step 6: 전년 대비 크게 오른 기업 (PDF p9) -->
+    <section class="replication-container" id="step-6" data-step="6">
         <div class="replication-section grey-bg">
             <div class="content-wrapper">
                 <div class="rep-chart-area">
@@ -429,8 +445,8 @@
         </div>
     </section>
 
-    <!-- Step 6: Distribution Graph (PDF p11) -->
-    <section class="replication-container" id="step-6" data-step="6">
+    <!-- Step 7: Distribution Graph (PDF p11) -->
+    <section class="replication-container" id="step-7" data-step="7">
         <div class="replication-section grey-bg">
             <div class="content-wrapper">
                 <div class="rep-chart-area">
@@ -496,8 +512,8 @@
         </div>
     </section>
 
-    <!-- Step 7: 연차별 (PDF p12) -->
-    <section class="replication-container" id="step-7" data-step="7">
+    <!-- Step 8: 연차별 (PDF p12) -->
+    <section class="replication-container" id="step-8" data-step="8">
         <div class="replication-section grey-bg">
             <div class="content-wrapper">
                 <div class="rep-chart-area">
@@ -589,8 +605,8 @@
         </div>
     </section>
 
-    <!-- Step 8: Gender Gap (PDF p13) -->
-    <section class="replication-container" id="step-8" data-step="8">
+    <!-- Step 9: Gender Gap (PDF p13) -->
+    <section class="replication-container" id="step-9" data-step="9">
         <!-- Part 1: Chart (Grey Background) -->
         <div class="replication-section grey-bg">
             <div class="content-wrapper">
@@ -687,7 +703,6 @@
         <div class="email-gate-content">
             <button type="button" id="gate-close" class="gate-close" aria-label="닫기">&times;</button>
             <h2>리포트 전문을 이메일로 받아보세요</h2>
-            <p>회사 이메일로 리포트 전문을 보내드립니다.</p>
             <form id="email-gate-form" class="email-gate-form">
                 <div class="gate-row">
                     <div class="gate-field"><input type="text" id="gate-company" name="company" placeholder="회사명"
@@ -718,7 +733,7 @@
             <div id="gate-message" class="gate-message"></div>
         </div>
     </div>
-    <script src="report.js?v=9"></script>
+    <script src="report.js?v=10"></script>
 </body>
 
 </html>

@@ -1265,15 +1265,15 @@ h1 {
     }
 
     /* 성별 섹션(차트+텍스트 2단)을 한 화면에 */
-    #step-8 .replication-section {
+    #step-9 .replication-section {
         padding: 1.5rem 2rem;
     }
 
-    #step-8 .rep-title-kor {
+    #step-9 .rep-title-kor {
         margin-bottom: 1rem;
     }
 
-    #step-8 .rep-body-text {
+    #step-9 .rep-body-text {
         font-size: 1.05rem;
         margin-bottom: 1rem;
     }
