@@ -568,7 +568,9 @@ class Component extends DCLogic {
       const itemTop=this.itemNames.map((_,i)=>clampTop(number(row[10+i])));
       const headlineTop=[6,7,8,9].map(i=>clampTop(number(row[i])));
       const vote=window.COMPANY_VOTES?.[name] || window.COMPANY_VOTES?.[logoAliases[name]] || null;
-      return {id:name,name,industry:row[1]||'미분류',overall,top,responseCount:number(row[2])||0,seed,mono,logo,hasLogo:!!logo,noLogo:!logo,tint:this.tints[idx%this.tints.length],itemTop,headlineTop,vote};
+      const aliases=(row[5]&&row[5]!=='#N/A')?row[5]:'';
+      const search=(name+' '+aliases).toUpperCase();
+      return {id:name,name,industry:row[1]||'미분류',overall,top,responseCount:number(row[2])||0,seed,mono,logo,hasLogo:!!logo,noLogo:!logo,tint:this.tints[idx%this.tints.length],itemTop,headlineTop,vote,search};
     }).filter(Boolean).filter(c=>c.itemTop.every(v=>v!==null) && c.headlineTop.every(v=>v!==null));
     const byId=Object.fromEntries(cos.map(c=>[c.id,c]));
     const averageScore=Math.round(cos.reduce((sum,c)=>sum+c.overall,0)/Math.max(cos.length,1));
@@ -745,8 +747,9 @@ class Component extends DCLogic {
       bg:ind===n?'#fbecec':'transparent', color:ind===n?red:'#4a4a4e', weight:ind===n?700:500 }));
 
     const q=this.state.query.trim();
-    const results=q? D.cos.filter(c=>c.name.includes(q)).slice(0,6).map(c=>({ name:c.name, mono:c.mono, logo:c.logo, hasLogo:c.hasLogo, noLogo:c.noLogo, tint:c.tint, industry:c.industry, open:()=>this.go('company',c.id) })):[];
-    const firstMatch=q? D.cos.find(c=>c.name.includes(q)):null;
+    const qU=q.toUpperCase();
+    const results=q? D.cos.filter(c=>c.search.includes(qU)).slice(0,6).map(c=>({ name:c.name, mono:c.mono, logo:c.logo, hasLogo:c.hasLogo, noLogo:c.noLogo, tint:c.tint, industry:c.industry, open:()=>this.go('company',c.id) })):[];
+    const firstMatch=q? D.cos.find(c=>c.search.includes(qU)):null;
     const suggestions=['SK하이닉스','비바리퍼블리카','카카오','삼성전자','COUPANG'].map(id=>D.byId[id]).filter(Boolean).map(c=>({name:c.name,open:()=>this.go('company',c.id)}));
 
     const c=D.byId[this.state.selected]||D.byId['SK하이닉스']||D.cos[0];
