@@ -24,39 +24,47 @@ body {
     overflow-x: hidden;
 }
 
-/* Nav */
-.report-nav {
+/* Nav — 상단 중앙 탭 + 그 아래 정중앙 워드마크 */
+.global-nav.report-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.2rem 2rem;
+    padding: 1rem 2rem 1.1rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 0.7rem;
     z-index: 100;
     color: white;
     background: var(--blind-red);
     transition: color 0.3s;
 }
 
-.report-nav .nav-brand {
+.global-nav.report-nav .nav-brand {
+    position: static;
+    transform: none;
+    margin: 0;
     text-decoration: none;
+    line-height: 1;
 }
 
 .report-menu {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 640px) {
-    .report-nav {
-        padding: 1rem 1.2rem;
+    .global-nav.report-nav {
+        padding: 0.8rem 1.2rem 0.9rem;
+        gap: 0.55rem;
     }
 
     .report-menu {
-        gap: 0.9rem;
+        gap: 1.1rem;
     }
 
     .report-menu .nav-link {
