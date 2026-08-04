@@ -33,12 +33,12 @@ button{font-family:inherit}
 @keyframes bfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes heroWave{0%,100%{transform:scale(1.05) translate3d(0,0,0)}50%{transform:scale(1.1) translate3d(-8px,-10px,0)}}
 .hero-topo{animation:heroWave 8s ease-in-out infinite;will-change:transform}
-@keyframes barGrow{from{width:0}}
-.bar-fill{animation:barGrow .9s cubic-bezier(.2,.8,.2,1) both}
+.bar-fill{transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.bar-fill.bar-run{transform:scaleX(1)}
 @keyframes distRise{from{opacity:0;transform:translateY(12px)}}
 @keyframes distFade{from{opacity:0}}
-.dist-anim path{animation:distRise .8s cubic-bezier(.2,.8,.2,1) both}
-.dist-anim line,.dist-anim circle,.dist-anim rect,.dist-anim text{animation:distFade .6s ease .45s both}
+.dist-anim path{animation:distRise .45s cubic-bezier(.2,.8,.2,1) both}
+.dist-anim line,.dist-anim circle,.dist-anim rect,.dist-anim text{animation:distFade .35s ease .25s both}
 .area-col{padding:0 24px;border-left:1px solid #EDEFF3}
 .area-col:first-child{padding-left:0;border-left:none}
 .area-col:last-child{padding-right:0}
@@ -105,7 +105,7 @@ button{font-family:inherit}
     </div>
     <div style="position:relative;max-width:640px">
       <div style="margin-bottom:18px">
-        <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#c4c4c9">블라인드 지수, 구성원이 평가한 그 해의 직장 경험</span>
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#c4c4c9">블라인드 지수 · 구성원이 평가한 그 해의 직장 경험</span>
       </div>
       <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(24px,2.9vw,36px);line-height:1.25;letter-spacing:-0.01em;margin:0 0 16px;color:#fff;text-wrap:pretty">지금 블라인드 지수를 검색해보세요.</h1>
       <p style="font-size:15.5px;line-height:1.7;color:#b6b6bc;margin:0 0 28px;max-width:520px">각 회사 구성원들이 평가한 그 해의 <b style="color:#fff;font-weight:600">일 · 관계 · 문화</b> 데이터입니다.<br>연봉이나 별점이 아닌 실제 매일의 직장 경험을 탐색합니다.</p>
@@ -256,7 +256,7 @@ button{font-family:inherit}
 
       <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 24px 20px">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:8px">평균 비교 그래프</div>
-        <p style="font-size:12.5px;color:#959CA8;margin:0 0 6px">주요 지표를 업계 · 전체 평균과 비교합니다</p>
+        <p style="font-size:12.5px;color:#959CA8;margin:0 0 6px">주요 항목 결과를 업계 · 한국 평균과 비교합니다</p>
         <div style="display:flex;justify-content:flex-start;flex-wrap:wrap;gap:8px 20px;margin-top:10px">
           <sc-for list="{{ radarLegend }}" as="l" hint-placeholder-count="3">
             <span style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#5D646F"><span style="width:9px;height:9px;border-radius:50%;background:{{ l.color }}"></span>{{ l.name }}</span>
@@ -567,6 +567,13 @@ class Component extends DCLogic {
     this._onResize = ()=>{ const m = window.innerWidth<900; if(m!==this.state.isMobile) this.setState({isMobile:m, navOpen:false}); };
     window.addEventListener('scroll', this._onScroll, {passive:true});
     window.addEventListener('resize', this._onResize);
+    this._barObs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('bar-run'); this._barObs.unobserve(e.target); } });
+    }, {threshold:0.5});
+    this._barMo = new MutationObserver(()=>{
+      document.querySelectorAll('.bar-fill:not(.bar-observed)').forEach(el=>{ el.classList.add('bar-observed'); this._barObs.observe(el); });
+    });
+    this._barMo.observe(document.body, {childList:true, subtree:true});
     const params=new URLSearchParams(window.location.search);
     const companyId=params.get('company');
     if(companyId && this.data.byId[companyId]){
@@ -582,7 +589,7 @@ class Component extends DCLogic {
     }
     this._onResize();
   }
-  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onResize); clearTimeout(this._shareTimer); }
+  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onResize); clearTimeout(this._shareTimer); this._barObs?.disconnect(); this._barMo?.disconnect(); }
 
   go(screen, sel){
     const st={screen, navOpen:false};
@@ -665,8 +672,8 @@ class Component extends DCLogic {
   buildRadar6(size, company, all){
     const h=React.createElement;
     const W=size,H=size, cx=W/2, cy=H*0.52, R=W*0.30;
-    const labels=['직무만족도','조직몰입도','이직의도','스트레스','업무환경','조직문화'];
-    const idx=[0,1,2,3,6,10];
+    const labels=['업무자율성','업무의미감','상사관계','동료관계','윤리','심리적안전감'];
+    const idx=[0,1,3,4,9,10];
     const asScore=(top)=>Math.max(0,100-top);
     const avg=idx.map(i=>Math.round(all.reduce((sum,c)=>sum+asScore(c.itemTop[i]),0)/Math.max(all.length,1)));
     const industry=all.filter(c=>c.industry===company.industry);
