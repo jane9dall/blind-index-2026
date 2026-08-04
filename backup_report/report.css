@@ -24,21 +24,21 @@ body {
     overflow-x: hidden;
 }
 
-/* Nav — 상단 중앙 탭 + 그 아래 정중앙 워드마크 */
+/* Nav — 슬림 바: 좌측 햄버거 + blind 워드마크 */
 .global-nav.report-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1rem 2rem 1.1rem;
+    padding: 1.5rem 2rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    gap: 5rem;
+    gap: 1.1rem;
     z-index: 100;
     color: white;
-    background: var(--blind-red);
+    background: transparent;
     transition: color 0.3s;
 }
 
@@ -50,26 +50,24 @@ body {
     line-height: 1;
 }
 
-.report-menu {
+.report-nav .menu-btn {
     display: flex;
-    gap: 2rem;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px 2px;
+}
+
+.report-nav .menu-btn span {
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: background 0.3s;
 }
 
 @media (max-width: 640px) {
     .global-nav.report-nav {
-        padding: 0.8rem 1.2rem 0.9rem;
-        gap: 2.2rem;
-    }
-
-    .report-menu {
-        gap: 1.1rem;
-    }
-
-    .report-menu .nav-link {
-        font-size: 0.72rem;
-        letter-spacing: 0.5px;
+        padding: 1rem 1.2rem;
     }
 }
 

@@ -18,10 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 steps.forEach(s => s.classList.remove('active'));
                 entry.target.classList.add('active');
 
+                // 파트 단위 네비게이터: 현재 스텝 이하 중 가장 가까운 도트를 활성화
+                let activeDot = null;
                 menuDots.forEach(dot => {
                     dot.classList.remove('active');
-                    if (parseFloat(dot.dataset.step) === stepIndex) dot.classList.add('active');
+                    if (parseFloat(dot.dataset.step) <= stepIndex) activeDot = dot;
                 });
+                if (activeDot) activeDot.classList.add('active');
 
                 // Animate Company Ranking (올해의 우수 기업)
                 if (stepIndex === 3) {
@@ -49,10 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Theme Logic
                 if (stepIndex >= 1 && stepIndex <= 8) {
                     floatingMenu.classList.add('dark-theme');
-                    // nav.classList.add('dark-theme'); // Disabled to keep logo white
+                    nav.classList.add('dark-theme');
                 } else {
                     floatingMenu.classList.remove('dark-theme');
-                    // nav.classList.remove('dark-theme'); // Disabled to keep logo white
+                    nav.classList.remove('dark-theme');
                 }
 
                 // Animate Gender Chart (Gender Gap)
@@ -141,6 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menuBtn.addEventListener('click', () => toggleSidebar(true));
         closeBtn.addEventListener('click', () => toggleSidebar(false));
         overlay.addEventListener('click', () => toggleSidebar(false));
+        sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => toggleSidebar(false));
+        });
     }
 
     // Email Gate
