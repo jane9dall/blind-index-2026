@@ -133,7 +133,7 @@ body {
 
 .menu-dot::before {
     content: '';
-    width: 40px;
+    width: 26px;
     height: 1px;
     background: white;
     transition: all 0.3s;
@@ -148,7 +148,7 @@ body {
 
 .menu-dot.active::before {
     background: var(--blind-red);
-    width: 60px;
+    width: 42px;
     opacity: 1;
 }
 
@@ -163,8 +163,7 @@ body {
     white-space: nowrap;
 }
 
-.menu-dot:hover::after,
-.menu-dot.active::after {
+.menu-dot:hover::after {
     opacity: 1;
     transform: none;
 }
