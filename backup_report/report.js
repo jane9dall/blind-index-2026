@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 010으로 시작하는 모바일 번호만 허용
             const phoneDigits = phone.replace(/\D/g, '');
             if (!/^010\d{7,8}$/.test(phoneDigits)) {
-                gateMessage.textContent = '010으로 시작하는 모바일 번호를 입력해주세요.';
+                gateMessage.textContent = '모바일 번호가 맞는지 확인해주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
             }

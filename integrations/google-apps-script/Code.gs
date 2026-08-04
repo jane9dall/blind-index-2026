@@ -5,11 +5,20 @@
  * 배포 방법: 웹 앱으로 배포 (실행: 나, 액세스: 모든 사용자) 후
  * 발급된 /exec URL을 index.html과 report.js의 엔드포인트에 넣습니다.
  */
-var SPREADSHEET_ID = '1bC_olKtDlKzwP8RjYuU9dCjcIQk5JHHJbLZWJuoW6RM';
+var SPREADSHEET_ID = '1J-0g24ix9eeCs83k1INXwikOngvUMt_HclY1RnvhW_g';
+
+// 스크립트가 시트에 붙어(container-bound) 있으면 그 시트를, 아니면 위 ID의 시트를 사용
+function getSpreadsheet_() {
+  try {
+    const bound = SpreadsheetApp.getActiveSpreadsheet();
+    if (bound) return bound;
+  } catch (err) {}
+  return SpreadsheetApp.openById(SPREADSHEET_ID);
+}
 
 function doPost(e) {
   const params = (e && e.parameter) || {};
-  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const spreadsheet = getSpreadsheet_();
 
   if (params.action === 'visit_log') {
     const sheet = getOrCreateSheet_(spreadsheet, '방문로그', [
