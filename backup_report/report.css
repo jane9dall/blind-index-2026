@@ -1498,7 +1498,8 @@ h1 {
 }
 
 .industry-card .pct {
-    color: #999;
+    color: var(--blind-red);
+    font-weight: 600;
     flex-shrink: 0;
 }
 
@@ -1539,7 +1540,8 @@ h1 {
 
 .riser-item .pct {
     margin-left: auto;
-    color: #999;
+    color: var(--blind-red);
+    font-weight: 600;
     font-size: 0.85rem;
     flex-shrink: 0;
 }
