@@ -33,6 +33,12 @@ button{font-family:inherit}
 @keyframes bfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes heroWave{0%,100%{transform:scale(1.05) translate3d(0,0,0)}50%{transform:scale(1.1) translate3d(-8px,-10px,0)}}
 .hero-topo{animation:heroWave 8s ease-in-out infinite;will-change:transform}
+@keyframes barGrow{from{width:0}}
+.bar-fill{animation:barGrow .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes distRise{from{opacity:0;transform:translateY(12px)}}
+@keyframes distFade{from{opacity:0}}
+.dist-anim path{animation:distRise .8s cubic-bezier(.2,.8,.2,1) both}
+.dist-anim line,.dist-anim circle,.dist-anim rect,.dist-anim text{animation:distFade .6s ease .45s both}
 .area-col{padding:0 24px;border-left:1px solid #EDEFF3}
 .area-col:first-child{padding-left:0;border-left:none}
 .area-col:last-child{padding-right:0}
@@ -216,7 +222,7 @@ button{font-family:inherit}
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:15px">
             <span style="flex:0 0 84px;font-size:13.5px;color:#3E434C;font-weight:500">{{ m.name }}</span>
             <span style="flex:0 0 190px;font-size:11.5px;color:#A9B0BB;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.desc }}</span>
-            <div style="flex:1 1 auto;min-width:120px;height:6px;background:#EAECF0;border-radius:3px;overflow:hidden"><div style="height:6px;width:{{ m.fill }};background:#D92525;border-radius:3px"></div></div>
+            <div style="flex:1 1 auto;min-width:120px;height:6px;background:#EAECF0;border-radius:3px;overflow:hidden"><div class="bar-fill" style="height:6px;width:{{ m.fill }};background:#D92525;border-radius:3px"></div></div>
             <span style="flex:0 0 62px;text-align:right;font-size:13px;font-weight:700;color:#3E434C;font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
           </div>
         </sc-for>
@@ -267,7 +273,7 @@ button{font-family:inherit}
 
     <aside style="flex:0 0 320px;min-width:280px;display:flex;flex-direction:column;gap:16px">
       <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:20px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">직장인 입사 선호도</h3>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">한국 직장인 입사 선호도</h3>
         <p style="font-size:12px;color:#959CA8;margin:0 0 8px">이 회사에서 일하고 싶다고 응답한 직장인 비율입니다.</p>
         <sc-if value="{{ co.hasPref }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;align-items:baseline;gap:8px;margin:4px 0 2px">
@@ -486,6 +492,16 @@ button{font-family:inherit}
           <input value="{{ leadName }}" onChange="{{ setLeadName }}" placeholder="담당자명*" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
           <input value="{{ leadPhone }}" onChange="{{ setLeadPhone }}" placeholder="연락처*" type="tel" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
           <input value="{{ leadEmail }}" onChange="{{ setLeadEmail }}" placeholder="이메일*" type="email" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          <div style="background:#f7f7f8;border:1px solid #ececee;border-radius:9px;padding:12px 14px;text-align:left">
+            <div style="font-size:12px;font-weight:700;color:#5a5a5e;margin-bottom:6px">개인정보 수집·이용 안내</div>
+            <ul style="margin:0 0 8px;padding-left:16px;font-size:11.5px;line-height:1.65;color:#777">
+              <li>수집 주체: Teamblind Hub LLC</li>
+              <li>수집 항목: 회사명, 담당자명, 연락처, 이메일</li>
+              <li>수집 목적: 상담 및 문의처리</li>
+              <li>보유·이용기간: 개인정보의 이용 목적 달성 시 또는 수집 동의 철회시까지</li>
+            </ul>
+            <p style="font-size:11px;line-height:1.6;color:#9a9aa0;margin:0">귀하는 상기 정보 제공 요청을 거부할 권리가 있으며, 거부하실 경우 상담이 제한될 수 있습니다. blindHub에서 수집하는 개인 정보는 블라인드(blind) 서비스와는 무관하며, 블라인드 사용자를 식별하는데 사용할 수 없습니다.</p>
+          </div>
           <button onClick="{{ submitLead }}" disabled="{{ leadSubmitting }}" style="background:#D92525;color:#fff;border:none;border-radius:9px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;margin-top:2px;opacity:{{ leadButtonOpacity }}">{{ leadButtonLabel }}</button>
           <p style="font-size:11.5px;color:{{ leadMessageColor }};text-align:center;margin:2px 0 0">{{ leadMessage }}</p>
         </div>
@@ -507,7 +523,7 @@ button{font-family:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860},&quot;defaultItem&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;업무자율성&quot;,&quot;업무의미감&quot;,&quot;업무중요도&quot;,&quot;상사관계&quot;,&quot;동료관계&quot;,&quot;직장내유대&quot;,&quot;워라밸&quot;,&quot;표현의자유&quot;,&quot;복지&quot;,&quot;윤리&quot;,&quot;심리적안전감&quot;],&quot;default&quot;:&quot;업무자율성&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;항목별 TOP 10 기본 항목&quot;},&quot;rankIndustry&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;전체&quot;,&quot;IT&quot;,&quot;금융&quot;,&quot;제조&quot;,&quot;공공기관&quot;,&quot;유통·서비스&quot;],&quot;default&quot;:&quot;전체&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;기본 산업 필터&quot;},&quot;forceEmptyPreference&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;기업 상세&quot;,&quot;label&quot;:&quot;입사 선호도 미수집 상태 미리보기&quot;}}">
 class Component extends DCLogic {
-  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, shareNotice:false, leadCompany:'', leadName:'', leadPhone:'', leadEmail:'', leadSubmitting:false, leadMessage:'제출 시 개인정보 처리방침에 동의하는 것으로 간주됩니다.', leadError:false };
+  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, shareNotice:false, leadCompany:'', leadName:'', leadPhone:'', leadEmail:'', leadSubmitting:false, leadMessage:'', leadError:false };
 
   itemNames = ['업무자율성','업무의미감','업무중요도','상사관계','동료관계','직장내유대','워라밸','표현의자유','복지','윤리','심리적안전감'];
   areaDefs = [
@@ -630,7 +646,7 @@ class Component extends DCLogic {
       h('text',{key:'p1', x:mx, y:29, textAnchor:'middle', fill:'#fff', fontSize:12, fontWeight:700, fontFamily:'Pretendard,sans-serif'}, this.data.byId[this.state.selected]?.name || ''),
       h('text',{key:'p2', x:mx, y:44, textAnchor:'middle', fill:'rgba(255,255,255,0.9)', fontSize:11, fontFamily:'Pretendard,sans-serif'}, overall+'점 · 상위 '+top+'%')
     ]);
-    return h('svg',{viewBox:'0 0 '+W+' '+H, style:{width:'100%',height:'auto',display:'block'}, preserveAspectRatio:'xMidYMid meet'},[
+    return h('svg',{viewBox:'0 0 '+W+' '+H, className:'dist-anim', style:{width:'100%',height:'auto',display:'block'}, preserveAspectRatio:'xMidYMid meet'},[
       h('path',{key:'ar', d:area, fill:'#EDF0F3'}),
       shade? h('path',{key:'sh', d:shade, fill:'rgba(217,37,37,0.13)'}):null,
       h('path',{key:'cv', d:curve, fill:'none', stroke:'#c7c7cc', strokeWidth:1.6, strokeLinejoin:'round'}),
@@ -800,7 +816,7 @@ class Component extends DCLogic {
       scrollToDemo:()=>document.getElementById('demo-request')?.scrollIntoView({behavior:'smooth',block:'center'}),
       leadCompany:this.state.leadCompany, leadName:this.state.leadName, leadPhone:this.state.leadPhone, leadEmail:this.state.leadEmail,
       setLeadCompany:e=>this.setState({leadCompany:e.target.value}), setLeadName:e=>this.setState({leadName:e.target.value}), setLeadPhone:e=>this.setState({leadPhone:e.target.value}), setLeadEmail:e=>this.setState({leadEmail:e.target.value}), submitLead,
-      leadSubmitting:this.state.leadSubmitting, leadButtonLabel:this.state.leadSubmitting?'제출 중...':'상담 신청하기', leadButtonOpacity:this.state.leadSubmitting?'0.65':'1', leadMessage:this.state.leadMessage, leadMessageColor:this.state.leadError?'#D92525':'#a0a0a6',
+      leadSubmitting:this.state.leadSubmitting, leadButtonLabel:this.state.leadSubmitting?'제출 중...':'개인정보 수집·이용에 동의하고 상담 신청', leadButtonOpacity:this.state.leadSubmitting?'0.65':'1', leadMessage:this.state.leadMessage, leadMessageColor:this.state.leadError?'#D92525':'#a0a0a6',
       shareCompany, shareNotice:this.state.shareNotice,
       searchGo:()=>{ if(firstMatch) this.go('company',firstMatch.id); },
       showResults:q.length>0, results, noResults:q.length>0&&results.length===0, suggestions,
