@@ -84,12 +84,7 @@ body {
 
 @media (max-width: 640px) {
     .report-menu {
-        gap: 1rem;
-    }
-
-    .report-menu .nav-link {
-        font-size: 0.7rem;
-        letter-spacing: 0.4px;
+        display: none;
     }
 }
 

@@ -44,6 +44,7 @@ button{font-family:inherit}
 .area-col:last-child{padding-right:0}
 @media (max-width:700px){.area-col{padding:12px 0 0;border-left:none}}
 @media (max-width:640px){
+.pc-br{display:none}
 .m-row{flex-wrap:wrap;gap:6px 10px !important}
 .m-desc{flex:1 1 auto !important;min-width:0}
 .m-bar{flex:0 0 100% !important;order:4}
@@ -114,11 +115,11 @@ button{font-family:inherit}
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#c4c4c9">블라인드 지수 · 구성원이 평가한 그 해의 직장 경험</span>
       </div>
       <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(24px,2.9vw,36px);line-height:1.25;letter-spacing:-0.01em;margin:0 0 16px;color:#fff;text-wrap:pretty">지금 블라인드 지수를 검색해보세요.</h1>
-      <p style="font-size:15.5px;line-height:1.7;color:#b6b6bc;margin:0 0 28px;max-width:520px">각 회사 구성원들이 평가한 그 해의 <b style="color:#fff;font-weight:600">일 · 관계 · 문화</b> 데이터입니다.<br>연봉이나 별점이 아닌 실제 매일의 직장 경험을 탐색합니다.</p>
+      <p style="font-size:15.5px;line-height:1.7;color:#b6b6bc;margin:0 0 28px;max-width:520px">각 회사 구성원들이 평가한 그 해의 <b style="color:#fff;font-weight:600">일 · 관계 · 문화</b> 데이터입니다.<br class="pc-br"/>연봉이나 별점이 아닌 실제 매일의 직장 경험을 탐색합니다.</p>
       <div style="position:relative;z-index:20;max-width:600px">
         <div style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:6px 6px 6px 18px;box-shadow:0 12px 36px -12px rgba(0,0,0,0.5)">
           <span style="color:#b6b6bc;font-size:18px">⌕</span>
-          <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="회사 이름을 검색해보세요" style="flex:1;border:none;outline:none;font-family:inherit;font-size:15.5px;color:#1c1c1e;background:none;padding:12px 0"/>
+          <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="회사 이름을 검색해보세요" style="flex:1;min-width:0;border:none;outline:none;font-family:inherit;font-size:15.5px;color:#1c1c1e;background:none;padding:12px 0"/>
           <button onClick="{{ searchGo }}" style="background:#1c1c1e;color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:14.5px;font-weight:600;cursor:pointer">검색</button>
         </div>
         <sc-if value="{{ showResults }}">
@@ -227,7 +228,7 @@ button{font-family:inherit}
         <sc-for list="{{ co.headline }}" as="m" hint-placeholder-count="4">
           <div class="m-row" style="display:flex;align-items:center;gap:14px;margin-bottom:15px">
             <span style="flex:0 0 84px;font-size:13.5px;color:#3E434C;font-weight:500">{{ m.name }}</span>
-            <span class="m-desc" style="flex:0 0 190px;font-size:11.5px;color:#A9B0BB;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.desc }}</span>
+            <span class="m-desc" style="flex:0 0 190px;font-size:11.5px;color:#7E8694;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.desc }}</span>
             <div class="m-bar" style="flex:1 1 auto;min-width:120px;height:6px;background:#EAECF0;border-radius:3px;overflow:hidden"><div class="bar-fill" style="height:6px;width:{{ m.fill }};background:#D92525;border-radius:3px"></div></div>
             <span class="m-pct" style="flex:0 0 62px;text-align:right;font-size:13px;font-weight:700;color:#3E434C;font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
           </div>
