@@ -52,17 +52,13 @@ body {
 
 .report-nav .menu-btn {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    align-items: center;
     padding: 4px 2px;
+    color: inherit;
 }
 
-.report-nav .menu-btn span {
-    width: 22px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 2px;
-    transition: background 0.3s;
+.report-nav .menu-btn svg {
+    display: block;
 }
 
 @media (max-width: 640px) {
@@ -938,9 +934,30 @@ h1 {
     gap: 0.65rem;
 }
 
-.gate-row input {
+.gate-field {
+    position: relative;
+    display: flex;
     flex: 1;
     min-width: 0;
+}
+
+.gate-field input {
+    width: 100%;
+}
+
+.gate-field .req {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--blind-red);
+    font-weight: 700;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.gate-field input:not(:placeholder-shown)+.req {
+    opacity: 0;
 }
 
 .email-gate-form input {
@@ -1346,13 +1363,15 @@ h1 {
 
 /* ===== 추가 맛보기 섹션 (PDF p4·5·7·8·9·12) ===== */
 
-/* 데이터 밀도가 높은 섹션은 넓은 래퍼 사용 (master-style의 600px 제한 해제) */
-#step-1 .content-wrapper,
-#step-4 .content-wrapper,
-#step-5 .content-wrapper,
-#step-7 .content-wrapper,
-#step-8 .content-wrapper {
+/* 모든 섹션의 좌측 시작점 통일 (master-style의 600px 제한 해제) */
+.replication-section .content-wrapper {
     max-width: 1000px;
+}
+
+/* 넓어진 래퍼 안에서 본문 텍스트는 읽기 좋은 폭으로 제한 (좌측 정렬 유지) */
+.text-content .rep-title-kor,
+.text-content .rep-body-text {
+    max-width: 760px;
 }
 
 /* 블라인드 지수란 */

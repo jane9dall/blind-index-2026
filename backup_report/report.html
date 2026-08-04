@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=18">
+    <link rel="stylesheet" href="report.css?v=19">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -23,7 +23,9 @@
     <!-- master-wrapper removed -->
     <nav class="global-nav report-nav">
         <button id="menu-btn" class="menu-btn" aria-label="메뉴 열기">
-            <span></span><span></span><span></span>
+            <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
         </button>
         <a class="nav-brand" href="../index.html">blind</a>
     </nav>
@@ -689,13 +691,20 @@
             <h2>리포트 전문을 이메일로 받아보세요</h2>
             <p>회사 이메일로 리포트 전문을 보내드립니다.</p>
             <form id="email-gate-form" class="email-gate-form">
-                <input type="text" id="gate-company" name="company" placeholder="회사명" required>
                 <div class="gate-row">
-                    <input type="text" id="gate-name" name="name" placeholder="이름" required>
-                    <input type="text" id="gate-position" name="position" placeholder="직함" required>
+                    <div class="gate-field"><input type="text" id="gate-company" name="company" placeholder="회사명"
+                            required><span class="req">*</span></div>
+                    <div class="gate-field"><input type="tel" id="gate-phone" name="phone" placeholder="전화번호"
+                            required><span class="req">*</span></div>
                 </div>
-                <input type="email" id="gate-email" name="email" placeholder="회사 이메일" required>
-                <input type="tel" id="gate-phone" name="phone" placeholder="전화번호 (예: 010-1234-5678)" required>
+                <div class="gate-row">
+                    <div class="gate-field"><input type="text" id="gate-name" name="name" placeholder="이름"
+                            required><span class="req">*</span></div>
+                    <div class="gate-field"><input type="text" id="gate-position" name="position" placeholder="직함"
+                            required><span class="req">*</span></div>
+                </div>
+                <div class="gate-field"><input type="email" id="gate-email" name="email" placeholder="회사 이메일"
+                        required><span class="req">*</span></div>
                 <div class="gate-consent">
                     <p class="gate-consent-title">개인정보 수집·이용 안내</p>
                     <ul>

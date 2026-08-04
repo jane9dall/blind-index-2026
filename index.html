@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -40,7 +41,7 @@ button{font-family:inherit}
   <div style="display:flex;align-items:center;flex:1">
     <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0">
       <img src="./assets/branding/apple-touch-icon.png" alt="Blind" style="width:28px;height:28px;border-radius:7px;display:block"/>
-      <span style="font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#1c1c1e">Blind Index</span>
+      <span style="font-family:'Outfit',Pretendard,sans-serif;font-weight:700;font-size:17.5px;letter-spacing:-0.02em;color:#1c1c1e">Blind Index</span>
     </button>
   </div>
 
@@ -341,129 +342,158 @@ button{font-family:inherit}
 <!-- ============ SOLUTION (B2B) ============ -->
 <sc-if value="{{ isSolution }}">
 <div>
-  <div style="max-width:1200px;margin:0 auto;padding:56px clamp(16px,4vw,40px) 40px;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
-    <div style="flex:1 1 440px;min-width:0">
-      <div style="font-size:12.5px;font-weight:700;letter-spacing:0.06em;color:#E5202A;margin-bottom:16px">B2B · 기업 솔루션</div>
-      <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(32px,4.4vw,50px);line-height:1.24;letter-spacing:-0.01em;margin:0 0 18px;color:#181819;text-wrap:pretty">우리 조직의 경험을,<br>데이터로 읽으세요</h1>
-      <p style="font-size:16px;line-height:1.75;color:#6b6b70;margin:0 0 30px;max-width:520px">익명 응답과 기업 비교 데이터를 바탕으로 <b style="color:#3a3a3e;font-weight:600">일 · 관계 · 문화</b>의 개선 우선순위를 확인합니다. 별점이 아닌 실제 경험 지표로, 다음에 무엇을 바꿔야 할지 알려드립니다.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <button onClick="{{ scrollToDemo }}" style="background:#2563EB;color:#fff;border:none;border-radius:10px;padding:14px 26px;font-size:15px;font-weight:600;cursor:pointer">데모 신청</button>
-        <button style="background:#fff;color:#3a3a3e;border:1px solid #dcdce0;border-radius:10px;padding:14px 24px;font-size:15px;font-weight:600;cursor:pointer">솔루션 소개 보기</button>
-      </div>
-    </div>
-    <div style="flex:1 1 420px;min-width:300px">
-      <div style="background:#fff;border:1px solid #e7e7ea;border-radius:16px;box-shadow:0 20px 48px -20px rgba(0,0,0,0.16);overflow:hidden">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #f2f2f4">
-          <div style="display:flex;align-items:center;gap:8px"><img src="./assets/branding/apple-touch-icon.png" alt="Blind" style="width:22px;height:22px;border-radius:6px;display:block"/><span style="font-size:13px;font-weight:700;color:#26262a">조직 진단 대시보드</span></div>
-          <span style="font-size:11px;color:#a0a0a6">데이터 연결 후 제공</span>
-        </div>
-        <div style="padding:20px">
-          <div style="display:flex;gap:14px;margin-bottom:18px">
-            <div style="flex:1;background:#f7f7f8;border-radius:11px;padding:14px 16px">
-              <div style="font-size:11.5px;color:#8a8a90;margin-bottom:6px">등록 기업 전체 평균 지수</div>
-              <div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:Pretendard,-apple-system,sans-serif;font-size:32px;font-weight:700;color:#181819;line-height:1">{{ dataStats.averageScore }}</span><span style="font-size:13px;color:#a0a0a6">/100</span></div>
-            </div>
-          </div>
-          <div style="font-size:11.5px;font-weight:700;color:#8a8a90;margin-bottom:9px">데이터 제공 범위</div>
-          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:18px">
-            <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#3a3a3e;font-weight:600">비교 가능 기업</span><span style="color:#c11b23;font-weight:700">{{ dataStats.companyCount }}개</span></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#8a8a90">선호도 응답 보유 기업</span><span style="color:#a0a0a6;font-weight:600">{{ dataStats.voteCompanyCount }}개</span></div></div>
-          </div>
-          <div style="display:flex;gap:8px;margin-bottom:18px">
-            <div style="flex:1;text-align:center;background:#f7f7f8;border-radius:10px;padding:11px 4px"><div style="font-size:11px;color:#8a8a90;margin-bottom:4px">일</div><div style="font-size:16px;font-weight:700;color:#c11b23">양호</div></div>
-            <div style="flex:1;text-align:center;background:#f7f7f8;border-radius:10px;padding:11px 4px"><div style="font-size:11px;color:#8a8a90;margin-bottom:4px">관계</div><div style="font-size:16px;font-weight:700;color:#181819">보통</div></div>
-            <div style="flex:1;text-align:center;background:#fdeeef;border-radius:10px;padding:11px 4px"><div style="font-size:11px;color:#8a8a90;margin-bottom:4px">문화</div><div style="font-size:16px;font-weight:700;color:#E5202A">주의</div></div>
-          </div>
-          <div style="background:#fdeeef;border-radius:10px;padding:12px 14px"><div style="font-size:11px;font-weight:700;color:#E5202A;margin-bottom:4px">진단 항목</div><div style="font-size:13px;font-weight:600;color:#3a3a3e">{{ dataStats.indicatorCount }}개 직장 경험 지표</div></div>
-        </div>
-      </div>
+  <div style="max-width:1200px;margin:0 auto;padding:64px clamp(16px,4vw,40px) 8px;text-align:center">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.04em;color:#E5202A;margin-bottom:14px">블라인드와 함께 하는 기업브랜딩</div>
+    <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(30px,4.2vw,48px);line-height:1.3;letter-spacing:-0.01em;margin:0 0 16px;color:#181819;text-wrap:pretty">1,200만 직장인이 사용하는<br>블라인드의 올인원 기업 서비스</h1>
+    <p style="font-size:16px;line-height:1.75;color:#6b6b70;margin:0 auto 28px;max-width:560px">블라인드 회사페이지와 리뷰 관리부터 블라인드 데이터 분석을 통한 인사이트도 발견해보세요!</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+      <button onClick="{{ scrollToDemo }}" style="background:#E5202A;color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:15px;font-weight:600;cursor:pointer">문의하기</button>
+      <button onClick="{{ scrollToDemo }}" style="background:#fff;color:#3a3a3e;border:1px solid #dcdce0;border-radius:10px;padding:14px 26px;font-size:15px;font-weight:600;cursor:pointer">무료로 시작하기</button>
     </div>
   </div>
 
-  <div style="max-width:1200px;margin:0 auto;padding:8px clamp(16px,4vw,40px)">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:#ececee;border:1px solid #ececee;border-radius:14px;overflow:hidden">
-      <div style="background:#fff;padding:22px 24px"><div style="font-family:Pretendard,-apple-system,sans-serif;font-size:30px;font-weight:700;color:#181819">{{ dataStats.companyCount }}</div><div style="font-size:13px;color:#8a8a90;margin-top:4px">비교 가능 기업</div></div>
-      <div style="background:#fff;padding:22px 24px"><div style="font-family:Pretendard,-apple-system,sans-serif;font-size:30px;font-weight:700;color:#181819">{{ dataStats.voteCompanyCount }}</div><div style="font-size:13px;color:#8a8a90;margin-top:4px">선호도 응답 보유 기업</div></div>
-      <div style="background:#fff;padding:22px 24px"><div style="font-family:Pretendard,-apple-system,sans-serif;font-size:30px;font-weight:700;color:#181819">{{ dataStats.indicatorCount }}</div><div style="font-size:13px;color:#8a8a90;margin-top:4px">직장 경험 평가 지표</div></div>
-      <div style="background:#fff;padding:22px 24px"><div style="font-family:Pretendard,-apple-system,sans-serif;font-size:30px;font-weight:700;color:#181819">{{ dataStats.averageScore }}</div><div style="font-size:13px;color:#8a8a90;margin-top:4px">등록 기업 평균 지수</div></div>
+  <div style="max-width:1200px;margin:0 auto;padding:40px clamp(16px,4vw,40px) 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+    <div style="background:#fff;border:1px solid #ececee;border-radius:16px;padding:26px 26px 22px;display:flex;flex-direction:column">
+      <span style="align-self:flex-start;background:#f2f2f4;color:#5a5a5e;font-size:11px;font-weight:800;letter-spacing:0.06em;border-radius:6px;padding:4px 9px;margin-bottom:14px">FREE</span>
+      <h3 style="font-size:19px;font-weight:700;margin:0 0 10px;color:#181819">기업브랜딩 Basic</h3>
+      <p style="font-size:13.5px;line-height:1.65;color:#6b6b70;margin:0 0 16px">가입만 해도 블라인드 회사페이지의 기본 관리를 하실 수 있습니다.</p>
+      <ul style="list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#3a3a3e">
+        <li>✓ 회사페이지 기본 관리</li>
+        <li>✓ 신규 리뷰 알림</li>
+      </ul>
+      <a href="#branding-detail" style="margin-top:auto;text-align:center;border:1px solid #dcdce0;border-radius:9px;padding:11px;font-size:14px;font-weight:600;color:#3a3a3e">자세히 보기</a>
+    </div>
+    <div style="background:#fff;border:1.5px solid #E5202A;border-radius:16px;padding:26px 26px 22px;display:flex;flex-direction:column">
+      <span style="align-self:flex-start;background:#E5202A;color:#fff;font-size:11px;font-weight:800;letter-spacing:0.06em;border-radius:6px;padding:4px 9px;margin-bottom:14px">BEST</span>
+      <h3 style="font-size:19px;font-weight:700;margin:0 0 10px;color:#181819">기업브랜딩 Plus</h3>
+      <p style="font-size:13.5px;line-height:1.65;color:#6b6b70;margin:0 0 16px">기업 관리 통합 프로그램을 통하여 기업 이미지를 상승시켜 보세요!</p>
+      <ul style="list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#3a3a3e">
+        <li style="font-weight:700;color:#181819">Basic 플랜의 모든 기능 +</li>
+        <li>✓ 추천 리뷰 지정</li>
+        <li>✓ 리뷰 댓글 기능</li>
+        <li>✓ 회사페이지 상세 관리 (뉴스/갤러리/복지정보)</li>
+      </ul>
+      <a href="#branding-detail" style="margin-top:auto;text-align:center;background:#E5202A;border:1px solid #E5202A;border-radius:9px;padding:11px;font-size:14px;font-weight:600;color:#fff">자세히 보기</a>
+    </div>
+    <div style="background:#fff;border:1px solid #ececee;border-radius:16px;padding:26px 26px 22px;display:flex;flex-direction:column">
+      <span style="align-self:flex-start;background:#1c1c1e;color:#fff;font-size:11px;font-weight:800;letter-spacing:0.06em;border-radius:6px;padding:4px 9px;margin-bottom:14px">NEW</span>
+      <h3 style="font-size:19px;font-weight:700;margin:0 0 10px;color:#181819">기업분석 blind Insight</h3>
+      <p style="font-size:13.5px;line-height:1.65;color:#6b6b70;margin:0 0 10px">블라인드 데이터 분석을 통해 기업관리에 필요한 인사이트를 발견해보세요!</p>
+      <p style="font-size:12.5px;font-weight:700;color:#E5202A;margin:0 0 14px">지금 인사이트 플랜 신청 시, 기업브랜딩 Plus 무료!</p>
+      <ul style="list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#3a3a3e">
+        <li>✓ 블라인드 리뷰 분석</li>
+        <li>✓ 구성원 참여 인사이트</li>
+        <li>✓ 게시글 속 브랜드 인식 탐색</li>
+      </ul>
+      <a href="#insight-detail" style="margin-top:auto;text-align:center;border:1px solid #dcdce0;border-radius:9px;padding:11px;font-size:14px;font-weight:600;color:#3a3a3e">자세히 보기</a>
     </div>
   </div>
 
-  <section style="max-width:1200px;margin:0 auto;padding:64px clamp(16px,4vw,40px) 20px">
-    <div style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;color:#9a9aa0;margin-bottom:8px">01 · 무엇을 진단하는가</div>
-    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 8px;color:#181819;letter-spacing:-0.01em">직장 경험을 세 영역으로 나눕니다</h2>
-    <p style="font-size:15px;color:#6b6b70;margin:0 0 28px;max-width:560px">각 영역의 대표 항목이 조직의 어떤 문제를 드러내는지 함께 진단합니다.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px;margin-top:12px;align-items:start">
-      <sc-for list="{{ diagnoseAreas }}" as="d" hint-placeholder-count="3">
-        <div style="border-top:2px solid #1c1c1e;padding-top:16px">
-          <h3 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:22px;line-height:1.2;margin:0 0 8px;color:#181819">{{ d.name }}</h3>
-          <div style="font-size:12.5px;color:#9a9aa0;line-height:1.5;margin-bottom:14px">{{ d.items }}</div>
-          <p style="font-size:14px;line-height:1.7;color:#5a5a5e;margin:0">{{ d.problem }}</p>
-        </div>
-      </sc-for>
+  <section style="max-width:1200px;margin:0 auto;padding:56px clamp(16px,4vw,40px) 20px">
+    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(24px,3vw,32px);margin:0 0 22px;color:#181819;letter-spacing:-0.01em">서비스별 기능 상세</h2>
+    <div style="background:#fff;border:1px solid #ececee;border-radius:16px;overflow:hidden;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;min-width:600px">
+        <thead>
+          <tr style="border-bottom:1px solid #ececee">
+            <th style="text-align:left;padding:16px 20px;color:#8a8a90;font-weight:600;width:32%">항목</th>
+            <th style="padding:14px 10px;color:#181819;font-weight:700">기업브랜딩 Basic<div style="font-size:11px;color:#a0a0a6;font-weight:500;margin-top:3px">가입 시 무료</div></th>
+            <th style="padding:14px 10px;color:#181819;font-weight:700">기업브랜딩 Plus<div style="font-size:11px;color:#a0a0a6;font-weight:500;margin-top:3px">가입 후 신청</div></th>
+            <th style="padding:14px 10px;color:#181819;font-weight:700">기업분석 blind Insight<div style="font-size:11px;color:#a0a0a6;font-weight:500;margin-top:3px">가입 후 신청</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" style="background:#f7f7f8;padding:9px 20px;font-weight:700;color:#5a5a5e;font-size:12.5px">회사페이지 관리</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">기본 정보 관리</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">부가 정보 관리</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">복지 정보 관리</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr><td colspan="4" style="background:#f7f7f8;padding:9px 20px;font-weight:700;color:#5a5a5e;font-size:12.5px">콘텐츠 관리</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">신규 리뷰 등록 알림</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">뉴스 관리</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">리뷰 관리</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">게시글 관리</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">갤러리 관리</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr><td colspan="4" style="background:#f7f7f8;padding:9px 20px;font-weight:700;color:#5a5a5e;font-size:12.5px">인사이트</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">인기 트렌드</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">게시글 탐색</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">구성원 참여 인사이트</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+          <tr style="border-top:1px solid #f4f4f6"><td style="padding:11px 20px;color:#3a3a3e">리뷰 분석</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#c4c4c9">–</td><td style="text-align:center;color:#E5202A;font-weight:700">◯</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <section style="max-width:1200px;margin:0 auto;padding:44px clamp(16px,4vw,40px) 20px">
-    <div style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;color:#9a9aa0;margin-bottom:8px">02 · 어떻게 비교하는가</div>
-    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 8px;color:#181819;letter-spacing:-0.01em">이해하기 쉬운 기준으로 비교합니다</h2>
-    <p style="font-size:15px;color:#6b6b70;margin:0 0 28px;max-width:560px">복잡한 ‘상위 n%’ 대신, 우리 조직이 어디쯤 있는지 문장으로 설명합니다.</p>
-    <div style="background:#fff;border:1px solid #ececee;border-radius:16px;overflow:hidden">
-      <sc-for list="{{ compareWays }}" as="c" hint-placeholder-count="3">
-        <div style="display:grid;grid-template-columns:56px minmax(150px,220px) 1fr;align-items:center;gap:28px;padding:26px 30px;border-top:1px solid #f2f2f4">
-          <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:26px;font-weight:700;color:#e0e0e4;line-height:1">{{ c.num }}</span>
-          <div>
-            <div style="font-size:12px;font-weight:700;color:#E5202A;letter-spacing:0.02em;margin-bottom:5px">{{ c.tag }}</div>
-            <h3 style="font-size:17px;font-weight:700;margin:0;color:#181819">{{ c.title }}</h3>
-          </div>
-          <p style="font-size:14px;line-height:1.65;color:#5a5a5e;margin:0">{{ c.desc }}</p>
-        </div>
-      </sc-for>
+  <section id="branding-detail" style="max-width:1200px;margin:0 auto;padding:56px clamp(16px,4vw,40px) 20px">
+    <div style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;color:#E5202A;margin-bottom:8px">blind 기업브랜딩</div>
+    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 8px;color:#181819;letter-spacing:-0.01em">기업 관리 통합 프로그램을 통하여<br>기업 이미지를 상승시켜 보세요!</h2>
+    <p style="font-size:15px;color:#6b6b70;margin:0 0 28px;max-width:560px">기업의 비전과 문화를 정확하게 공유하고 투명한 리뷰관리가 가능합니다.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:22px">
+      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:22px 24px">
+        <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">회사 정보 관리</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0">블라인드 유저들에게 우리 회사에 대한 다양한 정보를 알려주세요! 브랜드 이야기부터 복지 정보까지, 우리 회사만의 사내문화를 효과적으로 전달할 수 있어요!</p>
+      </div>
+      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:22px 24px">
+        <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">리뷰 관리</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0">긍정적인 기업문화를 잘 보여주는 리뷰를 최대 5개까지 상단에 고정하여, 우리 회사의 장점을 잘 알려보세요! 우리 회사 구성원들의 리뷰에 공식적으로 답변함으로써, 소통을 강화해 보세요!</p>
+      </div>
+      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:22px 24px">
+        <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">콘텐츠 관리</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0">뉴스, 게시글, 갤러리 관리를 통해 회사의 브랜딩을 강화하세요. 업데이트 된 기업 소식과 이미지로 우리 회사의 이미지를 한층 더 높일 수 있습니다.</p>
+      </div>
     </div>
+    <button onClick="{{ scrollToDemo }}" style="background:#fff;color:#3a3a3e;border:1px solid #dcdce0;border-radius:9px;padding:12px 22px;font-size:14px;font-weight:600;cursor:pointer">소개서 다운로드</button>
   </section>
 
-  <section style="max-width:1200px;margin:0 auto;padding:44px clamp(16px,4vw,40px) 20px">
-    <div style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;color:#9a9aa0;margin-bottom:8px">03 · 결과물</div>
-    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 28px;color:#181819;letter-spacing:-0.01em">진단이 끝나면 이런 것을 받습니다</h2>
-    <div style="background:#fff;border:1px solid #ececee;border-radius:16px;overflow:hidden">
-      <sc-for list="{{ deliverables }}" as="o" hint-placeholder-count="4">
-        <div style="display:flex;align-items:center;gap:22px;padding:22px 28px;border-top:1px solid #f2f2f4;flex-wrap:wrap">
-          <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:22px;font-weight:700;color:#d0d0d4;flex:0 0 34px">{{ o.num }}</span>
-          <h3 style="font-size:16px;font-weight:700;margin:0;color:#181819;flex:0 0 180px">{{ o.title }}</h3>
-          <p style="font-size:13.5px;color:#6b6b70;margin:0;flex:1 1 240px">{{ o.desc }}</p>
-        </div>
-      </sc-for>
+  <section id="insight-detail" style="max-width:1200px;margin:0 auto;padding:56px clamp(16px,4vw,40px) 20px">
+    <div style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;color:#E5202A;margin-bottom:8px">blind 인사이트</div>
+    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 8px;color:#181819;letter-spacing:-0.01em">우리 회사와 관련된<br>다양한 데이터를 분석해보세요!</h2>
+    <p style="font-size:15px;line-height:1.75;color:#6b6b70;margin:0 0 28px;max-width:680px">블라인드 인사이트는 철저히 보장된 익명성을 바탕으로, 구성원의 솔직한 의견을 안전하게 수집합니다. 작성자가 누구인지 특정할 수 없으며, 집단적 흐름으로만 분석되기 때문에 안심하고 참여할 수 있습니다. 인사이트를 활용해서 조직이 놓치기 쉬운 목소리를 발견하고, 제도와 문화 개선의 기회로 만들어보세요.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:22px">
+      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:22px 24px">
+        <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">블라인드 인기 트렌드</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0">블라인드 인기글과 키워드 검색 현황을 확인하고, 트렌드를 빠르게 캐치하세요.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:22px 24px">
+        <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">게시글 인사이트</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0">우리 회사와 경쟁사를 언급한 게시글을 키워드, 게시글 유형 등 다양한 기준으로 검색하고 분석할 수 있습니다.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:22px 24px">
+        <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">구성원 참여 인사이트</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0">우리 회사 구성원의 활동 패턴을 기반으로, 주요 관심사를 빠르게 파악하고 효과적인 커뮤니케이션 전략을 설계해보세요!</p>
+      </div>
+      <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:22px 24px">
+        <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">기업 리뷰 분석</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0">블라인드 내 우리 회사 리뷰 수, 평점 변화 추이, 업계 평균과의 비교 데이터를 확인해보세요.</p>
+      </div>
     </div>
+    <button onClick="{{ scrollToDemo }}" style="background:#fff;color:#3a3a3e;border:1px solid #dcdce0;border-radius:9px;padding:12px 22px;font-size:14px;font-weight:600;cursor:pointer">소개서 다운로드</button>
   </section>
 
-  <section style="max-width:1200px;margin:0 auto;padding:44px clamp(16px,4vw,40px) 20px">
-    <div style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;color:#9a9aa0;margin-bottom:8px">04 · 신뢰 요소</div>
-    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 28px;color:#181819;letter-spacing:-0.01em">데이터는 신중하게 다룹니다</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 40px">
-      <sc-for list="{{ trustItems }}" as="t" hint-placeholder-count="4">
-        <div style="display:flex;gap:13px;align-items:flex-start;padding:20px 0;border-top:1px solid #e4e4e7">
-          <span style="flex-shrink:0;width:18px;height:18px;border-radius:50%;background:#fdeeef;color:#c11b23;display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px">✓</span>
-          <div>
-            <h3 style="font-size:15px;font-weight:700;margin:0 0 5px;color:#181819">{{ t.title }}</h3>
-            <p style="font-size:13px;line-height:1.6;color:#6b6b70;margin:0">{{ t.desc }}</p>
-          </div>
-        </div>
-      </sc-for>
+  <section style="max-width:1200px;margin:0 auto;padding:56px clamp(16px,4vw,40px) 20px">
+    <div style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;color:#9a9aa0;margin-bottom:8px">기타 서비스</div>
+    <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 8px;color:#181819;letter-spacing:-0.01em">blind 광고 문의</h2>
+    <p style="font-size:15px;color:#6b6b70;margin:0 0 28px;max-width:560px">채용부터 브랜드 인지도까지, 직장인을 움직이는 모든 광고가 블라인드에 있습니다.</p>
+    <div style="background:#fff;border:1px solid #ececee;border-radius:14px;padding:24px 26px;margin-bottom:22px">
+      <h3 style="font-size:16px;font-weight:700;margin:0 0 10px;color:#181819">채용 광고</h3>
+      <p style="font-size:13.5px;line-height:1.7;color:#6b6b70;margin:0 0 12px">블라인드 채용 광고 서비스는 유일무이하게 업계, 직군, 회사별 맞춤 타겟팅이 가능합니다. 지원자 확보와 채용 브랜딩 효과까지 동시에 잡아보세요!</p>
+      <p style="font-size:12.5px;color:#9a9aa0;margin:0"><b style="color:#5a5a5e">[광고 노출 영역]</b> 피드광고, 서베이, 게시글배너, 앱알림, 웹광고</p>
     </div>
+    <button onClick="{{ scrollToDemo }}" style="background:#E5202A;color:#fff;border:none;border-radius:9px;padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer">문의하기</button>
   </section>
 
   <section id="demo-request" style="max-width:1200px;margin:0 auto;padding:40px clamp(16px,4vw,40px) 90px">
     <div style="background:#181819;border-radius:20px;padding:clamp(32px,5vw,56px);display:flex;flex-wrap:wrap;gap:36px;align-items:center">
       <div style="flex:1 1 380px;min-width:0">
-        <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.3;margin:0 0 12px;color:#fff;letter-spacing:-0.01em">우리 조직의 다음<br>개선 지점을 확인하세요</h2>
-        <p style="font-size:15px;line-height:1.7;color:#b6b6bc;margin:0;max-width:400px">전담 컨설턴트가 귀사의 블라인드 지수와 개선 방향을 무료로 안내해드립니다.</p>
+        <div style="font-size:13px;font-weight:700;letter-spacing:0.04em;color:#f0b1b5;margin-bottom:12px">우리 회사에 딱 맞는 서비스</div>
+        <h2 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.3;margin:0 0 12px;color:#fff;letter-spacing:-0.01em">블라인드 기업서비스<br>상담 신청하기</h2>
+        <p style="font-size:15px;line-height:1.7;color:#b6b6bc;margin:0;max-width:400px">상담을 위한 정보를 입력해주세요.</p>
       </div>
       <div style="flex:1 1 340px;min-width:280px;background:#fff;border-radius:14px;padding:24px">
         <div style="display:flex;flex-direction:column;gap:11px">
-          <input value="{{ leadCompany }}" onChange="{{ setLeadCompany }}" placeholder="회사명" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
-          <input value="{{ leadName }}" onChange="{{ setLeadName }}" placeholder="담당자 이름" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
-          <input value="{{ leadEmail }}" onChange="{{ setLeadEmail }}" placeholder="업무용 이메일" type="email" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
-          <button onClick="{{ submitLead }}" disabled="{{ leadSubmitting }}" style="background:#2563EB;color:#fff;border:none;border-radius:9px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;margin-top:2px;opacity:{{ leadButtonOpacity }}">{{ leadButtonLabel }}</button>
+          <input value="{{ leadCompany }}" onChange="{{ setLeadCompany }}" placeholder="회사명*" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          <input value="{{ leadName }}" onChange="{{ setLeadName }}" placeholder="담당자명*" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          <input value="{{ leadPhone }}" onChange="{{ setLeadPhone }}" placeholder="연락처*" type="tel" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          <input value="{{ leadEmail }}" onChange="{{ setLeadEmail }}" placeholder="이메일*" type="email" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
+          <button onClick="{{ submitLead }}" disabled="{{ leadSubmitting }}" style="background:#E5202A;color:#fff;border:none;border-radius:9px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;margin-top:2px;opacity:{{ leadButtonOpacity }}">{{ leadButtonLabel }}</button>
           <p style="font-size:11.5px;color:{{ leadMessageColor }};text-align:center;margin:2px 0 0">{{ leadMessage }}</p>
         </div>
       </div>
@@ -483,7 +513,7 @@ button{font-family:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860},&quot;defaultItem&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;업무자율성&quot;,&quot;업무의미감&quot;,&quot;업무중요도&quot;,&quot;상사관계&quot;,&quot;동료관계&quot;,&quot;직장내유대&quot;,&quot;워라밸&quot;,&quot;표현의자유&quot;,&quot;복지&quot;,&quot;윤리&quot;,&quot;심리적안전감&quot;],&quot;default&quot;:&quot;업무자율성&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;항목별 TOP 10 기본 항목&quot;},&quot;rankIndustry&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;전체&quot;,&quot;IT&quot;,&quot;금융&quot;,&quot;제조&quot;,&quot;공공기관&quot;,&quot;유통·서비스&quot;],&quot;default&quot;:&quot;전체&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;랭킹&quot;,&quot;label&quot;:&quot;기본 산업 필터&quot;},&quot;forceEmptyPreference&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;기업 상세&quot;,&quot;label&quot;:&quot;입사 선호도 미수집 상태 미리보기&quot;}}">
 class Component extends DCLogic {
-  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, shareNotice:false, leadCompany:'', leadName:'', leadEmail:'', leadSubmitting:false, leadMessage:'제출 시 개인정보 처리방침에 동의하는 것으로 간주됩니다.', leadError:false };
+  state = { screen:'home', selected:'SK하이닉스', query:'', item:null, industry:undefined, scrolled:false, isMobile:false, navOpen:false, shareNotice:false, leadCompany:'', leadName:'', leadPhone:'', leadEmail:'', leadSubmitting:false, leadMessage:'제출 시 개인정보 처리방침에 동의하는 것으로 간주됩니다.', leadError:false };
 
   itemNames = ['업무자율성','업무의미감','업무중요도','상사관계','동료관계','직장내유대','워라밸','표현의자유','복지','윤리','심리적안전감'];
   areaDefs = [
@@ -723,16 +753,16 @@ class Component extends DCLogic {
       {title:'민감 정보 비공개', desc:'기업별 민감 지표는 내부 진단 목적으로만 제한 공개합니다.'}
     ];
     const submitLead=()=>{
-      const company=this.state.leadCompany.trim(), name=this.state.leadName.trim(), email=this.state.leadEmail.trim();
-      if(!company || !name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-        this.setState({leadMessage:'회사명, 담당자 이름, 올바른 업무용 이메일을 입력해주세요.',leadError:true});
+      const company=this.state.leadCompany.trim(), name=this.state.leadName.trim(), phone=this.state.leadPhone.trim(), email=this.state.leadEmail.trim();
+      if(!company || !name || !phone || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        this.setState({leadMessage:'회사명, 담당자명, 연락처, 올바른 이메일을 입력해주세요.',leadError:true});
         return;
       }
       this.setState({leadSubmitting:true,leadMessage:'제출 중...',leadError:false});
       fetch('https://script.google.com/macros/s/AKfycbxMpoGnVgrJMJAyXw1jNEUnHOFVLx8KWib9cFaEFpqlzQXfl6qvzUDMF44GXtsFC5WxWQ/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams({company,name,email}).toString()
-      }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
+        body:new URLSearchParams({company,name,phone,email}).toString()
+      }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
         .catch(()=>this.setState({leadSubmitting:false,leadMessage:'전송에 실패했습니다. 잠시 후 다시 시도해주세요.',leadError:true}));
     };
     const shareCompany=()=>{
@@ -769,9 +799,9 @@ class Component extends DCLogic {
       orderLeft:0, orderMain: this.state.isMobile?0:1, orderRight: this.state.isMobile?1:2,
       query:this.state.query, setQuery:e=>this.setState({query:e.target.value}),
       scrollToDemo:()=>document.getElementById('demo-request')?.scrollIntoView({behavior:'smooth',block:'center'}),
-      leadCompany:this.state.leadCompany, leadName:this.state.leadName, leadEmail:this.state.leadEmail,
-      setLeadCompany:e=>this.setState({leadCompany:e.target.value}), setLeadName:e=>this.setState({leadName:e.target.value}), setLeadEmail:e=>this.setState({leadEmail:e.target.value}), submitLead,
-      leadSubmitting:this.state.leadSubmitting, leadButtonLabel:this.state.leadSubmitting?'제출 중...':'데모 신청하기', leadButtonOpacity:this.state.leadSubmitting?'0.65':'1', leadMessage:this.state.leadMessage, leadMessageColor:this.state.leadError?'#c11b23':'#a0a0a6',
+      leadCompany:this.state.leadCompany, leadName:this.state.leadName, leadPhone:this.state.leadPhone, leadEmail:this.state.leadEmail,
+      setLeadCompany:e=>this.setState({leadCompany:e.target.value}), setLeadName:e=>this.setState({leadName:e.target.value}), setLeadPhone:e=>this.setState({leadPhone:e.target.value}), setLeadEmail:e=>this.setState({leadEmail:e.target.value}), submitLead,
+      leadSubmitting:this.state.leadSubmitting, leadButtonLabel:this.state.leadSubmitting?'제출 중...':'상담 신청하기', leadButtonOpacity:this.state.leadSubmitting?'0.65':'1', leadMessage:this.state.leadMessage, leadMessageColor:this.state.leadError?'#c11b23':'#a0a0a6',
       shareCompany, shareNotice:this.state.shareNotice,
       searchGo:()=>{ if(firstMatch) this.go('company',firstMatch.id); },
       showResults:q.length>0, results, noResults:q.length>0&&results.length===0, suggestions,
