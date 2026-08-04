@@ -1173,7 +1173,6 @@ h1 {
 
 #step-3 .replication-section.grey-bg {
     background: linear-gradient(to bottom, #EFEFEF 0%, #FFFFFF 100%);
-    min-height: 100vh;
 }
 
 @media (min-width: 769px) {
@@ -1189,9 +1188,16 @@ h1 {
         min-height: 100vh;
     }
 
-    #step-3 {
+    /* 한 스크롤 = 한 페이지: 섹션 내용을 화면 세로 중앙에 배치 */
+    .replication-container {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .replication-section {
+        padding: 2.5rem 2rem;
+        min-height: 0;
     }
 
     #step-1-5 .replication-container {
@@ -1298,47 +1304,47 @@ h1 {
 .factor-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    margin-top: 1.5rem;
+    gap: 0.7rem;
+    margin-top: 1rem;
 }
 
 .factor-group {
     background: #fff;
     border: 1px solid #e8e8ea;
     border-radius: 12px;
-    padding: 1.2rem 1.4rem;
+    padding: 0.8rem 1rem;
 }
 
 .factor-group h4 {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
     color: #666;
-    margin: 0 0 0.9rem;
+    margin: 0 0 0.6rem;
     text-align: center;
 }
 
 .factor-chips {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
-    gap: 0.7rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.55rem;
 }
 
 .factor-chip {
     background: #3a3a3c;
     color: #fff;
     border-radius: 10px;
-    padding: 0.9rem 1rem;
+    padding: 0.6rem 0.7rem;
     text-align: center;
 }
 
 .factor-chip strong {
     display: block;
-    font-size: 0.95rem;
-    margin-bottom: 0.35rem;
+    font-size: 0.88rem;
+    margin-bottom: 0.25rem;
 }
 
 .factor-chip span {
-    font-size: 0.76rem;
-    line-height: 1.5;
+    font-size: 0.7rem;
+    line-height: 1.45;
     color: rgba(255, 255, 255, 0.75);
     word-break: keep-all;
 }
@@ -1357,14 +1363,14 @@ h1 {
 
 /* 조사 방법 */
 .method-table {
-    margin: 1.5rem 0 0;
+    margin: 1rem 0 0;
     border-top: 2px solid #333;
 }
 
 .method-row {
     display: flex;
     gap: 1.5rem;
-    padding: 1.1rem 0.4rem;
+    padding: 0.85rem 0.4rem;
     border-bottom: 1px solid #ddd;
 }
 
@@ -1383,9 +1389,9 @@ h1 {
 /* 경쟁사 비교 */
 .industry-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+    margin-top: 1rem;
 }
 
 .industry-card {
@@ -1399,24 +1405,24 @@ h1 {
     background: #3a3a3c;
     color: #fff;
     text-align: center;
-    font-size: 0.88rem;
-    padding: 0.55rem;
+    font-size: 0.8rem;
+    padding: 0.4rem;
     margin: 0;
 }
 
 .industry-card ul {
     list-style: none;
     margin: 0;
-    padding: 0.4rem 1rem 0.6rem;
+    padding: 0.25rem 0.8rem 0.45rem;
 }
 
 .industry-card li {
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;
-    padding: 0.45rem 0;
+    padding: 0.32rem 0;
     border-bottom: 1px solid #f2f2f4;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: #333;
 }
 
@@ -1433,8 +1439,8 @@ h1 {
 .riser-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.8rem 2rem;
-    margin-top: 1.5rem;
+    gap: 0.55rem 1.5rem;
+    margin-top: 1rem;
 }
 
 .riser-item {
@@ -1444,7 +1450,7 @@ h1 {
     background: #fff;
     border: 1px solid #e8e8ea;
     border-radius: 10px;
-    padding: 0.7rem 1rem;
+    padding: 0.5rem 0.9rem;
 }
 
 .riser-tag {
@@ -1476,7 +1482,7 @@ h1 {
     display: grid;
     grid-template-columns: 1.15fr 1fr;
     gap: 2.5rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     align-items: start;
 }
 
@@ -1557,6 +1563,30 @@ h1 {
 
     .method-row dt {
         flex-basis: 90px;
+    }
+
+    .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 모바일 최적화 */
+@media (max-width: 640px) {
+    .replication-section {
+        padding: 3rem 1.2rem;
+    }
+
+    .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .industry-card li {
+        font-size: 0.72rem;
+    }
+
+    .factor-chips {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 

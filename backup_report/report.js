@@ -160,6 +160,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.content-locked').forEach(el => el.classList.remove('content-locked'));
     };
 
+    // DEEP DIVE 도트: 클릭 시 이메일 게이트 팝업 (이미 제출했으면 해당 섹션으로 이동)
+    const deepDiveDot = document.getElementById('deep-dive-dot');
+    if (deepDiveDot) {
+        deepDiveDot.addEventListener('click', (e) => {
+            if (localStorage.getItem('emailGateSubmitted')) return; // 기본 앵커 이동
+            e.preventDefault();
+            emailGateOverlay.classList.add('active');
+        });
+    }
+
     if (emailGateClose) emailGateClose.addEventListener('click', closeEmailGate);
     if (emailGateOverlay) emailGateOverlay.addEventListener('click', event => {
         if (event.target === emailGateOverlay) closeEmailGate();
