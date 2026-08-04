@@ -45,10 +45,7 @@ button{font-family:inherit}
 @media (max-width:700px){.area-col{padding:12px 0 0;border-left:none}}
 .m-tabbar{display:none}
 .m-br{display:none}
-.hr-cta-m{display:none}
 @media (max-width:900px){
-.hr-cta-pc{display:none !important}
-.hr-cta-m{display:flex}
 .co-aside{flex:1 1 100% !important;min-width:0 !important}
 h2.top-pct{font-size:34px !important}
 .m-tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;background:rgba(255,255,255,0.96);backdrop-filter:saturate(180%) blur(8px);border-top:1px solid #ececee;padding:7px 0 calc(7px + env(safe-area-inset-bottom))}
@@ -242,7 +239,7 @@ body{padding-bottom:64px}
             <span class="m-pct" style="flex:0 0 62px;text-align:right;font-size:13px;font-weight:700;color:#3E434C;font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
           </div>
         </sc-for>
-        <p style="font-size:11.5px;color:#A9B0BB;margin:10px 0 0">* 이직의도 · 스트레스: 상위 1%에 가까울수록 높은 점수입니다.</p>
+        <p style="font-size:11.5px;color:#A9B0BB;margin:20px 0 0">* 이직의도 · 스트레스: 상위 1%에 가까울수록 높은 점수입니다.</p>
 
         <div style="border-top:1px solid #EDEFF3;margin:38px 0 38px"></div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));padding-bottom:14px">
@@ -281,10 +278,6 @@ body{padding-bottom:64px}
         <div style="max-width:420px;margin:6px auto 0">{{ radar6El }}</div>
       </section>
 
-      <div class="hr-cta-pc" style="background:#EDEFF3;border:1px solid #E6E8EC;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <p style="font-size:14px;color:#5D646F;margin:0;flex:1 1 300px"><b style="color:#2B2F36;font-weight:700">HR 담당자이신가요?</b> 경쟁사 비교와 조직별 개선 우선순위를 엔터프라이즈 대시보드에서 확인하세요.</p>
-        <button onClick="{{ goSolution }}" style="background:#1c1c1e;color:#fff;border:none;border-radius:9px;padding:11px 18px;font-size:13.5px;font-weight:600;cursor:pointer">기업 솔루션 알아보기 →</button>
-      </div>
     </main>
 
     <aside class="co-aside" style="flex:0 0 320px;min-width:280px;display:flex;flex-direction:column;gap:16px">
