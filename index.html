@@ -619,6 +619,7 @@ class Component extends DCLogic {
     const y=v=>baseY-(density(v)/maxDensity)*plotH;
     const pts=raw.map(point=>[x(point.v),baseY-(point.density/maxDensity)*plotH]);
     const curve = pts.map((p,i)=> (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+    const area = 'M'+x(0).toFixed(1)+' '+baseY+' '+pts.map(p=>'L'+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ')+' L'+x(100).toFixed(1)+' '+baseY+' Z';
     const tail=[[x(overall),y(overall)]];
     raw.forEach(point=>{ if(point.v>overall) tail.push([x(point.v),baseY-(point.density/maxDensity)*plotH]); });
     const shade = tail.length? ('M'+x(overall).toFixed(1)+' '+baseY+' '+ tail.map(p=>'L'+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ') +' L'+x(100).toFixed(1)+' '+baseY+' Z') : '';
@@ -630,7 +631,8 @@ class Component extends DCLogic {
       h('text',{key:'p2', x:mx, y:44, textAnchor:'middle', fill:'rgba(255,255,255,0.9)', fontSize:11, fontFamily:'Pretendard,sans-serif'}, overall+'점 · 상위 '+top+'%')
     ]);
     return h('svg',{viewBox:'0 0 '+W+' '+H, style:{width:'100%',height:'auto',display:'block'}, preserveAspectRatio:'xMidYMid meet'},[
-      shade? h('path',{key:'sh', d:shade, fill:'rgba(217,37,37,0.10)'}):null,
+      h('path',{key:'ar', d:area, fill:'#EDF0F3'}),
+      shade? h('path',{key:'sh', d:shade, fill:'rgba(217,37,37,0.13)'}):null,
       h('path',{key:'cv', d:curve, fill:'none', stroke:'#c7c7cc', strokeWidth:1.6, strokeLinejoin:'round'}),
       h('line',{key:'ml', x1:meanx, y1:baseY, x2:meanx, y2:top0+10, stroke:'#c0c0c5', strokeWidth:1, strokeDasharray:'4 4'}),
       h('line',{key:'ax', x1:L, y1:baseY, x2:W-R, y2:baseY, stroke:'#e6e6e9', strokeWidth:1}),
