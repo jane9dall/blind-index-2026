@@ -248,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('gate-name').value.trim();
             const position = document.getElementById('gate-position').value.trim();
             const email = document.getElementById('gate-email').value.trim();
+            const phone = document.getElementById('gate-phone').value.trim();
 
             if (!company || !name || !position || !email) {
                 gateMessage.textContent = '모든 항목을 입력해주세요.';
@@ -278,10 +279,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: new URLSearchParams({
+                    type: '리포트 요청',
                     company: company,
                     name: name,
                     position: position,
-                    email: email
+                    email: email,
+                    phone: phone
                 })
             }).then(() => {
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';

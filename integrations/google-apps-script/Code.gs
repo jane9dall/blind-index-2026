@@ -1,12 +1,15 @@
 /**
  * Blind Index Google Apps Script web-app handler.
  *
- * Deploy this script as a Web app (execute as the spreadsheet owner, access:
- * anyone) using the same /exec URL configured in index.html.
+ * 대상 스프레드시트: 1bC_olKtDlKzwP8RjYuU9dCjcIQk5JHHJbLZWJuoW6RM
+ * 배포 방법: 웹 앱으로 배포 (실행: 나, 액세스: 모든 사용자) 후
+ * 발급된 /exec URL을 index.html과 report.js의 엔드포인트에 넣습니다.
  */
+var SPREADSHEET_ID = '1bC_olKtDlKzwP8RjYuU9dCjcIQk5JHHJbLZWJuoW6RM';
+
 function doPost(e) {
   const params = (e && e.parameter) || {};
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
 
   if (params.action === 'visit_log') {
     const sheet = getOrCreateSheet_(spreadsheet, '방문로그', [
@@ -31,27 +34,32 @@ function doPost(e) {
     return json_({ ok: true });
   }
 
-  const demoSheet = getOrCreateSheet_(spreadsheet, '데모요청', [
-    '기록 시각', '회사명', '담당자 이름', '업무용 이메일'
+  // 리포트 이메일 게이트(리포트 요청) / 솔루션스 상담 폼(솔루션 신청) 공용
+  const sheet = getOrCreateSheet_(spreadsheet, '신청', [
+    '기록 시각', '구분', '회사명', '담당자명', '직함', '회사 이메일', '전화번호'
   ]);
-  demoSheet.appendRow([new Date(), params.company || '', params.name || '', params.email || '']);
+  sheet.appendRow([
+    new Date(),
+    params.type || '기타',
+    params.company || '',
+    params.name || '',
+    params.position || '',
+    params.email || '',
+    params.phone || ''
+  ]);
   return json_({ ok: true });
 }
 
-// Apps Script 편집기에서 방문로그 저장 여부를 확인할 때 이 함수를 실행합니다.
-function testVisitLog() {
+// Apps Script 편집기에서 저장 여부를 확인할 때 실행하는 테스트 함수입니다.
+function testSubmission() {
   return doPost({
     parameter: {
-      action: 'visit_log',
-      event: 'test_visit',
+      type: '리포트 요청',
       company: '테스트 기업',
-      clientAt: new Date().toISOString(),
-      page: 'https://example.com/?company=test&ref=share',
-      referrer: 'https://example.com/',
-      userAgent: 'Apps Script test',
-      language: 'ko-KR',
-      timezone: 'Asia/Seoul',
-      viewport: '1280x800'
+      name: '홍길동',
+      position: '매니저',
+      email: 'test@example.com',
+      phone: '010-0000-0000'
     }
   });
 }
