@@ -154,6 +154,26 @@ body {
 
 .menu-dot::after {
     content: attr(title);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.25s, transform 0.25s;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.35);
+    white-space: nowrap;
+}
+
+.menu-dot:hover::after,
+.menu-dot.active::after {
+    opacity: 1;
+    transform: none;
+}
+
+/* 사이드 네비게이터를 그릴 여백이 없는 폭에서는 숨김 */
+@media (max-width: 1200px) {
+    .floating-menu {
+        display: none;
+    }
 }
 
 /* Dark Theme for Menu (Steps 5+) */
@@ -167,6 +187,10 @@ body {
 
 .floating-menu.dark-theme .menu-dot.active::before {
     background: var(--blind-red);
+}
+
+.floating-menu.dark-theme .menu-dot::after {
+    background: rgba(255, 255, 255, 0.88);
 }
 
 /* Header */
