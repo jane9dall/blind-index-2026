@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=31">
+    <link rel="stylesheet" href="report.css?v=32">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -22,31 +22,14 @@
 <body>
     <!-- master-wrapper removed -->
     <nav class="global-nav report-nav">
-        <button id="menu-btn" class="menu-btn" aria-label="메뉴 열기">
-            <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            </svg>
-        </button>
-        <a class="nav-brand" href="../index.html">blind</a>
+        <div class="nav-side"><a class="nav-brand" href="../index.html">blind</a></div>
         <div class="report-menu">
             <a class="nav-link" href="../index.html">Company Index</a>
             <a class="nav-link active" href="#intro">Annual Report</a>
             <a class="nav-link" href="../index.html?screen=solution">Solutions</a>
         </div>
+        <div class="nav-side nav-side-right" aria-hidden="true"></div>
     </nav>
-
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a class="blind-logo" href="../index.html" style="text-decoration: none;">blind</a>
-            <button class="close-btn" id="close-sidebar-btn" aria-label="닫기">&times;</button>
-        </div>
-        <nav class="sidebar-nav">
-            <a class="sidebar-link" href="../index.html">Company Index</a>
-            <a class="sidebar-link active" href="#intro">Annual Report</a>
-            <a class="sidebar-link" href="../index.html?screen=solution">Solutions</a>
-        </nav>
-    </aside>
 
     <div class="fab-stack">
         <span id="fab-toast" class="fab-toast">링크가 복사됐어요!</span>
@@ -729,12 +712,12 @@
             <h2>리포트 전문을 이메일로 받아보세요</h2>
             <form id="email-gate-form" class="email-gate-form">
                 <div class="gate-row">
-                    <input type="text" id="gate-company" name="company" placeholder="회사명*" required>
-                    <input type="tel" id="gate-phone" name="phone" placeholder="전화번호*" required>
-                </div>
-                <div class="gate-row">
                     <input type="text" id="gate-name" name="name" placeholder="담당자명*" required>
                     <input type="text" id="gate-position" name="position" placeholder="직함*" required>
+                </div>
+                <div class="gate-row">
+                    <input type="text" id="gate-company" name="company" placeholder="회사명*" required>
+                    <input type="tel" id="gate-phone" name="phone" placeholder="전화번호*" required>
                 </div>
                 <input type="email" id="gate-email" name="email" placeholder="회사 이메일*" required>
                 <div class="gate-consent">
