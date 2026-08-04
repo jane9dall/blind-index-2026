@@ -230,17 +230,16 @@ button{font-family:inherit}
             <span style="flex:0 0 62px;text-align:right;font-size:13px;font-weight:700;color:#3E434C;font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
           </div>
         </sc-for>
-      </section>
 
-      <div>
-        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
+        <div style="border-top:1px solid #EDEFF3;margin:6px 0 18px"></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px">
           <h2 style="font-size:17px;font-weight:700;margin:0;color:#1B1D22">요인별 한국 상위 %</h2>
           <span style="font-size:12px;color:#959CA8">n%가 낮을수록 더 높은 위치</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0 24px;padding-bottom:14px">
           <sc-for list="{{ areaGroups }}" as="a" hint-placeholder-count="3">
-            <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:18px 18px 8px">
-              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px">
+            <div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">
                 <h3 style="font-size:15px;font-weight:700;margin:0;color:#1B1D22">{{ a.name }}</h3>
                 <span style="font-size:11px;color:#959CA8">{{ a.sub }}</span>
               </div>
@@ -259,7 +258,7 @@ button{font-family:inherit}
             </div>
           </sc-for>
         </div>
-      </div>
+      </section>
 
       <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 24px 20px">
         <h2 style="font-size:17px;font-weight:700;margin:0 0 4px;text-align:center;color:#1B1D22">요인별 종합 비교</h2>
@@ -525,7 +524,7 @@ class Component extends DCLogic {
   areaDefs = [
     {name:'일', sub:'자율 · 의미 · 중요도', from:0, to:3, color:'#9EA5AE'},
     {name:'관계', sub:'상사 · 동료 · 유대', from:3, to:6, color:'#A8AFB7'},
-    {name:'문화', sub:'워라밸 · 복지 · 안전감', from:6, to:11, color:'#B2B8C0'}
+    {name:'문화', sub:'윤리 · 안전감 · 표현', from:6, to:11, color:'#B2B8C0'}
   ];
   tints = ['#EEF1F5','#F1EFEA','#EDF2EF','#F2EEF1','#EEF0EF','#F0EFEA','#EDEFF2'];
   excludedNames = new Set(['수의사','의사','변호사','약사','간호사','공무원','직업군인','한의사','치과위생사']);
@@ -721,8 +720,9 @@ class Component extends DCLogic {
     const hasPref=!forceEmpty && !!c.vote;
     const rampFn=(t)=> t<=4?'#2B2F36' : t<=12?'#576070' : '#98A0AE';
     const posFn=(t)=> ((1-Math.min(t,30)/30)*92+4).toFixed(1)+'%';
+    const hiddenAreaItems=new Set(['복지','워라밸']);
     const areaGroups=this.areaDefs.map(a=>({ name:a.name, sub:a.sub,
-      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, color:rampFn(t), pos:posFn(t) }; }).sort((x,y)=>x.top-y.top) }));
+      rows:this.itemNames.slice(a.from,a.to).map((n,k)=>{ const gi=a.from+k; const t=c.itemTop[gi]; return { name:n, top:t, color:rampFn(t), pos:posFn(t) }; }).filter(r=>!hiddenAreaItems.has(r.name)).sort((x,y)=>x.top-y.top) }));
     const peers=D.cos.filter(p=>p.industry===c.industry && p.id!==c.id).slice(0,5).map(p=>{
       const higher=p.top<c.top, lower=p.top>c.top;
       return { id:p.id, name:p.name, mono:p.mono, logo:p.logo, hasLogo:p.hasLogo, noLogo:p.noLogo, tint:p.tint, top:p.top, open:()=>this.go('company',p.id),
