@@ -168,7 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const fabToast = document.getElementById('fab-toast');
     if (fabShare && fabToast) {
         fabShare.addEventListener('click', () => {
-            const shareText = `Blind Index | Annual Report\n블라인드 지수 올해 결과를 확인해보세요!\n${window.location.origin}${window.location.pathname}`;
+            const shareUrl = new URL(window.location.origin + window.location.pathname);
+            shareUrl.searchParams.set('utm_source', 'share');
+            shareUrl.searchParams.set('utm_medium', 'copy_link');
+            shareUrl.searchParams.set('utm_campaign', 'annual_report');
+            shareUrl.searchParams.set('sid', Date.now().toString(36) + Math.random().toString(36).slice(2, 6));
+            const shareText = `Blind Index | Annual Report\n블라인드 지수 올해 결과를 확인해보세요!\n${shareUrl.toString()}`;
             const done = () => {
                 fabToast.classList.add('show');
                 setTimeout(() => fabToast.classList.remove('show'), 1800);

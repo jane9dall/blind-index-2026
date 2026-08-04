@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=36">
+    <link rel="stylesheet" href="report.css?v=37">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -42,6 +42,35 @@
             </svg>
         </button>
     </div>
+
+    <nav class="m-tabbar" aria-label="모바일 탭">
+        <a href="../index.html" class="m-tab">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" />
+            </svg>
+            <span>COMPANY</span>
+        </a>
+        <a href="#intro" class="m-tab m-tab-active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 20h18" />
+                <path d="M6 20V10" />
+                <path d="M12 20V4" />
+                <path d="M18 20v-7" />
+            </svg>
+            <span>REPORT</span>
+        </a>
+        <a href="../index.html?screen=solution" class="m-tab">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="7" width="18" height="13" rx="2" />
+                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+            <span>SOLUTIONS</span>
+        </a>
+    </nav>
 
     <nav class="floating-menu">
         <a href="#intro" class="menu-dot active" data-step="0" title="TOP"></a>
@@ -738,7 +767,7 @@
             <div id="gate-message" class="gate-message"></div>
         </div>
     </div>
-    <script src="report.js?v=14"></script>
+    <script src="report.js?v=15"></script>
     <div id="mobile-notice" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(20,20,22,0.6);align-items:center;justify-content:center;padding:24px">
         <div
             style="background:#fff;border-radius:16px;padding:28px 24px;max-width:340px;text-align:center;font-family:'Pretendard','Noto Sans KR',sans-serif">
