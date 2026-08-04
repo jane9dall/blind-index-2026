@@ -30,7 +30,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.5rem 2rem;
+    height: 62px;
+    padding: 0 2rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -58,14 +59,26 @@ body {
 
 .report-menu {
     display: flex;
-    gap: 1.9rem;
+    gap: 30px;
     align-items: center;
     justify-content: center;
 }
 
 .report-menu .nav-link {
-    font-size: 0.85rem;
+    position: relative;
+    font-size: 13.5px;
     letter-spacing: 0.05em;
+    opacity: 1;
+}
+
+.report-menu .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: -5px;
+    height: 2px;
+    background: var(--blind-red);
 }
 
 @media (max-width: 640px) {
@@ -929,6 +942,14 @@ h1 {
     width: 90%;
     text-align: center;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.email-gate-content p.gate-overline {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #b0b0b6;
+    margin: 0 0 6px;
 }
 
 .email-gate-content h2 {

@@ -155,9 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateMessage = document.getElementById('gate-message');
     const emailGateClose = document.getElementById('email-gate-close');
 
+    // 닫기(X·바깥 클릭·ESC)는 팝업만 숨기고 마지막 섹션 블러는 유지한다.
+    // 블러 해제는 폼 제출 성공 시에만 일어난다.
+    let gateDismissed = false;
     const closeEmailGate = () => {
         emailGateOverlay.classList.remove('active');
-        document.querySelectorAll('.content-locked').forEach(el => el.classList.remove('content-locked'));
+        gateDismissed = true;
     };
 
     // 우하단 플로팅: 링크 공유
@@ -207,15 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hasSubmitted = localStorage.getItem('emailGateSubmitted');
 
-    // 닫기(X) 버튼: 게이트를 닫고 이번 방문 동안 다시 띄우지 않음 (마지막 섹션 블러는 유지)
-    let gateDismissed = false;
+    // 닫기(X) 버튼도 동일하게 팝업만 숨긴다
     const gateCloseBtn = document.getElementById('gate-close');
-    if (gateCloseBtn) {
-        gateCloseBtn.addEventListener('click', () => {
-            emailGateOverlay.classList.remove('active');
-            gateDismissed = true;
-        });
-    }
+    if (gateCloseBtn) gateCloseBtn.addEventListener('click', closeEmailGate);
 
     // 마지막 섹션(step-3)이 화면에 절반 이상 보이면 게이트 표시.
     // 스크롤 이벤트 기반으로 판정: 로딩 직후 임시 레이아웃으로 인한 오작동이 없고 iframe 안에서도 안정적으로 동작.
