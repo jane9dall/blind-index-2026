@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=11">
+    <link rel="stylesheet" href="report.css?v=12">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -689,15 +689,16 @@
             <p>회사 이메일로 리포트 전문을 보내드립니다.</p>
             <form id="email-gate-form" class="email-gate-form">
                 <input type="text" id="gate-company" name="company" placeholder="회사명" required>
-                <input type="text" id="gate-name" name="name" placeholder="이름" required>
-                <input type="text" id="gate-position" name="position" placeholder="직함" required>
+                <div class="gate-row">
+                    <input type="text" id="gate-name" name="name" placeholder="이름" required>
+                    <input type="text" id="gate-position" name="position" placeholder="직함" required>
+                </div>
                 <input type="email" id="gate-email" name="email" placeholder="회사 이메일" required>
                 <input type="tel" id="gate-phone" name="phone" placeholder="전화번호 (예: 010-1234-5678)" required>
                 <div class="gate-consent">
                     <p class="gate-consent-title">개인정보 수집·이용 안내</p>
                     <ul>
-                        <li>수집 주체: Teamblind Hub LLC (<a href="https://www.blindhub.net/kr/privacy" target="_blank"
-                                rel="noopener">개인정보처리방침</a>)</li>
+                        <li>수집 주체: Teamblind Hub LLC</li>
                         <li>수집 항목: 회사명, 이름, 직함, 회사 이메일, 전화번호</li>
                         <li>이용 목적: 블라인드 지수 리포트 전문 제공 및 관련 안내</li>
                         <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
