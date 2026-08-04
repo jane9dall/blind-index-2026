@@ -220,6 +220,7 @@ button{font-family:inherit}
             <span style="flex:0 0 62px;text-align:right;font-size:13px;font-weight:700;color:#3E434C;font-variant-numeric:tabular-nums">상위 {{ m.top }}%</span>
           </div>
         </sc-for>
+        <p style="font-size:11.5px;color:#A9B0BB;margin:2px 0 0">이직의도 · 스트레스: 1%에 가까울수록 높은 점수입니다.</p>
 
         <div style="border-top:1px solid #EDEFF3;margin:38px 0 38px"></div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));padding-bottom:14px">
@@ -237,7 +238,8 @@ button{font-family:inherit}
                   </div>
                   <div style="position:relative;height:22px;margin:0 4px">
                     <div style="position:absolute;top:50%;left:0;right:0;height:3px;background:#EAECF0;border-radius:2px;transform:translateY(-50%)"></div>
-                    <div style="position:absolute;top:50%;left:{{ r.pos }};width:2px;height:15px;border-radius:2px;background:#D92525;transform:translate(-50%,-50%)"></div>
+                    <div style="position:absolute;top:50%;left:{{ r.pos }};right:0;height:3px;background:rgba(217,37,37,0.18);border-radius:2px;transform:translateY(-50%)"></div>
+                    <div style="position:absolute;top:50%;left:{{ r.pos }};width:3px;height:15px;border-radius:2px;background:#D92525;transform:translate(-50%,-50%)"></div>
                   </div>
                 </div>
               </sc-for>
@@ -247,7 +249,7 @@ button{font-family:inherit}
       </section>
 
       <section style="background:#fff;border:1px solid #E6E8EC;border-radius:16px;padding:24px 24px 20px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:8px">요인별 종합 비교</div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.04em;color:#959CA8;margin-bottom:8px">평균 비교 그래프</div>
         <p style="font-size:12.5px;color:#959CA8;margin:0 0 6px">주요 지표를 업계 · 전체 평균과 비교합니다</p>
         <div style="display:flex;justify-content:flex-start;flex-wrap:wrap;gap:8px 20px;margin-top:10px">
           <sc-for list="{{ radarLegend }}" as="l" hint-placeholder-count="3">
@@ -265,11 +267,11 @@ button{font-family:inherit}
 
     <aside style="flex:0 0 320px;min-width:280px;display:flex;flex-direction:column;gap:16px">
       <div style="background:#fff;border:1px solid #E6E8EC;border-radius:14px;padding:20px">
-        <h3 style="font-size:14px;font-weight:700;margin:0 0 4px;color:#1B1D22">입사 선호도</h3>
+        <h3 style="font-size:14px;font-weight:700;margin:0 0 3px;color:#1B1D22">직장인 입사 선호도</h3>
+        <p style="font-size:12px;color:#959CA8;margin:0 0 8px">이 회사에서 일하고 싶다고 응답한 직장인 비율입니다.</p>
         <sc-if value="{{ co.hasPref }}" hint-placeholder-val="{{ true }}">
-          <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 2px">
+          <div style="display:flex;align-items:baseline;gap:8px;margin:4px 0 2px">
             <span style="font-family:Pretendard,-apple-system,sans-serif;font-size:38px;font-weight:700;color:#23262C;line-height:1">{{ co.prefYes }}%</span>
-            <span style="font-size:13px;color:#69707E">이 회사에서 일하고 싶다고 응답</span>
           </div>
           <div style="display:flex;align-items:center;gap:12px;margin:14px 0 2px">
             <div style="flex:1;height:8px;background:#EAECF0;border-radius:5px;overflow:hidden">
@@ -306,7 +308,7 @@ button{font-family:inherit}
           <button onClick="{{ w.open }}" style="display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #EDEFF3;cursor:pointer;padding:9px 2px" style-hover="background:#fafafb">
             <span style="width:28px;height:28px;border-radius:7px;background:{{ w.tint }};overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ w.hasLogo }}"><img src="{{ w.logo }}" alt="{{ w.name }}" style="width:100%;height:100%;object-fit:cover;background:#fff"></sc-if><sc-if value="{{ w.noLogo }}"><span style="color:#4a4a4e;font-weight:700;font-size:12px">{{ w.mono }}</span></sc-if></span>
             <span style="font-size:13.5px;font-weight:600;color:#2B2F36;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ w.name }}</span>
-            <span style="margin-left:auto;border:1px solid #D9DCE2;color:#576070;border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700;flex-shrink:0">▲ 추천</span>
+            <span style="margin-left:auto;font-size:12px;font-weight:700;color:#576070;font-variant-numeric:tabular-nums;flex-shrink:0">상위 {{ w.top }}%</span>
           </button>
         </sc-for>
       </div>
@@ -713,7 +715,7 @@ class Component extends DCLogic {
     const peers=D.cos.filter(p=>p.industry===c.industry && p.id!==c.id).slice(0,5).map(p=>{
       const higher=p.top<c.top, lower=p.top>c.top;
       return { id:p.id, name:p.name, mono:p.mono, logo:p.logo, hasLogo:p.hasLogo, noLogo:p.noLogo, tint:p.tint, top:p.top, open:()=>this.go('company',p.id),
-        cmpLabel: higher?'▲ 더 높음':(lower?'▼ 더 낮음':'· 비슷함'), cmpColor: higher?'#D92525':'#a0a0a6' };
+        cmpLabel: higher?'▲ 더 높음':(lower?'▼ 더 낮음':'· 비슷함'), cmpColor: higher?'#D92525':(lower?'#2563EB':'#a0a0a6') };
     });
     const wanted=D.cos.filter(p=>p.industry===c.industry && p.id!==c.id)
       .sort((a,b)=>Math.abs(a.overall-c.overall)-Math.abs(b.overall-c.overall))
