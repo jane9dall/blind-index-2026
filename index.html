@@ -675,16 +675,23 @@ class Component extends DCLogic {
   buildRadar6(size, company, all){
     const h=React.createElement;
     const W=size,H=size, cx=W/2, cy=H*0.52, R=W*0.30;
-    const labels=['업무자율성','업무의미감','상사관계','동료관계','윤리','심리적안전감'];
-    const idx=[0,1,3,4,9,10];
+    const axes=[
+      {label:'이직의도', get:c=>c.headlineTop[2]},
+      {label:'업무의미감', get:c=>c.itemTop[1]},
+      {label:'상사관계', get:c=>c.itemTop[3]},
+      {label:'동료관계', get:c=>c.itemTop[4]},
+      {label:'표현의자유', get:c=>c.itemTop[7]},
+      {label:'윤리', get:c=>c.itemTop[9]}
+    ];
+    const labels=axes.map(a=>a.label);
     const asScore=(top)=>Math.max(0,100-top);
-    const avg=idx.map(i=>Math.round(all.reduce((sum,c)=>sum+asScore(c.itemTop[i]),0)/Math.max(all.length,1)));
+    const avg=axes.map(a=>Math.round(all.reduce((sum,c)=>sum+asScore(a.get(c)),0)/Math.max(all.length,1)));
     const industry=all.filter(c=>c.industry===company.industry);
-    const industryAvg=idx.map(i=>Math.round(industry.reduce((sum,c)=>sum+asScore(c.itemTop[i]),0)/Math.max(industry.length,1)));
+    const industryAvg=axes.map(a=>Math.round(industry.reduce((sum,c)=>sum+asScore(a.get(c)),0)/Math.max(industry.length,1)));
     const series=[
       {color:'#a0a7b4',fill:'rgba(160,167,180,0.15)',vals:avg,dot:false},
       {color:'#5a6478',fill:'rgba(90,100,120,0.12)',vals:industryAvg,dot:true},
-      {color:'#D92525',fill:'rgba(217,37,37,0.12)',vals:idx.map(i=>asScore(company.itemTop[i])),dot:true}
+      {color:'#D92525',fill:'rgba(217,37,37,0.12)',vals:axes.map(a=>asScore(a.get(company))),dot:true}
     ];
     const ang=i=>(-90+i*60)*Math.PI/180;
     const pt=(i,r)=>[cx+Math.cos(ang(i))*r, cy+Math.sin(ang(i))*r];
