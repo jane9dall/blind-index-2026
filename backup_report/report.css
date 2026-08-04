@@ -1357,10 +1357,6 @@ h1 {
 }
 
 /* Step 1.5 전용: 서브타이틀과 그래프 사이 간격 줄이기 */
-#step-6 .ranking-subtitle {
-    margin-bottom: 0rem;
-}
-
 /* ===== 추가 맛보기 섹션 (PDF p4·5·7·8·9·12) ===== */
 
 /* 모든 섹션의 좌측 시작점 통일 (master-style의 600px 제한 해제) */
