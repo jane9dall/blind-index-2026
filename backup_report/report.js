@@ -15,15 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const stepIndex = parseFloat(entry.target.dataset.step);
 
-                // Hide Global Nav on scroll (Step 1+)
-                if (stepIndex >= 1) {
-                    nav.style.transform = 'translateY(-100%)';
-                    nav.style.transition = 'transform 0.5s ease';
-                } else {
-                    nav.style.transform = 'translateY(0)';
-                    nav.style.transition = 'transform 0.5s ease';
-                }
-
                 steps.forEach(s => s.classList.remove('active'));
                 entry.target.classList.add('active');
 
@@ -250,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: email
                 })
             }).then(() => {
-                gateMessage.textContent = '감사합니다! 계속 읽어보세요.';
+                gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
                 setTimeout(() => {
@@ -262,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(error => {
                 console.error('Error:', error);
                 // 에러가 나도 성공으로 처리 (no-cors 모드에서는 응답을 읽을 수 없음)
-                gateMessage.textContent = '감사합니다! 계속 읽어보세요.';
+                gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
                 setTimeout(() => {

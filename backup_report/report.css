@@ -30,13 +30,39 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
     color: white;
+    background: var(--blind-red);
     transition: color 0.3s;
+}
+
+.report-nav .nav-brand {
+    text-decoration: none;
+}
+
+.report-menu {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+@media (max-width: 640px) {
+    .report-nav {
+        padding: 1rem 1.2rem;
+    }
+
+    .report-menu {
+        gap: 0.9rem;
+    }
+
+    .report-menu .nav-link {
+        font-size: 0.72rem;
+        letter-spacing: 0.5px;
+    }
 }
 
 .report-nav.dark-theme {
@@ -891,22 +917,9 @@ h1 {
     color: #777;
 }
 
-.gate-consent-check {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: #333;
-    cursor: pointer;
-}
-
-.email-gate-form .gate-consent-check input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    margin: 0;
-    accent-color: var(--blind-red);
-    flex-shrink: 0;
+.gate-consent ul a {
+    color: var(--blind-red);
+    text-decoration: underline;
 }
 
 .email-gate-form button {

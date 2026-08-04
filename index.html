@@ -533,6 +533,9 @@ class Component extends DCLogic {
       this.logVisit(companyId,params.get('ref')==='share'?'share_link_open':'company_view');
     } else if(companyId) {
       this.logVisit(companyId,'invalid_company_link');
+    } else if(params.get('screen')==='solution'){
+      this.setState({screen:'solution'});
+      this.logVisit('','solution_view');
     } else {
       this.logVisit('','page_view');
     }
