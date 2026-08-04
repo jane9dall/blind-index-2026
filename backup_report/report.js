@@ -160,6 +160,30 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.content-locked').forEach(el => el.classList.remove('content-locked'));
     };
 
+    // 우하단 플로팅: 링크 공유
+    const fabShare = document.getElementById('fab-share');
+    const fabToast = document.getElementById('fab-toast');
+    if (fabShare && fabToast) {
+        fabShare.addEventListener('click', () => {
+            const shareText = `Blind Index | Annual Report\n블라인드 지수 올해 결과를 확인해보세요!\n${window.location.origin}${window.location.pathname}`;
+            const done = () => {
+                fabToast.classList.add('show');
+                setTimeout(() => fabToast.classList.remove('show'), 1800);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(shareText).then(done).catch(done);
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = shareText;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                done();
+            }
+        });
+    }
+
     // DEEP DIVE 도트: 클릭 시 이메일 게이트 팝업 (이미 제출했으면 해당 섹션으로 이동)
     const deepDiveDot = document.getElementById('deep-dive-dot');
     if (deepDiveDot) {
@@ -198,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (stepLast && !hasSubmitted) {
         const checkGate = () => {
             if (gateDismissed) return; // 사용자가 닫았으면 다시 띄우지 않음
-            if (window.scrollY < 200) return; // 실제로 스크롤을 내린 경우에만
+            if (window.scrollY < 200) return; // 스크롤했거나 앵커로 점프해 내려온 경우에만
             const r = stepLast.getBoundingClientRect();
             const visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
             const needed = Math.min(r.height, window.innerHeight) * 0.5;
@@ -212,6 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         window.addEventListener('scroll', checkGate, { passive: true });
+        // 앵커 링크(#step-9 등)로 바로 진입하면 스크롤 이벤트 없이 도착하므로 로드 직후에도 판정
+        setTimeout(checkGate, 400);
+        setTimeout(checkGate, 1200);
     }
 
     if (emailGateForm) {

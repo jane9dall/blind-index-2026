@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=28">
+    <link rel="stylesheet" href="report.css?v=29">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -42,6 +42,32 @@
             <a class="sidebar-link" href="../index.html?screen=solution">Solutions</a>
         </nav>
     </aside>
+
+    <div class="fab-stack">
+        <span id="fab-toast" class="fab-toast">링크가 복사됐어요!</span>
+        <button type="button" id="fab-share" class="fab" aria-label="링크 공유" title="링크 공유">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 16V3" />
+                <path d="m7 8 5-5 5 5" />
+                <path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+            </svg>
+        </button>
+        <a class="fab" href="../index.html" aria-label="Company Index" title="Company Index">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" />
+            </svg>
+        </a>
+        <a class="fab" href="../index.html?screen=solution" aria-label="Solutions" title="Solutions">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="7" width="18" height="13" rx="2" />
+                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+        </a>
+    </div>
 
     <nav class="floating-menu">
         <a href="#intro" class="menu-dot active" data-step="0" title="TOP"></a>
@@ -735,7 +761,7 @@
             <div id="gate-message" class="gate-message"></div>
         </div>
     </div>
-    <script src="report.js?v=10"></script>
+    <script src="report.js?v=11"></script>
 </body>
 
 </html>
