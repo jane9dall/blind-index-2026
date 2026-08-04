@@ -35,7 +35,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.7rem;
+    gap: 5rem;
     z-index: 100;
     color: white;
     background: var(--blind-red);
@@ -60,7 +60,7 @@ body {
 @media (max-width: 640px) {
     .global-nav.report-nav {
         padding: 0.8rem 1.2rem 0.9rem;
-        gap: 0.55rem;
+        gap: 2.2rem;
     }
 
     .report-menu {
@@ -702,6 +702,26 @@ h1 {
     font-size: 0.9rem;
     position: relative;
     z-index: 10;
+}
+
+.report-footer .footer-by {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.report-footer .footer-wordmark {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -1px;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 0.3rem;
+}
+
+.report-footer .footer-wordmark:hover {
+    color: var(--blind-red);
 }
 
 /* Gender Gap Chart */
