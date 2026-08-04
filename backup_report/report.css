@@ -867,6 +867,48 @@ h1 {
     border-color: var(--blind-red);
 }
 
+.gate-consent {
+    text-align: left;
+    background: #f7f7f8;
+    border: 1px solid #ececee;
+    border-radius: 0.5rem;
+    padding: 0.9rem 1rem;
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+}
+
+.email-gate-content p.gate-consent-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0 0 0.5rem;
+}
+
+.gate-consent ul {
+    margin: 0 0 0.7rem;
+    padding-left: 1rem;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: #777;
+}
+
+.gate-consent-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.email-gate-form .gate-consent-check input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0;
+    accent-color: var(--blind-red);
+    flex-shrink: 0;
+}
+
 .email-gate-form button {
     padding: 1rem 2rem;
     background: var(--blind-red);

@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=5">
+    <link rel="stylesheet" href="report.css?v=6">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -307,13 +307,27 @@
         <div class="email-gate-content">
             <button type="button" id="gate-close" class="gate-close" aria-label="닫기">&times;</button>
             <h2>더 많은 인사이트를 확인하세요</h2>
-            <p>나머지 리포트를 보시려면 이메일을 입력해주세요</p>
+            <p>나머지 리포트를 보시려면 회사 이메일을 입력해주세요</p>
             <form id="email-gate-form" class="email-gate-form">
                 <input type="text" id="gate-company" name="company" placeholder="회사명" required>
                 <input type="text" id="gate-name" name="name" placeholder="이름" required>
                 <input type="text" id="gate-position" name="position" placeholder="직함" required>
-                <input type="email" id="gate-email" name="email" placeholder="이메일" required>
+                <input type="email" id="gate-email" name="email" placeholder="회사 이메일" required>
                 <input type="tel" id="gate-phone" name="phone" placeholder="전화번호 (예: 010-1234-5678)" required>
+                <div class="gate-consent">
+                    <p class="gate-consent-title">개인정보 수집·이용 안내</p>
+                    <ul>
+                        <li>수집 주체: 팀블라인드(Teamblind Inc.)</li>
+                        <li>수집 항목: 회사명, 이름, 직함, 회사 이메일, 전화번호</li>
+                        <li>이용 목적: 블라인드 지수 리포트 전문 제공 및 관련 안내</li>
+                        <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
+                        <li>동의를 거부하실 수 있으며, 이 경우 리포트 전문 열람이 제한됩니다.</li>
+                    </ul>
+                    <label class="gate-consent-check">
+                        <input type="checkbox" id="gate-consent-agree" required>
+                        <span>개인정보 수집·이용에 동의합니다 (필수)</span>
+                    </label>
+                </div>
                 <button type="submit">계속 읽기</button>
             </form>
             <div id="gate-message" class="gate-message"></div>
