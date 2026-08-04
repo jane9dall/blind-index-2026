@@ -1,3 +1,15 @@
+// 광고/공유 유입 추적: 현재 URL의 utm_* 파라미터와 리퍼러를 수집
+function getAttribution() {
+    const p = new URLSearchParams(window.location.search);
+    const g = k => (p.get(k) || '').slice(0, 200);
+    let referrer = '';
+    try { const r = new URL(document.referrer); referrer = r.origin + r.pathname; } catch (e) {}
+    return {
+        utm_source: g('utm_source'), utm_medium: g('utm_medium'), utm_campaign: g('utm_campaign'),
+        utm_content: g('utm_content'), utm_term: g('utm_term'), referrer: referrer
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const steps = document.querySelectorAll('.step, .replication-container, .report-header');
     const nav = document.querySelector('.global-nav');
@@ -162,6 +174,15 @@ document.addEventListener('DOMContentLoaded', () => {
         emailGateOverlay.classList.remove('active');
         gateDismissed = true;
     };
+    const lockContent = () => {
+        document.querySelectorAll('#step-9').forEach(el => el.classList.add('content-locked'));
+    };
+    // 게이트 표시 + 성별 장표 블러(제출 전까지 유지). 어떤 진입 경로든 항상 함께 처리해 누수를 막는다.
+    const openGate = () => {
+        if (localStorage.getItem('emailGateSubmitted')) return;
+        emailGateOverlay.classList.add('active');
+        lockContent();
+    };
 
     // 우하단 플로팅: 링크 공유
     const fabShare = document.getElementById('fab-share');
@@ -198,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deepDiveDot.addEventListener('click', (e) => {
             if (localStorage.getItem('emailGateSubmitted')) return; // 기본 앵커 이동 (#step-9)
             e.preventDefault();
-            emailGateOverlay.classList.add('active');
+            openGate();
         });
     }
 
@@ -219,28 +240,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateCloseBtn = document.getElementById('gate-close');
     if (gateCloseBtn) gateCloseBtn.addEventListener('click', closeEmailGate);
 
-    // 마지막 섹션(step-3)이 화면에 절반 이상 보이면 게이트 표시.
-    // 스크롤 이벤트 기반으로 판정: 로딩 직후 임시 레이아웃으로 인한 오작동이 없고 iframe 안에서도 안정적으로 동작.
+    // 성별 장표(마지막 섹션)가 화면에 40% 이상 들어오면 게이트 표시 + 블러.
+    // IntersectionObserver로 판정해 스크롤 타이밍에 의존하지 않고 항상 안정적으로 잠근다.
+    // (블러는 openGate()에서 content-locked로 걸리며, 폼 제출 성공 시에만 해제된다.)
     if (stepLast && !hasSubmitted) {
-        const checkGate = () => {
-            if (gateDismissed) return; // 사용자가 닫았으면 다시 띄우지 않음
-            if (window.scrollY < 200) return; // 스크롤했거나 앵커로 점프해 내려온 경우에만
-            const r = stepLast.getBoundingClientRect();
-            const visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
-            const needed = Math.min(r.height, window.innerHeight) * 0.5;
-            if (visible >= needed) {
-                emailGateOverlay.classList.add('active');
-                // Lock content from the last step onwards
-                document.querySelectorAll('#step-9').forEach(el => {
-                    el.classList.add('content-locked');
-                });
-                window.removeEventListener('scroll', checkGate);
-            }
-        };
-        window.addEventListener('scroll', checkGate, { passive: true });
-        // 앵커 링크(#step-9 등)로 바로 진입하면 스크롤 이벤트 없이 도착하므로 로드 직후에도 판정
-        setTimeout(checkGate, 400);
-        setTimeout(checkGate, 1200);
+        const gateObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !gateDismissed && !localStorage.getItem('emailGateSubmitted')) {
+                    openGate();
+                }
+            });
+        }, { threshold: 0.4 });
+        gateObserver.observe(stepLast);
     }
 
     if (emailGateForm) {
@@ -258,10 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // 010으로 시작하는 모바일 번호만 허용
+            // 010으로 시작하는 11자리 휴대폰 번호만 허용
             const phoneDigits = phone.replace(/\D/g, '');
-            if (!/^010\d{7,8}$/.test(phoneDigits)) {
-                gateMessage.textContent = '모바일 번호가 맞는지 확인해주세요.';
+            if (!/^010\d{8}$/.test(phoneDigits)) {
+                gateMessage.textContent = '휴대폰 번호 11자리(010으로 시작)를 정확히 입력해주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
             }
@@ -288,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams({
+                body: new URLSearchParams(Object.assign({
                     type: '리포트 요청',
                     company: company,
                     name: name,
@@ -296,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: email,
                     phone: phone,
                     page: window.location.href
-                })
+                }, getAttribution()))
             }).then(() => {
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';

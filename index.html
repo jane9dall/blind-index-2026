@@ -123,7 +123,7 @@ body{padding-bottom:64px}
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#c4c4c9">블라인드 지수 · 구성원이 평가한 그 해의 직장 경험</span>
       </div>
       <h1 style="font-family:Pretendard,-apple-system,sans-serif;font-weight:600;font-size:clamp(24px,2.9vw,36px);line-height:1.25;letter-spacing:-0.01em;margin:0 0 16px;color:#fff;text-wrap:pretty">지금 블라인드 지수를 <br class="m-br"/>검색해보세요.</h1>
-      <p style="font-size:15.5px;line-height:1.7;color:#b6b6bc;margin:0 0 28px;max-width:520px">각 회사 구성원들이 평가한 그 해의 <b style="color:#fff;font-weight:600">일 · 관계 · 문화</b> 데이터입니다.<br class="pc-br"/>연봉이나 별점이 아닌 실제 매일의 직장 경험을 탐색합니다.</p>
+      <p style="font-size:15.5px;line-height:1.7;color:#b6b6bc;margin:0 0 28px;max-width:520px">각 회사 구성원들이 평가한 그 해의 <b style="color:#fff;font-weight:600">일 · 관계 · 문화</b> 데이터입니다. <br class="pc-br"/>연봉이나 별점이 아닌 실제 매일의 직장 경험을 탐색합니다.</p>
       <div style="position:relative;z-index:20;max-width:600px">
         <div style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:6px 6px 6px 18px;box-shadow:0 12px 36px -12px rgba(0,0,0,0.5)">
           <span style="color:#b6b6bc;font-size:18px">⌕</span>
@@ -627,15 +627,28 @@ class Component extends DCLogic {
     window.scrollTo(0,0);
   }
 
+  // 광고/공유 유입 추적: 현재 URL의 utm_* 파라미터와 리퍼러를 수집
+  attribution(){
+    const p=new URLSearchParams(window.location.search);
+    const g=k=>(p.get(k)||'').slice(0,200);
+    let referrer='';
+    try { const r=new URL(document.referrer); referrer=r.origin+r.pathname; } catch(_) {}
+    return {
+      utm_source:g('utm_source'), utm_medium:g('utm_medium'), utm_campaign:g('utm_campaign'),
+      utm_content:g('utm_content'), utm_term:g('utm_term'), referrer
+    };
+  }
+
   logVisit(company,event){
     const endpoint='https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec';
-    let referrer='';
-    try { const ref=new URL(document.referrer); referrer=ref.origin+ref.pathname; } catch(_) {}
+    const att=this.attribution();
     const payload=new URLSearchParams({
       action:'visit_log', event, company, clientAt:new Date().toISOString(),
-      page:window.location.href, referrer, userAgent:navigator.userAgent.slice(0,500),
+      page:window.location.href, referrer:att.referrer, userAgent:navigator.userAgent.slice(0,500),
       language:navigator.language||'', timezone:Intl.DateTimeFormat().resolvedOptions().timeZone||'',
-      viewport:`${window.innerWidth}x${window.innerHeight}`
+      viewport:`${window.innerWidth}x${window.innerHeight}`,
+      utm_source:att.utm_source, utm_medium:att.utm_medium, utm_campaign:att.utm_campaign,
+      utm_content:att.utm_content, utm_term:att.utm_term
     });
     if(navigator.sendBeacon){ navigator.sendBeacon(endpoint,payload); return; }
     fetch(endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:payload.toString()}).catch(()=>{});
@@ -820,8 +833,8 @@ class Component extends DCLogic {
         return;
       }
       const phoneDigits=phone.replace(/\D/g,'');
-      if(!/^010\d{7,8}$/.test(phoneDigits)){
-        this.setState({leadMessage:'모바일 번호가 맞는지 확인해주세요.',leadError:true});
+      if(!/^010\d{8}$/.test(phoneDigits)){
+        this.setState({leadMessage:'휴대폰 번호 11자리(010으로 시작)를 정확히 입력해주세요.',leadError:true});
         return;
       }
       const publicDomains=['gmail.com','naver.com','daum.net','hanmail.net','yahoo.com','outlook.com','hotmail.com'];
@@ -832,7 +845,7 @@ class Component extends DCLogic {
       this.setState({leadSubmitting:true,leadMessage:'제출 중...',leadError:false});
       fetch('https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams({type:'솔루션 신청',company,name,position,phone,email,page:window.location.href}).toString()
+        body:new URLSearchParams(Object.assign({type:'솔루션 신청',company,name,position,phone,email,page:window.location.href},this.attribution())).toString()
       }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
         .catch(()=>this.setState({leadSubmitting:false,leadMessage:'전송에 실패했습니다. 잠시 후 다시 시도해주세요.',leadError:true}));
     };
