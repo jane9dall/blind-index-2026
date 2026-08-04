@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (parseFloat(dot.dataset.step) === stepIndex) dot.classList.add('active');
                 });
 
-                // Animate Company Ranking on Step 1
-                if (stepIndex === 1) {
+                // Animate Company Ranking (올해의 우수 기업)
+                if (stepIndex === 3) {
                     const companyBars = document.querySelectorAll('.company-bar');
                     companyBars.forEach((bar, index) => {
                         const targetWidth = bar.dataset.width;
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Theme Logic
-                if (stepIndex >= 1 && stepIndex <= 3) {
+                if (stepIndex >= 1 && stepIndex <= 8) {
                     floatingMenu.classList.add('dark-theme');
                     // nav.classList.add('dark-theme'); // Disabled to keep logo white
                 } else {
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // nav.classList.remove('dark-theme'); // Disabled to keep logo white
                 }
 
-                // Animate Gender Chart on Step 3 (Gender Gap)
-                if (stepIndex === 3) {
+                // Animate Gender Chart (Gender Gap)
+                if (stepIndex === 8) {
                     const genderBars = document.querySelectorAll('.g-bar');
                     genderBars.forEach((bar, index) => {
                         // Store original height if not already stored
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (chartData[stepIndex]) renderChart(stepIndex);
 
                 // 분포 그래프 애니메이션 트리거
-                if (entry.target.id === 'step-2') {
+                if (entry.target.id === 'step-6') {
                     // 이미 애니메이션이 실행되었다면 중단
                     if (entry.target.dataset.animated === 'true') return;
 
@@ -162,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'Escape' && emailGateOverlay?.classList.contains('active')) closeEmailGate();
     });
 
-    // Gate at Step 3 (Gender Gap - Last Step)
-    const stepLast = document.getElementById('step-3');
+    // Gate at the last step (Gender Gap)
+    const stepLast = document.getElementById('step-8');
 
     const hasSubmitted = localStorage.getItem('emailGateSubmitted');
 
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (visible >= needed) {
                 emailGateOverlay.classList.add('active');
                 // Lock content from the last step onwards
-                document.querySelectorAll('#step-3').forEach(el => {
+                document.querySelectorAll('#step-8').forEach(el => {
                     el.classList.add('content-locked');
                 });
                 window.removeEventListener('scroll', checkGate);

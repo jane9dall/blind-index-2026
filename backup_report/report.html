@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=9">
+    <link rel="stylesheet" href="report.css?v=10">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -32,9 +32,14 @@
 
     <nav class="floating-menu">
         <a href="#intro" class="menu-dot active" data-step="0" title="OVERVIEW"></a>
-        <a href="#step-1" class="menu-dot" data-step="1" title="TOP PLAYERS"></a>
-        <a href="#step-2" class="menu-dot" data-step="2" title="ANALYSIS"></a>
-        <a href="#step-3" class="menu-dot" data-step="3" title="DEEP DIVE"></a>
+        <a href="#step-1" class="menu-dot" data-step="1" title="INDEX"></a>
+        <a href="#step-2" class="menu-dot" data-step="2" title="METHOD"></a>
+        <a href="#step-3" class="menu-dot" data-step="3" title="TOP PLAYERS"></a>
+        <a href="#step-4" class="menu-dot" data-step="4" title="COMPETITORS"></a>
+        <a href="#step-5" class="menu-dot" data-step="5" title="RISERS"></a>
+        <a href="#step-6" class="menu-dot" data-step="6" title="TREND"></a>
+        <a href="#step-7" class="menu-dot" data-step="7" title="TENURE"></a>
+        <a href="#step-8" class="menu-dot" data-step="8" title="DEEP DIVE"></a>
     </nav>
 
     <header class="report-header" id="intro" data-step="0">
@@ -49,8 +54,99 @@
         </div>
     </header>
 
-    <!-- Step 1: Company Ranking Chart -->
+    <!-- Step 1: 블라인드 지수란 (PDF p4) -->
     <section class="replication-container" id="step-1" data-step="1">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">블라인드 지수란</h2>
+                    <p class="ranking-subtitle">블라인드 지수(Blind Index of Employees' Happiness)는 구성원이 평가하는 한 해 동안의 회사에서의 행복도를
+                        측정합니다.<br>회사에서의 행복이 인생의 행복을 좌우한다는 사실이 2019년 첫 조사 이후 매년 검증됩니다.</p>
+
+                    <div class="factor-grid">
+                        <div class="factor-group">
+                            <h4>직무 요인</h4>
+                            <div class="factor-chips">
+                                <div class="factor-chip"><strong>업무자율성</strong><span>스스로 업무량과 스케줄을 얼마나 조절할 수 있는지</span></div>
+                                <div class="factor-chip"><strong>업무중요도</strong><span>내 일이 회사에 얼마나 큰 영향을 미치는지</span></div>
+                                <div class="factor-chip"><strong>업무의미감</strong><span>회사에서의 일이 내 인생에 얼마나 큰 의미가 있는지</span></div>
+                            </div>
+                        </div>
+                        <div class="factor-group">
+                            <h4>관계 요인</h4>
+                            <div class="factor-chips">
+                                <div class="factor-chip"><strong>상사관계</strong><span>상사의 업무상 지원이 충분한지</span></div>
+                                <div class="factor-chip"><strong>동료관계</strong><span>동료의 업무상 지원이 충분한지</span></div>
+                                <div class="factor-chip"><strong>직장내유대</strong><span>회사에 믿고 의지할 사람이 있는지</span></div>
+                            </div>
+                        </div>
+                        <div class="factor-group">
+                            <h4>문화 요인</h4>
+                            <div class="factor-chips">
+                                <div class="factor-chip"><strong>윤리</strong><span>문제 발생시 회사가 합당한 조치를 취할 것이라 믿는지</span></div>
+                                <div class="factor-chip"><strong>심리적안전감</strong><span>성과가 좋지 않아도 다시 기회를 얻을 수 있다고 믿는지</span></div>
+                                <div class="factor-chip"><strong>워라밸</strong><span>일과 삶의 균형을 이룰 수 있는지</span></div>
+                                <div class="factor-chip"><strong>표현의자유</strong><span>회사에서 내 생각을 솔직히 말할 수 있는지</span></div>
+                                <div class="factor-chip"><strong>복지</strong><span>회사 복지 제도에 만족하는지</span></div>
+                            </div>
+                        </div>
+                        <div class="factor-group outcome">
+                            <h4>블라인드 지수 4요인</h4>
+                            <div class="factor-chips">
+                                <div class="factor-chip"><strong>직무만족</strong><span>회사에서의 일에 만족하는지</span></div>
+                                <div class="factor-chip"><strong>조직몰입</strong><span>회사에 소속감을 느끼는지</span></div>
+                                <div class="factor-chip"><strong>이직의도</strong><span>최근 1년 내 이직을 시도했는지</span></div>
+                                <div class="factor-chip"><strong>스트레스</strong><span>최근 1년 내 번아웃을 경험했는지</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 2: 조사 방법 (PDF p5) -->
+    <section class="replication-container" id="step-2" data-step="2">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">조사 방법</h2>
+                    <p class="ranking-subtitle">블라인드 지수는 재직 인증을 완료한 현직자의 자발적 응답을 기반으로 산출됩니다.<br>중복 응답을 제거하고 기업별 최소 표본
+                        기준을 충족한 기업만 분석 대상에 포함했습니다.</p>
+
+                    <dl class="method-table">
+                        <div class="method-row">
+                            <dt>조사 기간</dt>
+                            <dd>2025년 7월 – 2025년 12월</dd>
+                        </div>
+                        <div class="method-row">
+                            <dt>표본 규모</dt>
+                            <dd>한국 직장인 34,372명</dd>
+                        </div>
+                        <div class="method-row">
+                            <dt>조사 대상</dt>
+                            <dd>국내 기업 재직 인증을 완료한 블라인드 가입자</dd>
+                        </div>
+                        <div class="method-row">
+                            <dt>표본 기업</dt>
+                            <dd>기업별 최소 표본 기준을 충족한 기업만 분석 대상에 포함</dd>
+                        </div>
+                        <div class="method-row">
+                            <dt>응답 방식</dt>
+                            <dd>자발적 익명 온라인 설문(중복 응답 제거, 1인 1회)</dd>
+                        </div>
+                        <div class="method-row">
+                            <dt>신뢰 수준</dt>
+                            <dd>95% 신뢰수준, ±0.53%p</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 3: Company Ranking Chart (PDF p6) -->
+    <section class="replication-container" id="step-3" data-step="3">
         <div class="replication-section grey-bg">
             <div class="content-wrapper">
                 <div class="rep-chart-area">
@@ -145,8 +241,188 @@
         </div>
     </section>
 
-    <!-- Step 2: Distribution Graph -->
-    <section class="replication-container" id="step-2" data-step="2">
+    <!-- Step 4: 경쟁사 비교 (PDF p7-8) -->
+    <section class="replication-container" id="step-4" data-step="4">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">경쟁사 비교</h2>
+                    <p class="ranking-subtitle">업계별 주요 기업의 블라인드 지수입니다.<br>퍼센트(%)는 전체 한국 기업 중 해당 기업의 상위 백분율입니다. 1%에 가까울수록
+                        점수가 높습니다.</p>
+
+                    <div class="industry-grid">
+                        <div class="industry-card">
+                            <h4>IT</h4>
+                            <ul>
+                                <li>라인플러스<span class="pct">상위 1%</span></li>
+                                <li>네이버<span class="pct">상위 2%</span></li>
+                                <li>카카오<span class="pct">상위 93%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>반도체</h4>
+                            <ul>
+                                <li>SK하이닉스<span class="pct">상위 3%</span></li>
+                                <li>LG디스플레이<span class="pct">상위 57%</span></li>
+                                <li>삼성전자<span class="pct">상위 60%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>통신</h4>
+                            <ul>
+                                <li>LG U+<span class="pct">상위 1%</span></li>
+                                <li>KT<span class="pct">상위 2%</span></li>
+                                <li>SK텔레콤<span class="pct">상위 45%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>F&amp;B</h4>
+                            <ul>
+                                <li>농심<span class="pct">상위 20%</span></li>
+                                <li>동서식품<span class="pct">상위 39%</span></li>
+                                <li>롯데웰푸드<span class="pct">상위 99%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>핀테크</h4>
+                            <ul>
+                                <li>두나무<span class="pct">상위 1%</span></li>
+                                <li>비바리퍼블리카<span class="pct">상위 7%</span></li>
+                                <li>케이뱅크<span class="pct">상위 43%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>은행</h4>
+                            <ul>
+                                <li>KB국민은행<span class="pct">상위 5%</span></li>
+                                <li>신한은행<span class="pct">상위 34%</span></li>
+                                <li>하나은행<span class="pct">상위 71%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>카드</h4>
+                            <ul>
+                                <li>삼성카드<span class="pct">상위 12%</span></li>
+                                <li>신한카드<span class="pct">상위 12%</span></li>
+                                <li>롯데카드<span class="pct">상위 65%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>증권</h4>
+                            <ul>
+                                <li>삼성증권<span class="pct">상위 10%</span></li>
+                                <li>한국투자증권<span class="pct">상위 74%</span></li>
+                                <li>미래에셋증권<span class="pct">상위 76%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>게임</h4>
+                            <ul>
+                                <li>컴투스<span class="pct">상위 27%</span></li>
+                                <li>넷마블<span class="pct">상위 43%</span></li>
+                                <li>NCSOFT<span class="pct">상위 53%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>패션</h4>
+                            <ul>
+                                <li>삼성물산<span class="pct">상위 12%</span></li>
+                                <li>LF<span class="pct">상위 50%</span></li>
+                                <li>한섬<span class="pct">상위 82%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>패션플랫폼</h4>
+                            <ul>
+                                <li>에이블리<span class="pct">상위 33%</span></li>
+                                <li>무신사<span class="pct">상위 99%</span></li>
+                                <li>SSG.COM<span class="pct">상위 58%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>이커머스</h4>
+                            <ul>
+                                <li>지마켓<span class="pct">상위 9%</span></li>
+                                <li>쿠팡<span class="pct">상위 40%</span></li>
+                                <li>컬리<span class="pct">상위 55%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>자동차</h4>
+                            <ul>
+                                <li>기아<span class="pct">상위 3%</span></li>
+                                <li>현대자동차<span class="pct">상위 11%</span></li>
+                                <li>테슬라코리아<span class="pct">상위 77%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>물류</h4>
+                            <ul>
+                                <li>한진<span class="pct">상위 59%</span></li>
+                                <li>CJ대한통운<span class="pct">상위 75%</span></li>
+                                <li>롯데글로벌로지스<span class="pct">상위 98%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>건설</h4>
+                            <ul>
+                                <li>대우건설<span class="pct">상위 18%</span></li>
+                                <li>롯데건설<span class="pct">상위 40%</span></li>
+                                <li>현대건설<span class="pct">상위 59%</span></li>
+                            </ul>
+                        </div>
+                        <div class="industry-card">
+                            <h4>호텔</h4>
+                            <ul>
+                                <li>파르나스호텔<span class="pct">상위 16%</span></li>
+                                <li>호텔롯데<span class="pct">상위 57%</span></li>
+                                <li>호텔신라<span class="pct">상위 80%</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 5: 전년 대비 크게 오른 기업 (PDF p9) -->
+    <section class="replication-container" id="step-5" data-step="5">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">전년 대비 크게 오른 기업</h2>
+                    <p class="ranking-subtitle">업계별로 전년 대비 블라인드 지수가 큰 폭으로 성장한 기업입니다.<br>전체 재직자 대비 그 해의 응답자가 일정 수 이상인 경우
+                        결과를 공개합니다.</p>
+
+                    <div class="riser-grid">
+                        <div class="riser-item"><span class="riser-tag">반도체</span><strong>동우화인켐</strong><span
+                                class="pct">상위 3%</span></div>
+                        <div class="riser-item"><span class="riser-tag">화학</span><strong>SK케미칼</strong><span
+                                class="pct">상위 18%</span></div>
+                        <div class="riser-item"><span class="riser-tag">조선<br>해양</span><strong>HD현대이엔티</strong><span
+                                class="pct">상위 12%</span></div>
+                        <div class="riser-item"><span class="riser-tag">호텔</span><strong>파르나스호텔</strong><span
+                                class="pct">상위 16%</span></div>
+                        <div class="riser-item"><span class="riser-tag">NGO</span><strong>사회복지공동모금회</strong><span
+                                class="pct">상위 2%</span></div>
+                        <div class="riser-item"><span class="riser-tag">자동차</span><strong>볼보그룹코리아</strong><span
+                                class="pct">상위 9%</span></div>
+                        <div class="riser-item"><span class="riser-tag">핀테크</span><strong>카카오페이</strong><span
+                                class="pct">상위 4%</span></div>
+                        <div class="riser-item"><span class="riser-tag">은행</span><strong>부산은행</strong><span
+                                class="pct">상위 5%</span></div>
+                        <div class="riser-item"><span class="riser-tag">공공<br>기관</span><strong>한국산업안전보건공단</strong><span
+                                class="pct">상위 18%</span></div>
+                        <div class="riser-item"><span class="riser-tag">방송</span><strong>KBS</strong><span
+                                class="pct">상위 3%</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 6: Distribution Graph (PDF p11) -->
+    <section class="replication-container" id="step-6" data-step="6">
         <div class="replication-section grey-bg">
             <div class="content-wrapper">
                 <div class="rep-chart-area">
@@ -214,8 +490,101 @@
         </div>
     </section>
 
-    <!-- Step 3: Gender Gap -->
-    <section class="replication-container" id="step-3" data-step="3">
+    <!-- Step 7: 연차별 (PDF p12) -->
+    <section class="replication-container" id="step-7" data-step="7">
+        <div class="replication-section grey-bg">
+            <div class="content-wrapper">
+                <div class="rep-chart-area">
+                    <h2 class="ranking-title">관계가 무너지면 행복이 무너진다</h2>
+                    <p class="ranking-subtitle">매년 블라인드 지수는 입사 1년을 기점으로 급감하여 사원과 대리급에서 최저점을 기록하는 U자형 양상을 보입니다.<br>이직
+                        시도는 블라인드 지수와 뚜렷한 음의 상관을 보입니다. (이직시도의 경우 점수가 높을수록 이직시도를 하지 않습니다)</p>
+
+                    <div class="tenure-flex">
+                        <div>
+                            <p class="chart-subtitle-sm">연차별 블라인드 지수와 이직 시도</p>
+                            <div class="tenure-legend">
+                                <span><span class="dot" style="background:#B22222"></span> 이직시도(점)</span>
+                                <span><span class="dot" style="background:#444"></span> 블라인드 지수(점)</span>
+                            </div>
+                            <svg width="100%" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet"
+                                xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                                <line x1="90" y1="70" x2="810" y2="70" stroke="#e4e4e6" />
+                                <line x1="90" y1="140" x2="810" y2="140" stroke="#e4e4e6" />
+                                <line x1="90" y1="210" x2="810" y2="210" stroke="#e4e4e6" />
+                                <line x1="90" y1="280" x2="810" y2="280" stroke="#e4e4e6" />
+                                <line x1="90" y1="350" x2="810" y2="350" stroke="#ccc" />
+                                <text x="70" y="75" text-anchor="end" font-size="20" fill="#999">70</text>
+                                <text x="70" y="145" text-anchor="end" font-size="20" fill="#999">60</text>
+                                <text x="70" y="215" text-anchor="end" font-size="20" fill="#999">50</text>
+                                <text x="70" y="285" text-anchor="end" font-size="20" fill="#999">40</text>
+                                <text x="70" y="355" text-anchor="end" font-size="20" fill="#999">30</text>
+
+                                <!-- 블라인드 지수 (dark) : 53 42 42 46 51 -->
+                                <polyline points="130,189 290,266 450,266 610,238 770,203" fill="none" stroke="#444"
+                                    stroke-width="4" stroke-linejoin="round" />
+                                <!-- 이직시도 (red) : 51 45 48 55 63 -->
+                                <polyline points="130,203 290,245 450,224 610,175 770,119" fill="none" stroke="#B22222"
+                                    stroke-width="4" stroke-linejoin="round" />
+                                <g fill="#444">
+                                    <circle cx="130" cy="189" r="7" />
+                                    <circle cx="290" cy="266" r="7" />
+                                    <circle cx="450" cy="266" r="7" />
+                                    <circle cx="610" cy="238" r="7" />
+                                    <circle cx="770" cy="203" r="7" />
+                                </g>
+                                <g fill="#B22222">
+                                    <circle cx="130" cy="203" r="7" />
+                                    <circle cx="290" cy="245" r="7" />
+                                    <circle cx="450" cy="224" r="7" />
+                                    <circle cx="610" cy="175" r="7" />
+                                    <circle cx="770" cy="119" r="7" />
+                                </g>
+                                <g font-size="21" fill="#777" text-anchor="middle">
+                                    <text x="130" y="390">신입급</text>
+                                    <text x="290" y="390">사원급</text>
+                                    <text x="450" y="390">대리급</text>
+                                    <text x="610" y="390">과장급</text>
+                                    <text x="770" y="390">차·부장급</text>
+                                </g>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="chart-subtitle-sm">사원·대리급의 만족도가 가장 낮았던 항목</p>
+                            <table class="tenure-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>직무 요인</th>
+                                        <th>관계 요인</th>
+                                        <th>문화 요인</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="rank">사원급<small>(1-5년)</small></td>
+                                        <td>업무의미감</td>
+                                        <td>상사관계</td>
+                                        <td>윤리·복지</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank">대리급<small>(5-9년)</small></td>
+                                        <td>업무의미감</td>
+                                        <td>상사관계</td>
+                                        <td>윤리</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="tenure-note">신입에서 사원·대리급으로 진입하며 만족도가 특히 낮아진 요인은 관계(12% 감소)였습니다. 항목별로 보면 직무에서는
+                                업무의미감이, 관계에서는 상사관계가, 문화에서는 윤리 등이 특히 뚜렷한 감소를 보였습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 8: Gender Gap (PDF p13) -->
+    <section class="replication-container" id="step-8" data-step="8">
         <!-- Part 1: Chart (Grey Background) -->
         <div class="replication-section grey-bg">
             <div class="content-wrapper">
@@ -335,7 +704,7 @@
             <div id="gate-message" class="gate-message"></div>
         </div>
     </div>
-    <script src="report.js?v=6"></script>
+    <script src="report.js?v=7"></script>
 </body>
 
 </html>
