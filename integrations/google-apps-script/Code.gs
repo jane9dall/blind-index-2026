@@ -36,7 +36,7 @@ function doPost(e) {
 
   // 리포트 이메일 게이트(리포트 요청) / 솔루션스 상담 폼(솔루션 신청) 공용
   const sheet = getOrCreateSheet_(spreadsheet, '신청', [
-    '기록 시각', '구분', '회사명', '담당자명', '직함', '회사 이메일', '전화번호'
+    '기록 시각', '구분', '회사명', '담당자명', '직함', '회사 이메일', '모바일 번호'
   ]);
   sheet.appendRow([
     new Date(),

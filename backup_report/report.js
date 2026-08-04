@@ -247,8 +247,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('gate-email').value.trim();
             const phone = document.getElementById('gate-phone').value.trim();
 
-            if (!company || !name || !position || !email) {
+            if (!company || !name || !position || !email || !phone) {
                 gateMessage.textContent = '모든 항목을 입력해주세요.';
+                gateMessage.className = 'gate-message error';
+                return;
+            }
+
+            // 010으로 시작하는 모바일 번호만 허용
+            const phoneDigits = phone.replace(/\D/g, '');
+            if (!/^010\d{7,8}$/.test(phoneDigits)) {
+                gateMessage.textContent = '010으로 시작하는 모바일 번호를 입력해주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
             }
