@@ -764,7 +764,7 @@ class Component extends DCLogic {
       const url=new URL(window.location.href);
       url.searchParams.set('company',c.id);
       url.searchParams.set('ref','share');
-      const text=`Blind Index | ${c.name}\n직장 경험 지수 ${c.overall}점 · 한국 상위 ${c.top}%\n${url.toString()}`;
+      const text=`Blind Index | ${c.name}\n블라인드 지수 올해 결과를 확인해보세요!\n${url.toString()}`;
       const fallbackCopy=()=>{
         const textarea=document.createElement('textarea');
         textarea.value=text;
