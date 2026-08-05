@@ -334,9 +334,13 @@ document.addEventListener('DOMContentLoaded', () => {
             gateMessage.textContent = '제출 중...';
             gateMessage.className = 'gate-message';
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            // no-cors라 응답 내용은 읽을 수 없다. 모바일 등에서 요청이 매달리면
+            // '제출 중'에 갇히므로, 5초 안에 응답이 없으면 접수된 것으로 간주하고
+            // 진행한다. keepalive라 전송 자체는 백그라운드에서 계속된다.
+            const post = fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
+                keepalive: true,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
@@ -348,19 +352,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: email,
                     phone: phone,
                     page: window.location.href
-                }, getAttribution()))
-            }).then(() => {
+                }, getAttribution())).toString()
+            }).catch(() => {});
+            Promise.race([post, new Promise(resolve => setTimeout(resolve, 5000))]).then(() => {
                 // 리포트 전문은 이메일로 발송한다. 화면의 성별 장표는 계속 잠긴 상태를 유지한다.
-                gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
-                gateMessage.className = 'gate-message success';
-                localStorage.setItem('emailGateSubmitted', 'true');
-                markGateDone();
-                setTimeout(() => {
-                    emailGateOverlay.classList.remove('active');
-                }, 1500);
-            }).catch(error => {
-                console.error('Error:', error);
-                // 에러가 나도 성공으로 처리 (no-cors 모드에서는 응답을 읽을 수 없음)
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
