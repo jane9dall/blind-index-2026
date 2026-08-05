@@ -248,13 +248,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 팝업은 X 버튼으로만 닫힌다. 바깥(배경) 클릭·ESC로는 닫히지 않아
+    // 실수로 사라지는 일이 없다.
     if (emailGateClose) emailGateClose.addEventListener('click', closeEmailGate);
-    if (emailGateOverlay) emailGateOverlay.addEventListener('click', event => {
-        if (event.target === emailGateOverlay) closeEmailGate();
-    });
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && emailGateOverlay?.classList.contains('active')) closeEmailGate();
-    });
 
     // Gate at the last step (Gender Gap)
     const stepLast = document.getElementById('step-9');
@@ -267,18 +263,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 성별 장표는 블러가 새겨진 이미지라 항상 잠겨 있다.
     // 여기서는 리드 수집용 팝업만 띄운다(미제출 사용자 한정).
+    // 팝업은 제출 전까지 계속 따라온다: X로 닫아도 섹션을 벗어났다가
+    // 다시 돌아오면 다시 뜬다. 완전히 사라지는 건 제출 완료 시뿐이다.
     if (stepLast && !hasSubmitted) {
-        // 섹션 상단이 화면 65% 라인 위로 들어오면 팝업 표시.
-        // 섹션이 화면보다 길어도, 앵커로 바로 진입해도 항상 발동한다.
         let gateShown = false;
         const checkGate = () => {
-            if (gateShown || gateDismissed || localStorage.getItem('emailGateSubmitted')) return;
+            if (localStorage.getItem('emailGateSubmitted')) return;
             const r = stepLast.getBoundingClientRect();
-            if (r.top < window.innerHeight * 0.65 && r.bottom > 0) {
-                gateShown = true;
-                openGate();
-                window.removeEventListener('scroll', checkGate);
-                window.removeEventListener('resize', checkGate);
+            const inView = r.top < window.innerHeight * 0.65 && r.bottom > 0;
+            if (inView) {
+                if (!gateShown && !gateDismissed) {
+                    gateShown = true;
+                    openGate();
+                }
+            } else {
+                // 섹션에서 벗어나면 재무장: 돌아오면 팝업이 다시 뜬다
+                gateShown = false;
+                gateDismissed = false;
             }
         };
         window.addEventListener('scroll', checkGate, { passive: true });
