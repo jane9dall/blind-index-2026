@@ -240,18 +240,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateCloseBtn = document.getElementById('gate-close');
     if (gateCloseBtn) gateCloseBtn.addEventListener('click', closeEmailGate);
 
-    // 성별 장표(마지막 섹션)가 화면에 40% 이상 들어오면 게이트 표시 + 블러.
-    // IntersectionObserver로 판정해 스크롤 타이밍에 의존하지 않고 항상 안정적으로 잠근다.
-    // (블러는 openGate()에서 content-locked로 걸리며, 폼 제출 성공 시에만 해제된다.)
+    // 미제출 사용자는 "로드 즉시" 성별 장표를 잠근다(블러).
+    // 팝업 트리거가 어떤 이유로 실패해도 내용이 먼저 노출되는 일이 없고,
+    // 블러 해제는 오직 폼 제출 성공 시에만 일어난다.
     if (stepLast && !hasSubmitted) {
-        const gateObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !gateDismissed && !localStorage.getItem('emailGateSubmitted')) {
-                    openGate();
-                }
-            });
-        }, { threshold: 0.4 });
-        gateObserver.observe(stepLast);
+        lockContent();
+        // 섹션 상단이 화면 65% 라인 위로 들어오면 팝업 표시.
+        // 섹션이 화면보다 길어도, 앵커로 바로 진입해도 항상 발동한다.
+        let gateShown = false;
+        const checkGate = () => {
+            if (gateShown || gateDismissed || localStorage.getItem('emailGateSubmitted')) return;
+            const r = stepLast.getBoundingClientRect();
+            if (r.top < window.innerHeight * 0.65 && r.bottom > 0) {
+                gateShown = true;
+                openGate();
+                window.removeEventListener('scroll', checkGate);
+                window.removeEventListener('resize', checkGate);
+            }
+        };
+        window.addEventListener('scroll', checkGate, { passive: true });
+        window.addEventListener('resize', checkGate, { passive: true });
+        // 앵커(#step-9)로 스크롤 이벤트 없이 바로 도착하는 경우도 판정
+        setTimeout(checkGate, 300);
+        setTimeout(checkGate, 1000);
     }
 
     if (emailGateForm) {
