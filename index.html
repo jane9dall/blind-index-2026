@@ -611,17 +611,46 @@ class Component extends DCLogic {
     } else {
       this.logVisit('','page_view');
     }
+    // 리포트 페이지에서 넘어온 /index.html?screen=... 형태의 주소를 접속 직후 정돈
+    const init=this.stateFromUrl();
+    window.history.replaceState({},'',this.urlFor(init.screen, init.selected));
+    // 브라우저/마우스 뒤로가기·앞으로가기: URL에 맞춰 화면을 복원
+    this._onPop = ()=>{
+      const st=this.stateFromUrl();
+      st.navOpen=false;
+      this.setState(st);
+      window.scrollTo(0,0);
+    };
+    window.addEventListener('popstate', this._onPop);
     this._onResize();
   }
-  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onResize); clearTimeout(this._shareTimer); this._barObs?.disconnect(); this._barMo?.disconnect(); }
+  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onResize); window.removeEventListener('popstate', this._onPop); clearTimeout(this._shareTimer); this._barObs?.disconnect(); this._barMo?.disconnect(); }
+
+  // 현재 화면 상태를 반영한 깨끗한 URL을 만든다.
+  // - company/screen/ref 파라미터를 화면에 맞게 정리 (utm_*은 유입 분석을 위해 유지)
+  // - 리포트 페이지에서 돌아올 때 붙는 /index.html 경로도 정돈
+  urlFor(screen, sel){
+    const url=new URL(window.location.href);
+    if(screen==='company' && sel) url.searchParams.set('company',sel); else url.searchParams.delete('company');
+    if(screen==='solution') url.searchParams.set('screen','solution'); else url.searchParams.delete('screen');
+    url.searchParams.delete('ref');
+    url.pathname=url.pathname.replace(/\/index\.html$/,'/');
+    return url;
+  }
+
+  // URL 파라미터에서 화면 상태를 복원한다 (초기 진입·뒤로가기 공용)
+  stateFromUrl(){
+    const params=new URLSearchParams(window.location.search);
+    const companyId=params.get('company');
+    if(companyId && this.data.byId[companyId]) return {screen:'company', selected:companyId};
+    if(params.get('screen')==='solution') return {screen:'solution'};
+    return {screen:'home'};
+  }
 
   go(screen, sel){
     const st={screen, navOpen:false};
     if(sel) st.selected=sel;
-    const url=new URL(window.location.href);
-    if(screen==='company' && sel) url.searchParams.set('company',sel); else url.searchParams.delete('company');
-    url.searchParams.delete('ref');
-    window.history.pushState({},'',url);
+    window.history.pushState({},'',this.urlFor(screen, sel));
     this.setState(st);
     this.logVisit(sel || '',screen==='company'?'company_view':screen+'_view');
     window.scrollTo(0,0);

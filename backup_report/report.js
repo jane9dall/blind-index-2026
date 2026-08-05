@@ -174,15 +174,29 @@ document.addEventListener('DOMContentLoaded', () => {
         emailGateOverlay.classList.remove('active');
         gateDismissed = true;
     };
-    const lockContent = () => {
-        document.querySelectorAll('#step-9').forEach(el => el.classList.add('content-locked'));
-    };
-    // 게이트 표시 + 성별 장표 블러(제출 전까지 유지). 어떤 진입 경로든 항상 함께 처리해 누수를 막는다.
+    // 이메일 수집 팝업 표시. 성별 장표는 블러가 새겨진 이미지라
+    // 팝업/제출과 무관하게 항상 잠겨 있고, 해제 로직 자체가 없다.
     const openGate = () => {
         if (localStorage.getItem('emailGateSubmitted')) return;
         emailGateOverlay.classList.add('active');
-        lockContent();
     };
+    // 블러 이미지 위 CTA: 제출 전엔 팝업을 열고, 제출 후엔 완료 상태로 바꾼다
+    const lockedCta = document.getElementById('locked-cta');
+    const markGateDone = () => {
+        if (!lockedCta) return;
+        lockedCta.textContent = '신청 완료 — 이메일로 보내드릴게요';
+        lockedCta.disabled = true;
+        lockedCta.style.opacity = '0.65';
+        lockedCta.style.cursor = 'default';
+    };
+    if (lockedCta) {
+        if (localStorage.getItem('emailGateSubmitted')) markGateDone();
+        lockedCta.addEventListener('click', () => {
+            if (localStorage.getItem('emailGateSubmitted')) return;
+            gateDismissed = false; // 닫았던 사용자도 버튼으로는 다시 열 수 있게
+            emailGateOverlay.classList.add('active');
+        });
+    }
 
     // 우하단 플로팅: 링크 공유
     const fabShare = document.getElementById('fab-share');
@@ -240,11 +254,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateCloseBtn = document.getElementById('gate-close');
     if (gateCloseBtn) gateCloseBtn.addEventListener('click', closeEmailGate);
 
-    // 미제출 사용자는 "로드 즉시" 성별 장표를 잠근다(블러).
-    // 팝업 트리거가 어떤 이유로 실패해도 내용이 먼저 노출되는 일이 없고,
-    // 블러 해제는 오직 폼 제출 성공 시에만 일어난다.
+    // 성별 장표는 블러가 새겨진 이미지라 항상 잠겨 있다.
+    // 여기서는 리드 수집용 팝업만 띄운다(미제출 사용자 한정).
     if (stepLast && !hasSubmitted) {
-        lockContent();
         // 섹션 상단이 화면 65% 라인 위로 들어오면 팝업 표시.
         // 섹션이 화면보다 길어도, 앵커로 바로 진입해도 항상 발동한다.
         let gateShown = false;
@@ -320,14 +332,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     page: window.location.href
                 }, getAttribution()))
             }).then(() => {
+                // 리포트 전문은 이메일로 발송한다. 화면의 성별 장표는 계속 잠긴 상태를 유지한다.
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
+                markGateDone();
                 setTimeout(() => {
                     emailGateOverlay.classList.remove('active');
-                    document.querySelectorAll('.content-locked').forEach(el => {
-                        el.classList.remove('content-locked');
-                    });
                 }, 1500);
             }).catch(error => {
                 console.error('Error:', error);
@@ -335,11 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
+                markGateDone();
                 setTimeout(() => {
                     emailGateOverlay.classList.remove('active');
-                    document.querySelectorAll('.content-locked').forEach(el => {
-                        el.classList.remove('content-locked');
-                    });
                 }, 1500);
             });
         });
