@@ -1,3 +1,5 @@
+var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec';
+
 // 광고/공유 유입 추적: 현재 URL의 utm_* 파라미터와 리퍼러를 수집
 function getAttribution() {
     const p = new URLSearchParams(window.location.search);
@@ -10,7 +12,34 @@ function getAttribution() {
     };
 }
 
+// 방문 로그 전송 (메인 사이트의 logVisit과 같은 형식으로 "방문 로그" 탭에 쌓인다)
+function logVisit(event) {
+    try {
+        const att = getAttribution();
+        const payload = new URLSearchParams(Object.assign({
+            action: 'visit_log',
+            event: event,
+            company: '',
+            clientAt: new Date().toISOString(),
+            page: window.location.href,
+            userAgent: navigator.userAgent.slice(0, 500),
+            language: navigator.language || '',
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+            viewport: window.innerWidth + 'x' + window.innerHeight
+        }, att));
+        if (navigator.sendBeacon) { navigator.sendBeacon(GOOGLE_SCRIPT_URL, payload); return; }
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST', mode: 'no-cors', keepalive: true,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: payload.toString()
+        }).catch(() => {});
+    } catch (e) {}
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // 리포트 페이지 진입 1회 기록
+    logVisit('report_view');
+
     // 테스트용: ?gate=reset 붙여 접속하면 제출 기록을 지우고 처음 상태(팝업·신청 폼)로 되돌린다
     try {
         if (new URLSearchParams(window.location.search).get('gate') === 'reset') {
@@ -206,9 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     // 이메일 수집 팝업 표시. 성별 장표는 블러가 새겨진 이미지라
     // 팝업/제출과 무관하게 항상 잠겨 있고, 해제 로직 자체가 없다.
+    // 팝업 노출은 방문당 1회만 기록한다(스크롤로 여러 번 떠도 중복 집계 방지)
+    let gateViewLogged = false;
     const openGate = () => {
         if (localStorage.getItem('emailGateSubmitted')) return;
         emailGateOverlay.classList.add('active');
+        if (!gateViewLogged) { gateViewLogged = true; logVisit('report_gate_view'); }
     };
     // 블러 이미지 위 CTA: 제출 전엔 팝업을 열고, 제출 후엔 완료 상태로 바꾼다
     const lockedCta = document.getElementById('locked-cta');
@@ -351,9 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // 구글 시트로 데이터 전송
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec';
-
+            // 구글 시트로 데이터 전송 (엔드포인트는 파일 상단 GOOGLE_SCRIPT_URL 사용)
             gateMessage.textContent = '제출 중...';
             gateMessage.className = 'gate-message';
 
