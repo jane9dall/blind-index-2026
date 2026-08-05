@@ -122,9 +122,28 @@ function testSubmission() {
 }
 
 function getSheet_(spreadsheet, name, headers) {
-  const sheet = spreadsheet.getSheetByName(name) || spreadsheet.insertSheet(name);
+  const sheet = findSheetByName_(spreadsheet, name) || spreadsheet.insertSheet(name);
   if (sheet.getLastRow() === 0) sheet.appendRow(headers);
   return sheet;
+}
+
+// 탭 이름을 "공백 무시"로 찾아 기존 탭을 재사용합니다.
+// 예: "방문 로그"와 "방문로그"를 같은 탭으로 취급 → 공백 차이로 중복 탭이 새로 생기지 않습니다.
+function findSheetByName_(spreadsheet, name) {
+  // 1) 정확히 일치하는 탭이 있으면 그것을 우선 사용
+  const exact = spreadsheet.getSheetByName(name);
+  if (exact) return exact;
+  // 2) 공백만 다른 탭(방문로그 ↔ 방문 로그)이 있으면 그 탭을 재사용
+  const target = normalizeName_(name);
+  const sheets = spreadsheet.getSheets();
+  for (let i = 0; i < sheets.length; i++) {
+    if (normalizeName_(sheets[i].getName()) === target) return sheets[i];
+  }
+  return null;
+}
+
+function normalizeName_(s) {
+  return String(s).replace(/\s+/g, '');
 }
 
 /**
