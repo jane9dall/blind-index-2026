@@ -1,0 +1,632 @@
+{
+  "total": 897,
+  "ok": 886,
+  "missing": 11,
+  "latestBatch": [
+    {
+      "status": "missing",
+      "company": "히타치하이테크코리아",
+      "attempts": [
+        {
+          "query": "히타치하이테크코리아",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%ED%9E%88%ED%83%80%EC%B9%98%ED%95%98%EC%9D%B4%ED%85%8C%ED%81%AC%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "세일즈포스코리아",
+      "matchedCompany": "세일즈포스",
+      "query": "세일즈포스코리아",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%84%B8%EC%9D%BC%EC%A6%88%ED%8F%AC%EC%8A%A4%EC%BD%94%EB%A6%AC%EC%95%84",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage_kr/logo_19869.jpg",
+      "file": "assets/company-logos/company-86f3e1fbaa.jpg",
+      "bytes": 6858,
+      "attempts": [
+        {
+          "query": "세일즈포스코리아",
+          "pageName": "세일즈포스",
+          "url": "https://www.teamblind.com/kr/search/%EC%84%B8%EC%9D%BC%EC%A6%88%ED%8F%AC%EC%8A%A4%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "HD현대미포",
+      "matchedCompany": "HD현대중공업",
+      "query": "HD현대미포",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/HD%ED%98%84%EB%8C%80%EB%AF%B8%ED%8F%AC",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/channel/logo/kr/logo_1764912323.jpg",
+      "file": "assets/company-logos/hd-c68a621dab.jpg",
+      "bytes": 6508,
+      "attempts": [
+        {
+          "query": "HD현대미포",
+          "pageName": "HD현대중공업",
+          "url": "https://www.teamblind.com/kr/search/HD%ED%98%84%EB%8C%80%EB%AF%B8%ED%8F%AC",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "한화파워시스템",
+      "matchedCompany": "한화파워",
+      "query": "한화파워시스템",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%ED%8C%8C%EC%9B%8C%EC%8B%9C%EC%8A%A4%ED%85%9C",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_0c0f5922.webp",
+      "file": "assets/company-logos/company-fcd2262071.webp",
+      "bytes": 3832,
+      "attempts": [
+        {
+          "query": "한화파워시스템",
+          "pageName": "한화파워",
+          "url": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%ED%8C%8C%EC%9B%8C%EC%8B%9C%EC%8A%A4%ED%85%9C",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "missing",
+      "company": "HD현대인프라코어",
+      "attempts": [
+        {
+          "query": "HD현대인프라코어",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "url": "https://www.teamblind.com/kr/search/HD%ED%98%84%EB%8C%80%EC%9D%B8%ED%94%84%EB%9D%BC%EC%BD%94%EC%96%B4",
+          "type": "search"
+        },
+        {
+          "query": "현대두산인프라코어",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%ED%98%84%EB%8C%80%EB%91%90%EC%82%B0%EC%9D%B8%ED%94%84%EB%9D%BC%EC%BD%94%EC%96%B4",
+          "type": "search"
+        },
+        {
+          "query": "두인",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EB%91%90%EC%9D%B8",
+          "type": "search"
+        },
+        {
+          "query": "두산인프라코어",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EB%91%90%EC%82%B0%EC%9D%B8%ED%94%84%EB%9D%BC%EC%BD%94%EC%96%B4",
+          "type": "search"
+        },
+        {
+          "query": "두산인프라",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EB%91%90%EC%82%B0%EC%9D%B8%ED%94%84%EB%9D%BC",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "LIG넥스원",
+      "matchedCompany": "LIG디펜스앤에어로스페이스",
+      "query": "LIG넥스원",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/LIG%EB%84%A5%EC%8A%A4%EC%9B%90",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_c15ab4dc.webp",
+      "file": "assets/company-logos/lig-3e3ff977ea.webp",
+      "bytes": 12702,
+      "attempts": [
+        {
+          "query": "LIG넥스원",
+          "pageName": "LIG디펜스앤에어로스페이스",
+          "url": "https://www.teamblind.com/kr/search/LIG%EB%84%A5%EC%8A%A4%EC%9B%90",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "HD현대건설기계",
+      "matchedCompany": "HD건설기계",
+      "query": "HD현대건설기계",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/HD%ED%98%84%EB%8C%80%EA%B1%B4%EC%84%A4%EA%B8%B0%EA%B3%84",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_9f04d5dc.webp",
+      "file": "assets/company-logos/hd-96dad6941b.webp",
+      "bytes": 8620,
+      "attempts": [
+        {
+          "query": "HD현대건설기계",
+          "pageName": "HD건설기계",
+          "url": "https://www.teamblind.com/kr/search/HD%ED%98%84%EB%8C%80%EA%B1%B4%EC%84%A4%EA%B8%B0%EA%B3%84",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "엘지유플러스 협력사",
+      "matchedCompany": "LG유플러스",
+      "query": "엘지유플러스 협력사",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%97%98%EC%A7%80%EC%9C%A0%ED%94%8C%EB%9F%AC%EC%8A%A4%20%ED%98%91%EB%A0%A5%EC%82%AC",
+      "sourceLogo": "https://static.teamblind.com/img/channel/logo/kr/37581ac3868518.png",
+      "file": "assets/company-logos/company-51a18abd00.png",
+      "bytes": 1316,
+      "attempts": [
+        {
+          "query": "엘지유플러스 협력사",
+          "pageName": "LG유플러스",
+          "url": "https://www.teamblind.com/kr/search/%EC%97%98%EC%A7%80%EC%9C%A0%ED%94%8C%EB%9F%AC%EC%8A%A4%20%ED%98%91%EB%A0%A5%EC%82%AC",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "티웨이항공",
+      "matchedCompany": "트리니티항공",
+      "query": "티웨이항공",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%ED%8B%B0%EC%9B%A8%EC%9D%B4%ED%95%AD%EA%B3%B5",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_678daf64.webp",
+      "file": "assets/company-logos/company-7d0809e913.webp",
+      "bytes": 4854,
+      "attempts": [
+        {
+          "query": "티웨이항공",
+          "pageName": "트리니티항공",
+          "url": "https://www.teamblind.com/kr/search/%ED%8B%B0%EC%9B%A8%EC%9D%B4%ED%95%AD%EA%B3%B5",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "잡코리아",
+      "matchedCompany": "웍스피어",
+      "query": "잡코리아",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%9E%A1%EC%BD%94%EB%A6%AC%EC%95%84",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_f8539555.webp",
+      "file": "assets/company-logos/company-1e0b53e72e.webp",
+      "bytes": 6248,
+      "attempts": [
+        {
+          "query": "잡코리아",
+          "pageName": "웍스피어",
+          "url": "https://www.teamblind.com/kr/search/%EC%9E%A1%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "JYP엔터테인먼트",
+      "matchedCompany": "제이와이피엔터테인먼트",
+      "query": "JYP엔터테인먼트",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/JYP%EC%97%94%ED%84%B0%ED%85%8C%EC%9D%B8%EB%A8%BC%ED%8A%B8",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage_kr/logo_4950.jpg",
+      "file": "assets/company-logos/jyp-7a20dbb221.jpg",
+      "bytes": 7554,
+      "attempts": [
+        {
+          "query": "JYP엔터테인먼트",
+          "pageName": "제이와이피엔터테인먼트",
+          "url": "https://www.teamblind.com/kr/search/JYP%EC%97%94%ED%84%B0%ED%85%8C%EC%9D%B8%EB%A8%BC%ED%8A%B8",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "콘티넨탈오토모티브코리아",
+      "matchedCompany": "아우모비오코리아",
+      "query": "콘티넨탈오토모티브코리아",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%BD%98%ED%8B%B0%EB%84%A8%ED%83%88%EC%98%A4%ED%86%A0%EB%AA%A8%ED%8B%B0%EB%B8%8C%EC%BD%94%EB%A6%AC%EC%95%84",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_4e56c894.webp",
+      "file": "assets/company-logos/company-6313a19496.webp",
+      "bytes": 6498,
+      "attempts": [
+        {
+          "query": "콘티넨탈오토모티브코리아",
+          "pageName": "아우모비오코리아",
+          "url": "https://www.teamblind.com/kr/search/%EC%BD%98%ED%8B%B0%EB%84%A8%ED%83%88%EC%98%A4%ED%86%A0%EB%AA%A8%ED%8B%B0%EB%B8%8C%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "스마일게이트엔터테인먼트",
+      "matchedCompany": "(구)스마일게이트홀딩스",
+      "query": "스마일게이트엔터테인먼트",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%8A%A4%EB%A7%88%EC%9D%BC%EA%B2%8C%EC%9D%B4%ED%8A%B8%EC%97%94%ED%84%B0%ED%85%8C%EC%9D%B8%EB%A8%BC%ED%8A%B8",
+      "sourceLogo": "https://teamblindstatics.s3.ap-northeast-1.amazonaws.com/img/companyPage/logo_7e51ed54278001.jpeg",
+      "file": "assets/company-logos/company-07b8d20e6a.jpg",
+      "bytes": 17517,
+      "attempts": [
+        {
+          "query": "스마일게이트엔터테인먼트",
+          "pageName": "(구)스마일게이트홀딩스",
+          "url": "https://www.teamblind.com/kr/search/%EC%8A%A4%EB%A7%88%EC%9D%BC%EA%B2%8C%EC%9D%B4%ED%8A%B8%EC%97%94%ED%84%B0%ED%85%8C%EC%9D%B8%EB%A8%BC%ED%8A%B8",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "missing",
+      "company": "넷게임즈",
+      "attempts": [
+        {
+          "query": "넷게임즈",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EB%84%B7%EA%B2%8C%EC%9E%84%EC%A6%88",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "씨아이에스",
+      "matchedCompany": "SFA넥셀",
+      "query": "씨아이에스",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%94%A8%EC%95%84%EC%9D%B4%EC%97%90%EC%8A%A4",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_e02e7dc5.webp",
+      "file": "assets/company-logos/company-17ff2038a1.webp",
+      "bytes": 11096,
+      "attempts": [
+        {
+          "query": "씨아이에스",
+          "pageName": "SFA넥셀",
+          "url": "https://www.teamblind.com/kr/search/%EC%94%A8%EC%95%84%EC%9D%B4%EC%97%90%EC%8A%A4",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "롯데푸드",
+      "matchedCompany": "롯데웰푸드",
+      "query": "롯데푸드",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EB%A1%AF%EB%8D%B0%ED%91%B8%EB%93%9C",
+      "sourceLogo": "https://teamblindstatics.s3.ap-northeast-1.amazonaws.com/img/companyPage/logo_4078e397443693.jpeg",
+      "file": "assets/company-logos/company-f68f961843.jpg",
+      "bytes": 11663,
+      "attempts": [
+        {
+          "query": "롯데푸드",
+          "pageName": "롯데웰푸드",
+          "url": "https://www.teamblind.com/kr/search/%EB%A1%AF%EB%8D%B0%ED%91%B8%EB%93%9C",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "missing",
+      "company": "칼리버스",
+      "attempts": [
+        {
+          "query": "칼리버스",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EC%B9%BC%EB%A6%AC%EB%B2%84%EC%8A%A4",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "엘비루셈",
+      "matchedCompany": "엘비세미콘",
+      "query": "엘비루셈",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%97%98%EB%B9%84%EB%A3%A8%EC%85%88",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_2dbd3cab.webp",
+      "file": "assets/company-logos/company-c2836cb7b8.webp",
+      "bytes": 6914,
+      "attempts": [
+        {
+          "query": "엘비루셈",
+          "pageName": "엘비세미콘",
+          "url": "https://www.teamblind.com/kr/search/%EC%97%98%EB%B9%84%EB%A3%A8%EC%85%88",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "다나와",
+      "matchedCompany": "커넥트웨이브",
+      "query": "다나와",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EB%8B%A4%EB%82%98%EC%99%80",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_ae4f3778.webp",
+      "file": "assets/company-logos/company-6f6b02fb4c.webp",
+      "bytes": 15214,
+      "attempts": [
+        {
+          "query": "다나와",
+          "pageName": "커넥트웨이브",
+          "url": "https://www.teamblind.com/kr/search/%EB%8B%A4%EB%82%98%EC%99%80",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "한화디펜스",
+      "matchedCompany": "한화에어로스페이스",
+      "query": "한화디펜스",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%EB%94%94%ED%8E%9C%EC%8A%A4",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_9d2d3cef.webp",
+      "file": "assets/company-logos/company-ae6b6138b4.webp",
+      "bytes": 8732,
+      "attempts": [
+        {
+          "query": "한화디펜스",
+          "pageName": "한화에어로스페이스",
+          "url": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%EB%94%94%ED%8E%9C%EC%8A%A4",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "한화건설",
+      "matchedCompany": "한화",
+      "query": "한화건설",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%EA%B1%B4%EC%84%A4",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/channel/logo/kr/logo_1692338349.jpg",
+      "file": "assets/company-logos/company-b5c429cd97.jpg",
+      "bytes": 6270,
+      "attempts": [
+        {
+          "query": "한화건설",
+          "pageName": "한화",
+          "url": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%EA%B1%B4%EC%84%A4",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "missing",
+      "company": "비알코리아",
+      "attempts": [
+        {
+          "query": "비알코리아",
+          "pageName": "비알코리아",
+          "url": "https://www.teamblind.com/kr/search/%EB%B9%84%EC%95%8C%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        },
+        {
+          "query": "비알코리아",
+          "error": "HTTP Error 403: Forbidden",
+          "url": "https://www.teamblind.com/kr/search/%EB%B9%84%EC%95%8C%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        },
+        {
+          "query": "비알",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EB%B9%84%EC%95%8C",
+          "type": "search"
+        },
+        {
+          "query": "SPC비알코리아",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/SPC%EB%B9%84%EC%95%8C%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        },
+        {
+          "query": "SPC비알",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/SPC%EB%B9%84%EC%95%8C",
+          "type": "search"
+        },
+        {
+          "query": "비알korea",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EB%B9%84%EC%95%8Ckorea",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "애경유화",
+      "matchedCompany": "애경케미칼",
+      "query": "애경유화",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%95%A0%EA%B2%BD%EC%9C%A0%ED%99%94",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_6189e8a3.webp",
+      "file": "assets/company-logos/company-bfc96e7040.webp",
+      "bytes": 7940,
+      "attempts": [
+        {
+          "query": "애경유화",
+          "pageName": "애경케미칼",
+          "url": "https://www.teamblind.com/kr/search/%EC%95%A0%EA%B2%BD%EC%9C%A0%ED%99%94",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "missing",
+      "company": "앰코테크놀로지코리아",
+      "attempts": [
+        {
+          "query": "앰코테크놀로지코리아",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EC%95%B0%EC%BD%94%ED%85%8C%ED%81%AC%EB%86%80%EB%A1%9C%EC%A7%80%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        },
+        {
+          "query": "앰코",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EC%95%B0%EC%BD%94",
+          "type": "search"
+        },
+        {
+          "query": "앰코테크놀로지",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EC%95%B0%EC%BD%94%ED%85%8C%ED%81%AC%EB%86%80%EB%A1%9C%EC%A7%80",
+          "type": "search"
+        },
+        {
+          "query": "Amkor Korea",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/Amkor%20Korea",
+          "type": "search"
+        },
+        {
+          "query": "앰코코리아",
+          "pageName": "",
+          "url": "https://www.teamblind.com/kr/search/%EC%95%B0%EC%BD%94%EC%BD%94%EB%A6%AC%EC%95%84",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "인터파크",
+      "matchedCompany": "놀유니버스",
+      "query": "인터파크",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%9D%B8%ED%84%B0%ED%8C%8C%ED%81%AC",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/channel/logo/kr/logo_1737613030.jpg",
+      "file": "assets/company-logos/company-113a85c4d7.jpg",
+      "bytes": 9439,
+      "attempts": [
+        {
+          "query": "인터파크",
+          "pageName": "놀유니버스",
+          "url": "https://www.teamblind.com/kr/search/%EC%9D%B8%ED%84%B0%ED%8C%8C%ED%81%AC",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "한화케미칼",
+      "matchedCompany": "한화솔루션",
+      "query": "한화케미칼",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%EC%BC%80%EB%AF%B8%EC%B9%BC",
+      "sourceLogo": "https://static.teamblind.com/img/channel/logo/kr/3ad063e5873899.png",
+      "file": "assets/company-logos/company-2bbba15872.png",
+      "bytes": 2262,
+      "attempts": [
+        {
+          "query": "한화케미칼",
+          "pageName": "한화솔루션",
+          "url": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%EC%BC%80%EB%AF%B8%EC%B9%BC",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "에이디티캡스",
+      "matchedCompany": "SK쉴더스",
+      "query": "에이디티캡스",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%97%90%EC%9D%B4%EB%94%94%ED%8B%B0%EC%BA%A1%EC%8A%A4",
+      "sourceLogo": "https://static.teamblind.com/img/channel/logo/kr/4baa5cd1869570.png",
+      "file": "assets/company-logos/company-2fc2900374.png",
+      "bytes": 1747,
+      "attempts": [
+        {
+          "query": "에이디티캡스",
+          "pageName": "SK쉴더스",
+          "url": "https://www.teamblind.com/kr/search/%EC%97%90%EC%9D%B4%EB%94%94%ED%8B%B0%EC%BA%A1%EC%8A%A4",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "소노호텔앤리조트",
+      "matchedCompany": "소노인터내셔널",
+      "query": "소노호텔앤리조트",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%86%8C%EB%85%B8%ED%98%B8%ED%85%94%EC%95%A4%EB%A6%AC%EC%A1%B0%ED%8A%B8",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_baae7532.webp",
+      "file": "assets/company-logos/company-78f0d88370.webp",
+      "bytes": 10420,
+      "attempts": [
+        {
+          "query": "소노호텔앤리조트",
+          "pageName": "소노인터내셔널",
+          "url": "https://www.teamblind.com/kr/search/%EC%86%8C%EB%85%B8%ED%98%B8%ED%85%94%EC%95%A4%EB%A6%AC%EC%A1%B0%ED%8A%B8",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "한화호텔앤드리조트",
+      "matchedCompany": "한화호텔&리조트",
+      "query": "한화호텔앤드리조트",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%ED%98%B8%ED%85%94%EC%95%A4%EB%93%9C%EB%A6%AC%EC%A1%B0%ED%8A%B8",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage_kr/logo_119.jpg",
+      "file": "assets/company-logos/company-264c754c98.jpg",
+      "bytes": 5452,
+      "attempts": [
+        {
+          "query": "한화호텔앤드리조트",
+          "pageName": "한화호텔&리조트",
+          "url": "https://www.teamblind.com/kr/search/%ED%95%9C%ED%99%94%ED%98%B8%ED%85%94%EC%95%A4%EB%93%9C%EB%A6%AC%EC%A1%B0%ED%8A%B8",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "삼호",
+      "matchedCompany": "DL건설",
+      "query": "삼호",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%82%BC%ED%98%B8",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_58803a2b.webp",
+      "file": "assets/company-logos/company-c00fef62ad.webp",
+      "bytes": 9008,
+      "attempts": [
+        {
+          "query": "삼호",
+          "pageName": "DL건설",
+          "url": "https://www.teamblind.com/kr/search/%EC%82%BC%ED%98%B8",
+          "type": "search"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "company": "청담러닝",
+      "matchedCompany": "크레버스",
+      "query": "청담러닝",
+      "sourceType": "search-result",
+      "sourcePage": "https://www.teamblind.com/kr/search/%EC%B2%AD%EB%8B%B4%EB%9F%AC%EB%8B%9D",
+      "sourceLogo": "https://d2u3dcdbebyaiu.cloudfront.net/img/companyPage/logo_770ca56e.webp",
+      "file": "assets/company-logos/company-f49af3c49b.webp",
+      "bytes": 15446,
+      "attempts": [
+        {
+          "query": "청담러닝",
+          "pageName": "크레버스",
+          "url": "https://www.teamblind.com/kr/search/%EC%B2%AD%EB%8B%B4%EB%9F%AC%EB%8B%9D",
+          "type": "search"
+        }
+      ]
+    }
+  ]
+}
