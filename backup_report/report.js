@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const lockedDesc = document.getElementById('locked-desc');
         if (lockedTitle) { lockedTitle.textContent = '이후 분석은 리포트 전문에서 공개됩니다'; lockedTitle.style.margin = '0 0 14px'; }
         if (lockedDesc) lockedDesc.style.display = 'none';
-        lockedCta.textContent = '신청 완료! 이메일로 보내드릴게요!';
+        lockedCta.textContent = '신청이 정상적으로 접수되었습니다.';
         lockedCta.disabled = true;
         lockedCta.style.opacity = '0.65';
         lockedCta.style.cursor = 'default';
