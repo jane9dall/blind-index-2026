@@ -11,6 +11,13 @@ function getAttribution() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 테스트용: ?gate=reset 붙여 접속하면 제출 기록을 지우고 처음 상태(팝업·신청 폼)로 되돌린다
+    try {
+        if (new URLSearchParams(window.location.search).get('gate') === 'reset') {
+            localStorage.removeItem('emailGateSubmitted');
+        }
+    } catch (e) {}
+
     const steps = document.querySelectorAll('.step, .replication-container, .report-header');
     const nav = document.querySelector('.global-nav');
     const menuDots = document.querySelectorAll('.menu-dot');
@@ -184,7 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const lockedCta = document.getElementById('locked-cta');
     const markGateDone = () => {
         if (!lockedCta) return;
-        lockedCta.textContent = '신청 완료 — 이메일로 보내드릴게요';
+        const lockedTitle = document.getElementById('locked-title');
+        const lockedDesc = document.getElementById('locked-desc');
+        if (lockedTitle) { lockedTitle.textContent = '이후 분석은 리포트 전문에서 공개됩니다'; lockedTitle.style.margin = '0 0 14px'; }
+        if (lockedDesc) lockedDesc.style.display = 'none';
+        lockedCta.textContent = '신청 완료! 이메일로 보내드릴게요!';
         lockedCta.disabled = true;
         lockedCta.style.opacity = '0.65';
         lockedCta.style.cursor = 'default';
@@ -295,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 010으로 시작하는 11자리 휴대폰 번호만 허용
             const phoneDigits = phone.replace(/\D/g, '');
             if (!/^010\d{8}$/.test(phoneDigits)) {
-                gateMessage.textContent = '휴대폰 번호 11자리(010으로 시작)를 정확히 입력해주세요.';
+                gateMessage.textContent = '모바일 번호를 정확히 입력해 주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
             }
