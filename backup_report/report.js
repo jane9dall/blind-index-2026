@@ -1,3 +1,15 @@
+// 광고/공유 유입 추적: 현재 URL의 utm_* 파라미터와 리퍼러를 수집
+function getAttribution() {
+    const p = new URLSearchParams(window.location.search);
+    const g = k => (p.get(k) || '').slice(0, 200);
+    let referrer = '';
+    try { const r = new URL(document.referrer); referrer = r.origin + r.pathname; } catch (e) {}
+    return {
+        utm_source: g('utm_source'), utm_medium: g('utm_medium'), utm_campaign: g('utm_campaign'),
+        utm_content: g('utm_content'), utm_term: g('utm_term'), referrer: referrer
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const steps = document.querySelectorAll('.step, .replication-container, .report-header');
     const nav = document.querySelector('.global-nav');
@@ -162,6 +174,29 @@ document.addEventListener('DOMContentLoaded', () => {
         emailGateOverlay.classList.remove('active');
         gateDismissed = true;
     };
+    // 이메일 수집 팝업 표시. 성별 장표는 블러가 새겨진 이미지라
+    // 팝업/제출과 무관하게 항상 잠겨 있고, 해제 로직 자체가 없다.
+    const openGate = () => {
+        if (localStorage.getItem('emailGateSubmitted')) return;
+        emailGateOverlay.classList.add('active');
+    };
+    // 블러 이미지 위 CTA: 제출 전엔 팝업을 열고, 제출 후엔 완료 상태로 바꾼다
+    const lockedCta = document.getElementById('locked-cta');
+    const markGateDone = () => {
+        if (!lockedCta) return;
+        lockedCta.textContent = '신청 완료 — 이메일로 보내드릴게요';
+        lockedCta.disabled = true;
+        lockedCta.style.opacity = '0.65';
+        lockedCta.style.cursor = 'default';
+    };
+    if (lockedCta) {
+        if (localStorage.getItem('emailGateSubmitted')) markGateDone();
+        lockedCta.addEventListener('click', () => {
+            if (localStorage.getItem('emailGateSubmitted')) return;
+            gateDismissed = false; // 닫았던 사용자도 버튼으로는 다시 열 수 있게
+            emailGateOverlay.classList.add('active');
+        });
+    }
 
     // 우하단 플로팅: 링크 공유
     const fabShare = document.getElementById('fab-share');
@@ -198,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deepDiveDot.addEventListener('click', (e) => {
             if (localStorage.getItem('emailGateSubmitted')) return; // 기본 앵커 이동 (#step-9)
             e.preventDefault();
-            emailGateOverlay.classList.add('active');
+            openGate();
         });
     }
 
@@ -219,28 +254,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateCloseBtn = document.getElementById('gate-close');
     if (gateCloseBtn) gateCloseBtn.addEventListener('click', closeEmailGate);
 
-    // 마지막 섹션(step-3)이 화면에 절반 이상 보이면 게이트 표시.
-    // 스크롤 이벤트 기반으로 판정: 로딩 직후 임시 레이아웃으로 인한 오작동이 없고 iframe 안에서도 안정적으로 동작.
+    // 성별 장표는 블러가 새겨진 이미지라 항상 잠겨 있다.
+    // 여기서는 리드 수집용 팝업만 띄운다(미제출 사용자 한정).
     if (stepLast && !hasSubmitted) {
+        // 섹션 상단이 화면 65% 라인 위로 들어오면 팝업 표시.
+        // 섹션이 화면보다 길어도, 앵커로 바로 진입해도 항상 발동한다.
+        let gateShown = false;
         const checkGate = () => {
-            if (gateDismissed) return; // 사용자가 닫았으면 다시 띄우지 않음
-            if (window.scrollY < 200) return; // 스크롤했거나 앵커로 점프해 내려온 경우에만
+            if (gateShown || gateDismissed || localStorage.getItem('emailGateSubmitted')) return;
             const r = stepLast.getBoundingClientRect();
-            const visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
-            const needed = Math.min(r.height, window.innerHeight) * 0.5;
-            if (visible >= needed) {
-                emailGateOverlay.classList.add('active');
-                // Lock content from the last step onwards
-                document.querySelectorAll('#step-9').forEach(el => {
-                    el.classList.add('content-locked');
-                });
+            if (r.top < window.innerHeight * 0.65 && r.bottom > 0) {
+                gateShown = true;
+                openGate();
                 window.removeEventListener('scroll', checkGate);
+                window.removeEventListener('resize', checkGate);
             }
         };
         window.addEventListener('scroll', checkGate, { passive: true });
-        // 앵커 링크(#step-9 등)로 바로 진입하면 스크롤 이벤트 없이 도착하므로 로드 직후에도 판정
-        setTimeout(checkGate, 400);
-        setTimeout(checkGate, 1200);
+        window.addEventListener('resize', checkGate, { passive: true });
+        // 앵커(#step-9)로 스크롤 이벤트 없이 바로 도착하는 경우도 판정
+        setTimeout(checkGate, 300);
+        setTimeout(checkGate, 1000);
     }
 
     if (emailGateForm) {
@@ -258,10 +292,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // 010으로 시작하는 모바일 번호만 허용
+            // 010으로 시작하는 11자리 휴대폰 번호만 허용
             const phoneDigits = phone.replace(/\D/g, '');
-            if (!/^010\d{7,8}$/.test(phoneDigits)) {
-                gateMessage.textContent = '모바일 번호가 맞는지 확인해주세요.';
+            if (!/^010\d{8}$/.test(phoneDigits)) {
+                gateMessage.textContent = '휴대폰 번호 11자리(010으로 시작)를 정확히 입력해주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
             }
@@ -288,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams({
+                body: new URLSearchParams(Object.assign({
                     type: '리포트 요청',
                     company: company,
                     name: name,
@@ -296,16 +330,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: email,
                     phone: phone,
                     page: window.location.href
-                })
+                }, getAttribution()))
             }).then(() => {
+                // 리포트 전문은 이메일로 발송한다. 화면의 성별 장표는 계속 잠긴 상태를 유지한다.
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
+                markGateDone();
                 setTimeout(() => {
                     emailGateOverlay.classList.remove('active');
-                    document.querySelectorAll('.content-locked').forEach(el => {
-                        el.classList.remove('content-locked');
-                    });
                 }, 1500);
             }).catch(error => {
                 console.error('Error:', error);
@@ -313,11 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
+                markGateDone();
                 setTimeout(() => {
                     emailGateOverlay.classList.remove('active');
-                    document.querySelectorAll('.content-locked').forEach(el => {
-                        el.classList.remove('content-locked');
-                    });
                 }, 1500);
             });
         });
