@@ -162,9 +162,13 @@ function normalizeName_(s) {
  * - ALIAS로 과거 헤더 이름을 현재 키에 연결해 중복 열 생성을 막습니다.
  */
 function appendRecord_(sheet, record, canonicalHeaders) {
+  // 필요한 열 수를 미리 확보한다.
+  // 시트의 열 개수가 모자라면 열 추가·기록이 오류로 죽어 그 탭만 통째로 기록이 실패한다.
+  ensureColumns_(sheet, canonicalHeaders.length + 5);
+
   if (sheet.getLastRow() === 0) sheet.appendRow(canonicalHeaders);
 
-  const lastCol = sheet.getLastColumn();
+  const lastCol = Math.max(1, sheet.getLastColumn());
   const headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0]
     .map(function (h) { return String(h).trim(); });
 
@@ -183,6 +187,7 @@ function appendRecord_(sheet, record, canonicalHeaders) {
   // 코드에만 있고 시트에 없는 헤더는 맨 뒤에 추가
   canonicalHeaders.forEach(function (h) {
     if (!covered[h]) {
+      ensureColumns_(sheet, headers.length + 1);
       sheet.getRange(1, headers.length + 1).setValue(h);
       headers.push(h);
       covered[h] = true;
@@ -193,7 +198,14 @@ function appendRecord_(sheet, record, canonicalHeaders) {
     const k = keyFor(h);
     return k ? record[k] : '';
   });
+  ensureColumns_(sheet, row.length);
   sheet.appendRow(row);
+}
+
+// 시트의 열 개수가 부족하면 늘린다
+function ensureColumns_(sheet, needed) {
+  const max = sheet.getMaxColumns();
+  if (needed > max) sheet.insertColumnsAfter(max, needed - max);
 }
 
 function json_(body) {
