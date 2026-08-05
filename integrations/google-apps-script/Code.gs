@@ -18,6 +18,10 @@
  */
 var SPREADSHEET_ID = '1J-0g24ix9eeCs83k1INXwikOngvUMt_HclY1RnvhW_g';
 
+// 배포 반영 확인용 버전. 배포 후 /exec 주소를 브라우저에서 열면 이 값이 보입니다.
+// 여기 값이 안 보이거나 옛 값이면 = 새 코드가 아직 반영 안 된 것(재배포 필요).
+var CODE_VERSION = '2026-08-05';
+
 // 제출 탭(리포트 요청 / 상담 신청) 열 순서
 var SUBMIT_HEADERS = [
   '담당자명', '직함', '회사명', '모바일 번호', '회사 이메일',
@@ -39,6 +43,11 @@ function getSpreadsheet_() {
     if (bound) return bound;
   } catch (err) {}
   return SpreadsheetApp.openById(SPREADSHEET_ID);
+}
+
+// 브라우저에서 /exec 주소를 그냥 열면 실행됩니다. 배포된 코드 버전 확인용.
+function doGet(e) {
+  return json_({ ok: true, version: CODE_VERSION, visitTab: '방문 로그' });
 }
 
 function doPost(e) {
