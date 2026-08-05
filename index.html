@@ -879,15 +879,22 @@ class Component extends DCLogic {
         return;
       }
       this.setState({leadSubmitting:true,leadMessage:'제출 중...',leadError:false});
-      // no-cors라 응답 내용은 읽을 수 없다. 모바일 등에서 요청이 매달려도
-      // '제출 중'에 갇히지 않게, 5초 안에 응답이 없으면 접수된 것으로 간주한다.
-      // keepalive라 전송 자체는 백그라운드에서 계속된다.
-      const post=fetch('https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec',{
-        method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:new URLSearchParams(Object.assign({type:'솔루션 신청',company,name,position,phone,email,page:window.location.href},this.attribution())).toString()
-      }).catch(()=>{});
-      Promise.race([post,new Promise(resolve=>setTimeout(resolve,5000))])
-        .then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}));
+      const endpoint='https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec';
+      const payload=new URLSearchParams(Object.assign({type:'솔루션 신청',company,name,position,phone,email,page:window.location.href},this.attribution()));
+      const done=()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false});
+      // 방문 로그와 동일하게 sendBeacon으로 보낸다. 브라우저가 전송을 넘겨받으므로
+      // 응답을 기다리다 '제출 중'에 갇히지 않고, 페이지를 닫아도 전송이 완료된다.
+      let queued=false;
+      try { if(navigator.sendBeacon) queued=navigator.sendBeacon(endpoint,payload); } catch(_){}
+      if(queued){ done(); }
+      else {
+        // sendBeacon을 쓸 수 없는 브라우저용 대체 경로 (5초 후에는 접수로 간주)
+        const post=fetch(endpoint,{
+          method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+          body:payload.toString()
+        }).catch(()=>{});
+        Promise.race([post,new Promise(resolve=>setTimeout(resolve,5000))]).then(done);
+      }
     };
     const shareCompany=()=>{
       const url=new URL(window.location.origin+window.location.pathname);
