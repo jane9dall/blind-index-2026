@@ -1106,7 +1106,8 @@ h1 {
 }
 
 .gate-message.success {
-    color: #22c55e;
+    /* 솔루션스 폼 완료 문구와 같은 회색 */
+    color: #a0a0a6;
 }
 
 .gate-message.error {
