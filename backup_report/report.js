@@ -189,22 +189,28 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     // 블러 이미지 위 CTA: 제출 전엔 팝업을 열고, 제출 후엔 완료 상태로 바꾼다
     const lockedCta = document.getElementById('locked-cta');
+    // 신청 완료 후 카드: 완료 안내로 바뀌고, 버튼으로 신청 팝업을 다시 열 수 있다
     const markGateDone = () => {
         if (!lockedCta) return;
         const lockedTitle = document.getElementById('locked-title');
         const lockedDesc = document.getElementById('locked-desc');
-        if (lockedTitle) { lockedTitle.textContent = '이후 분석은 리포트 전문에서 공개됩니다'; lockedTitle.style.margin = '0 0 14px'; }
-        if (lockedDesc) lockedDesc.style.display = 'none';
-        lockedCta.textContent = '신청이 정상적으로 접수되었습니다.';
-        lockedCta.disabled = true;
-        lockedCta.style.opacity = '0.65';
-        lockedCta.style.cursor = 'default';
+        if (lockedTitle) { lockedTitle.textContent = '신청이 정상적으로 완료되었습니다.'; lockedTitle.style.margin = '0 0 6px'; }
+        if (lockedDesc) {
+            lockedDesc.style.display = '';
+            lockedDesc.style.color = '#a0a0a6';
+            lockedDesc.innerHTML = '메일함에서 리포트를 확인해보세요.<br>메일이 도착하지 않았다면<br>스팸함을 확인해주세요.';
+        }
+        lockedCta.textContent = '리포트 다시 신청하기';
+        lockedCta.disabled = false;
+        lockedCta.style.opacity = '1';
+        lockedCta.style.cursor = 'pointer';
     };
     if (lockedCta) {
         if (localStorage.getItem('emailGateSubmitted')) markGateDone();
         lockedCta.addEventListener('click', () => {
-            if (localStorage.getItem('emailGateSubmitted')) return;
             gateDismissed = false; // 닫았던 사용자도 버튼으로는 다시 열 수 있게
+            // 재신청으로 여는 경우 이전 성공 메시지를 지워 새로 제출할 수 있게 한다
+            if (gateMessage) { gateMessage.textContent = ''; gateMessage.className = 'gate-message'; }
             emailGateOverlay.classList.add('active');
         });
     }
