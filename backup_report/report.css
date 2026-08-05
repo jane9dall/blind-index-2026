@@ -827,6 +827,17 @@ h1 {
     color: var(--blind-red);
 }
 
+.report-footer .footer-contact {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: #b8b8be;
+}
+
+.report-footer .footer-contact a {
+    color: #b8b8be;
+    text-decoration: none;
+}
+
 /* Gender Gap Chart */
 .chart-title-internal {
     font-family: 'Outfit', sans-serif;
