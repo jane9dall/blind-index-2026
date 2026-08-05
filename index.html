@@ -872,11 +872,15 @@ class Component extends DCLogic {
         return;
       }
       this.setState({leadSubmitting:true,leadMessage:'제출 중...',leadError:false});
-      fetch('https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec',{
-        method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      // no-cors라 응답 내용은 읽을 수 없다. 모바일 등에서 요청이 매달려도
+      // '제출 중'에 갇히지 않게, 5초 안에 응답이 없으면 접수된 것으로 간주한다.
+      // keepalive라 전송 자체는 백그라운드에서 계속된다.
+      const post=fetch('https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec',{
+        method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},
         body:new URLSearchParams(Object.assign({type:'솔루션 신청',company,name,position,phone,email,page:window.location.href},this.attribution())).toString()
-      }).then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}))
-        .catch(()=>this.setState({leadSubmitting:false,leadMessage:'전송에 실패했습니다. 잠시 후 다시 시도해주세요.',leadError:true}));
+      }).catch(()=>{});
+      Promise.race([post,new Promise(resolve=>setTimeout(resolve,5000))])
+        .then(()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}));
     };
     const shareCompany=()=>{
       const url=new URL(window.location.origin+window.location.pathname);
