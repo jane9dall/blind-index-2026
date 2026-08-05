@@ -143,6 +143,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     steps.forEach(step => observer.observe(step));
 
+    // 모바일 상단 햄버거 메뉴 (하단 탭바 대체)
+    const mMenuBtn = document.getElementById('m-menu-btn');
+    const mMenu = document.getElementById('m-menu');
+    const mMenuOverlay = document.getElementById('m-menu-overlay');
+    if (mMenuBtn && mMenu && mMenuOverlay) {
+        const navEl = document.querySelector('.global-nav');
+        const setMenu = (open) => {
+            if (open) {
+                // 패널을 항상 현재 내비 바로 아래에 붙인다
+                const navBottom = Math.max(0, Math.round(navEl.getBoundingClientRect().bottom));
+                mMenu.style.top = navBottom + 'px';
+                mMenuOverlay.style.top = navBottom + 'px';
+            }
+            mMenu.classList.toggle('active', open);
+            mMenuOverlay.classList.toggle('active', open);
+            mMenuBtn.classList.toggle('open', open);
+        };
+        mMenuBtn.addEventListener('click', () => setMenu(!mMenu.classList.contains('active')));
+        mMenuOverlay.addEventListener('click', () => setMenu(false));
+        mMenu.querySelectorAll('.m-menu-link').forEach(link => link.addEventListener('click', () => setMenu(false)));
+        window.addEventListener('resize', () => { if (window.innerWidth > 900) setMenu(false); });
+    }
+
     // Sidebar
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-sidebar-btn');
