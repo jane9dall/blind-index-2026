@@ -387,28 +387,18 @@ document.addEventListener('DOMContentLoaded', () => {
             gateMessage.textContent = '제출 중...';
             gateMessage.className = 'gate-message';
 
-            // no-cors라 응답 내용은 읽을 수 없다. 모바일 등에서 요청이 매달리면
-            // '제출 중'에 갇히므로, 5초 안에 응답이 없으면 접수된 것으로 간주하고
-            // 진행한다. keepalive라 전송 자체는 백그라운드에서 계속된다.
-            const post = fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                keepalive: true,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams(Object.assign({
-                    type: '리포트 요청',
-                    company: company,
-                    name: name,
-                    position: position,
-                    email: email,
-                    phone: phone,
-                    page: window.location.href
-                }, getAttribution())).toString()
-            }).catch(() => {});
-            Promise.race([post, new Promise(resolve => setTimeout(resolve, 5000))]).then(() => {
-                // 리포트 전문은 이메일로 발송한다. 화면의 성별 장표는 계속 잠긴 상태를 유지한다.
+            const payload = new URLSearchParams(Object.assign({
+                type: '리포트 요청',
+                company: company,
+                name: name,
+                position: position,
+                email: email,
+                phone: phone,
+                page: window.location.href
+            }, getAttribution()));
+
+            // 리포트 전문은 이메일로 발송한다. 화면의 성별 장표는 계속 잠긴 상태를 유지한다.
+            const done = () => {
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
@@ -416,7 +406,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     emailGateOverlay.classList.remove('active');
                 }, 1500);
-            });
+            };
+
+            // 방문 로그와 동일하게 sendBeacon으로 보낸다. 브라우저가 전송을 넘겨받으므로
+            // 응답을 기다리다 '제출 중'에 갇히지 않고, 페이지를 닫아도 전송이 완료된다.
+            let queued = false;
+            try { if (navigator.sendBeacon) queued = navigator.sendBeacon(GOOGLE_SCRIPT_URL, payload); } catch (e) {}
+            if (queued) {
+                done();
+            } else {
+                // sendBeacon을 쓸 수 없는 브라우저용 대체 경로 (5초 후에는 접수로 간주)
+                const post = fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: payload.toString()
+                }).catch(() => {});
+                Promise.race([post, new Promise(resolve => setTimeout(resolve, 5000))]).then(done);
+            }
         });
     }
 });
