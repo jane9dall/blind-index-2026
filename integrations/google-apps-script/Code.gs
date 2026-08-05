@@ -3,7 +3,7 @@
  *
  * - 리포트 팝업 제출  → "리포트 요청" 탭
  * - 솔루션 상담 신청  → "상담 신청" 탭
- * - 방문/공유 유입 로그 → "방문로그" 탭
+ * - 방문/공유 유입 로그 → "방문 로그" 탭
  *
  * 배포 방법: 시트에서 확장 프로그램 → Apps Script에 붙여넣고
  * 웹 앱으로 배포 (실행: 나, 액세스: 모든 사용자).
@@ -25,11 +25,11 @@ var SUBMIT_HEADERS = [
   '유입 경로', '제출일시', '제출 페이지'
 ];
 
-// 방문로그 탭 열 순서
+// 방문 로그 탭 열 순서
 var VISIT_HEADERS = [
   '서버 기록 시각', '이벤트', '회사명', '클라이언트 시각 (ISO)', '방문 페이지',
   'UTM 소스', 'UTM 매체', 'UTM 캠페인', 'UTM 콘텐츠', 'UTM 검색어',
-  '리퍼러', '사용자 에이전트', '언어', '시간대', '화면 크기', 'IP 주소', 'IP 기반 위치'
+  '리퍼러', '사용자 에이전트', '언어', '시간대', '화면 크기'
 ];
 
 // 스크립트가 시트에 붙어(container-bound) 있으면 그 시트를, 아니면 위 ID의 시트를 사용
@@ -46,7 +46,7 @@ function doPost(e) {
   const spreadsheet = getSpreadsheet_();
 
   if (params.action === 'visit_log') {
-    const sheet = getSheet_(spreadsheet, '방문로그', VISIT_HEADERS);
+    const sheet = getSheet_(spreadsheet, '방문 로그', VISIT_HEADERS);
     appendRecord_(sheet, {
       '서버 기록 시각': new Date(),
       '이벤트': params.event || 'page_view',
@@ -62,9 +62,7 @@ function doPost(e) {
       '사용자 에이전트': params.userAgent || '',
       '언어': params.language || '',
       '시간대': params.timezone || '',
-      '화면 크기': params.viewport || '',
-      'IP 주소': params.ip || '',
-      'IP 기반 위치': params.location || ''
+      '화면 크기': params.viewport || ''
     }, VISIT_HEADERS);
     return json_({ ok: true });
   }
