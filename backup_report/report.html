@@ -8,6 +8,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/branding/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/branding/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/branding/apple-touch-icon.png">
+    <!-- Google Analytics 4 (기존 KR_Blind_Index 속성과 동일 ID — 데이터 연속성 유지) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYCMQGY2F8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date()); gtag('config', 'G-MYCMQGY2F8');
+        // GA 이벤트 전송 헬퍼 — gtag가 없거나(차단 등) 실패해도 페이지 동작에 영향 없음
+        function gaEvent(name, params) { try { gtag('event', name, params || {}); } catch (e) { } }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -687,7 +695,7 @@
             <div id="gate-message" class="gate-message"></div>
         </div>
     </div>
-    <script src="report.js?v=28"></script>
+    <script src="report.js?v=29"></script>
     <div id="mobile-notice" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(20,20,22,0.6);align-items:center;justify-content:center;padding:24px">
         <div
             style="background:#fff;border-radius:16px;padding:28px 24px;max-width:340px;text-align:center;font-family:'Pretendard','Noto Sans KR',sans-serif">
