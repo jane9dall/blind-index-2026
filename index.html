@@ -8,6 +8,14 @@
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/branding/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./assets/branding/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/branding/apple-touch-icon.png">
+<!-- Google Analytics 4 (기존 KR_Blind_Index 속성과 동일 ID — 데이터 연속성 유지) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYCMQGY2F8"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-MYCMQGY2F8');
+// GA 이벤트 전송 헬퍼 — gtag가 없거나(차단 등) 실패해도 페이지 동작에 영향 없음
+function gaEvent(name,params){try{gtag('event',name,params||{});}catch(e){}}
+</script>
 <script src="./support.js"></script>
 <script src="./assets/company-logos/company-logos.js"></script>
 <script src="./assets/company-votes.js"></script>
@@ -663,6 +671,13 @@ class Component extends DCLogic {
     window.scrollTo(0,0);
   }
 
+  // 상담 폼에 처음 입력을 시작한 순간 1회 기록 (폼 이탈률 측정용)
+  leadStart(){
+    if(this._leadStarted) return;
+    this._leadStarted=true;
+    (window.gaEvent||function(){})('solution_form_start');
+  }
+
   // 광고/공유 유입 추적: 현재 URL의 utm_* 파라미터와 리퍼러를 수집
   attribution(){
     const p=new URLSearchParams(window.location.search);
@@ -676,6 +691,8 @@ class Component extends DCLogic {
   }
 
   logVisit(company,event){
+    // 시트에 남기는 방문 이벤트를 GA4에도 동일 이름으로 전송 (page_view는 GA가 자동 수집하므로 제외)
+    if(event!=='page_view'){ try{ (window.gaEvent||function(){})(event, company?{company_name:company}:{}); }catch(_){} }
     const endpoint='https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec';
     const att=this.attribution();
     const payload=new URLSearchParams({
@@ -865,23 +882,26 @@ class Component extends DCLogic {
     const submitLead=()=>{
       const company=this.state.leadCompany.trim(), name=this.state.leadName.trim(), position=this.state.leadPosition.trim(), phone=this.state.leadPhone.trim(), email=this.state.leadEmail.trim();
       if(!company || !name || !position || !phone || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        (window.gaEvent||function(){})('solution_form_error',{error_type:'required'});
         this.setState({leadMessage:'모든 항목을 입력해주세요.',leadError:true});
         return;
       }
       const phoneDigits=phone.replace(/\D/g,'');
       if(!/^010\d{8}$/.test(phoneDigits)){
+        (window.gaEvent||function(){})('solution_form_error',{error_type:'phone'});
         this.setState({leadMessage:'모바일 번호를 정확히 입력해 주세요.',leadError:true});
         return;
       }
       const publicDomains=['gmail.com','naver.com','daum.net','hanmail.net','yahoo.com','outlook.com','hotmail.com'];
       if(publicDomains.includes((email.split('@')[1]||'').toLowerCase())){
+        (window.gaEvent||function(){})('solution_form_error',{error_type:'email'});
         this.setState({leadMessage:'회사 이메일 주소를 입력해주세요.',leadError:true});
         return;
       }
       this.setState({leadSubmitting:true,leadMessage:'제출 중...',leadError:false});
       const endpoint='https://script.google.com/macros/s/AKfycby-fzalJHTQwne4QqxHYCE9j3zyz-kcHYLQmKqEFOgao-X8kMmSfMn9UBwNBochLTVl/exec';
       const payload=new URLSearchParams(Object.assign({type:'솔루션 신청',company,name,position,phone,email,page:window.location.href},this.attribution()));
-      const done=()=>this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false});
+      const done=()=>{ (window.gaEvent||function(){})('solution_form_submit'); this.setState({leadSubmitting:false,leadCompany:'',leadName:'',leadPosition:'',leadPhone:'',leadEmail:'',leadMessage:'신청이 접수되었습니다. 곧 연락드리겠습니다.',leadError:false}); };
       // 방문 로그와 동일하게 sendBeacon으로 보낸다. 브라우저가 전송을 넘겨받으므로
       // 응답을 기다리다 '제출 중'에 갇히지 않고, 페이지를 닫아도 전송이 완료된다.
       let queued=false;
@@ -897,6 +917,7 @@ class Component extends DCLogic {
       }
     };
     const shareCompany=()=>{
+      (window.gaEvent||function(){})('share',{content_type:'company',item_id:c.id});
       const url=new URL(window.location.origin+window.location.pathname);
       url.searchParams.set('company',c.id);
       url.searchParams.set('ref','share');
@@ -935,7 +956,7 @@ class Component extends DCLogic {
       query:this.state.query, setQuery:e=>this.setState({query:e.target.value}),
       scrollToDemo:()=>document.getElementById('demo-request')?.scrollIntoView({behavior:'smooth',block:'center'}),
       leadCompany:this.state.leadCompany, leadName:this.state.leadName, leadPosition:this.state.leadPosition, leadPhone:this.state.leadPhone, leadEmail:this.state.leadEmail,
-      setLeadCompany:e=>this.setState({leadCompany:e.target.value}), setLeadName:e=>this.setState({leadName:e.target.value}), setLeadPosition:e=>this.setState({leadPosition:e.target.value}), setLeadPhone:e=>this.setState({leadPhone:e.target.value}), setLeadEmail:e=>this.setState({leadEmail:e.target.value}), submitLead,
+      setLeadCompany:e=>{this.leadStart();this.setState({leadCompany:e.target.value});}, setLeadName:e=>{this.leadStart();this.setState({leadName:e.target.value});}, setLeadPosition:e=>{this.leadStart();this.setState({leadPosition:e.target.value});}, setLeadPhone:e=>{this.leadStart();this.setState({leadPhone:e.target.value});}, setLeadEmail:e=>{this.leadStart();this.setState({leadEmail:e.target.value});}, submitLead,
       leadSubmitting:this.state.leadSubmitting, leadButtonLabel:this.state.leadSubmitting?'제출 중...':'개인정보 수집·이용에 동의하고 상담 신청', leadButtonOpacity:this.state.leadSubmitting?'0.65':'1', leadMessage:this.state.leadMessage, leadMessageColor:this.state.leadError?'#D92525':'#a0a0a6',
       shareCompany, shareNotice:this.state.shareNotice,
       searchGo:()=>{ if(firstMatch) this.go('company',firstMatch.id); },

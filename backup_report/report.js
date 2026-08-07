@@ -14,6 +14,8 @@ function getAttribution() {
 
 // 방문 로그 전송 (메인 사이트의 logVisit과 같은 형식으로 "방문 로그" 탭에 쌓인다)
 function logVisit(event) {
+    // 시트에 남기는 방문 이벤트를 GA4에도 동일 이름으로 전송
+    try { (window.gaEvent || function () {})(event); } catch (e) {}
     try {
         const att = getAttribution();
         const payload = new URLSearchParams(Object.assign({
@@ -230,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 블러 해제는 폼 제출 성공 시에만 일어난다.
     let gateDismissed = false;
     const closeEmailGate = () => {
+        (window.gaEvent || function () {})('report_gate_close');
         emailGateOverlay.classList.remove('active');
         gateDismissed = true;
     };
@@ -263,6 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lockedCta) {
         if (localStorage.getItem('emailGateSubmitted')) markGateDone();
         lockedCta.addEventListener('click', () => {
+            if (localStorage.getItem('emailGateSubmitted')) (window.gaEvent || function () {})('report_reapply_click');
             gateDismissed = false; // 닫았던 사용자도 버튼으로는 다시 열 수 있게
             // 재신청으로 여는 경우 이전 성공 메시지를 지워 새로 제출할 수 있게 한다
             if (gateMessage) { gateMessage.textContent = ''; gateMessage.className = 'gate-message'; }
@@ -275,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fabToast = document.getElementById('fab-toast');
     if (fabShare && fabToast) {
         fabShare.addEventListener('click', () => {
+            (window.gaEvent || function () {})('share', { content_type: 'report' });
             const shareUrl = new URL(window.location.origin + window.location.pathname);
             shareUrl.searchParams.set('utm_source', 'share');
             shareUrl.searchParams.set('utm_medium', 'copy_link');
@@ -360,6 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone = document.getElementById('gate-phone').value.trim();
 
             if (!company || !name || !position || !email || !phone) {
+                (window.gaEvent || function () {})('report_gate_error', { error_type: 'required' });
                 gateMessage.textContent = '모든 항목을 입력해주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
@@ -368,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 010으로 시작하는 11자리 휴대폰 번호만 허용
             const phoneDigits = phone.replace(/\D/g, '');
             if (!/^010\d{8}$/.test(phoneDigits)) {
+                (window.gaEvent || function () {})('report_gate_error', { error_type: 'phone' });
                 gateMessage.textContent = '모바일 번호를 정확히 입력해 주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
@@ -378,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const emailDomain = email.split('@')[1]?.toLowerCase();
 
             if (publicDomains.includes(emailDomain)) {
+                (window.gaEvent || function () {})('report_gate_error', { error_type: 'email' });
                 gateMessage.textContent = '회사 이메일 주소를 입력해주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
@@ -399,6 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 리포트 전문은 이메일로 발송한다. 화면의 성별 장표는 계속 잠긴 상태를 유지한다.
             const done = () => {
+                (window.gaEvent || function () {})('report_gate_submit');
                 gateMessage.textContent = '감사합니다! 입력하신 회사 이메일로 리포트 전문을 보내드릴게요.';
                 gateMessage.className = 'gate-message success';
                 localStorage.setItem('emailGateSubmitted', 'true');
