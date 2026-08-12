@@ -16,6 +16,15 @@ gtag('js',new Date());gtag('config','G-MYCMQGY2F8');
 // GA 이벤트 전송 헬퍼 — gtag가 없거나(차단 등) 실패해도 페이지 동작에 영향 없음
 function gaEvent(name,params){try{gtag('event',name,params||{});}catch(e){}}
 </script>
+<script>
+// 끝 슬래시 없는 주소(/kr/blindindex)로 들어오면 상대 경로가 한 단계 위로 잘못 풀려
+// 스크립트·이미지가 전부 깨진다. 슬래시 붙은 정식 주소로 즉시 이동시킨다.
+(function(){
+  var p=location.pathname;
+  var last=p.slice(p.lastIndexOf('/')+1);
+  if(last && last.indexOf('.')===-1){ location.replace(p+'/'+location.search+location.hash); }
+})();
+</script>
 <!-- 조립 전 템플릿 원문({{ ... }})이 화면에 잠깐 노출되는 것을 막는 가림막.
      조립 완료(.sc-host 등장) 시 표시하고, 6초가 지나면 실패로 보고 그냥 표시한다. -->
 <style id="dc-cloak">x-dc{visibility:hidden}</style>
