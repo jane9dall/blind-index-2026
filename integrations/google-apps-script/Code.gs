@@ -20,7 +20,7 @@ var SPREADSHEET_ID = '1J-0g24ix9eeCs83k1INXwikOngvUMt_HclY1RnvhW_g';
 
 // 배포 반영 확인용 버전. 배포 후 /exec 주소를 브라우저에서 열면 이 값이 보입니다.
 // 여기 값이 안 보이거나 옛 값이면 = 새 코드가 아직 반영 안 된 것(재배포 필요).
-var CODE_VERSION = '2026-08-05';
+var CODE_VERSION = '2026-08-12';
 
 // 제출 탭(리포트 요청 / 상담 신청) 열 순서
 var SUBMIT_HEADERS = [
@@ -51,7 +51,7 @@ function doGet(e) {
 }
 
 function doPost(e) {
-  const params = (e && e.parameter) || {};
+  const params = getParams_(e);
   const spreadsheet = getSpreadsheet_();
 
   if (params.action === 'visit_log') {
@@ -74,6 +74,13 @@ function doPost(e) {
       '화면 크기': params.viewport || ''
     }, VISIT_HEADERS);
     return json_({ ok: true });
+  }
+
+  // 핵심 필드가 하나도 없는 요청(봇, 본문 유실 등)은 리드 탭에 쓰지 않고
+  // "수신 오류" 탭에 원본만 남긴다 — 제출일시만 있는 빈 행 방지
+  if (!params.name && !params.company && !params.email && !params.phone) {
+    logMalformed_(spreadsheet, e);
+    return json_({ ok: false, reason: 'empty' });
   }
 
   // 구분값에 따라 탭 분리: 솔루션 신청 → "상담 신청", 그 외 → "리포트 요청"
@@ -128,6 +135,40 @@ function testSubmission() {
       page: 'https://example.com/?screen=solution'
     }
   });
+}
+
+// e.parameter가 비어 있으면(전송 형식 차이 등) 본문을 직접 해석해 복구한다
+function getParams_(e) {
+  const p = (e && e.parameter) || {};
+  if (Object.keys(p).length > 0) return p;
+  try {
+    const raw = e && e.postData && e.postData.contents;
+    if (raw && raw.indexOf('=') !== -1) {
+      const out = {};
+      String(raw).split('&').forEach(function (kv) {
+        const i = kv.indexOf('=');
+        if (i > 0) {
+      out[decodeURIComponent(kv.slice(0, i).replace(/\+/g, ' '))] =
+        decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' '));
+        }
+      });
+      return out;
+    }
+  } catch (err) {}
+  return p;
+}
+
+// 해석 불가/빈 요청을 진단용 탭에 남긴다 (정체 확인용)
+function logMalformed_(spreadsheet, e) {
+  try {
+    const sheet = getSheet_(spreadsheet, '수신 오류', ['시각', '콘텐츠 타입', '원본(앞 500자)']);
+    const pd = e && e.postData;
+    sheet.appendRow([
+      new Date(),
+      (pd && pd.type) || '(없음)',
+      pd && pd.contents ? String(pd.contents).slice(0, 500) : '(본문 없음)'
+    ]);
+  } catch (err) {}
 }
 
 function getSheet_(spreadsheet, name, headers) {
