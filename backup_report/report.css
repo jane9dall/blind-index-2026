@@ -966,8 +966,12 @@ h1 {
     margin: 0 0 0.35rem 1.55rem;
 }
 
-.gate-detail > p {
+.email-gate-content .gate-detail > p {
     margin: 0 0 0 1.55rem;
+    font-family: inherit;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: #777;
 }
 
 /* Gender Gap Chart */
@@ -1114,6 +1118,10 @@ h1 {
     display: none;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.25rem 0;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -1129,6 +1137,8 @@ h1 {
     border-radius: 1rem;
     max-width: 500px;
     width: 90%;
+    margin: auto;
+    flex: 0 0 auto;
     text-align: center;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
