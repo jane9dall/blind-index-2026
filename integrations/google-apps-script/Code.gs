@@ -20,13 +20,13 @@ var SPREADSHEET_ID = '1J-0g24ix9eeCs83k1INXwikOngvUMt_HclY1RnvhW_g';
 
 // 배포 반영 확인용 버전. 배포 후 /exec 주소를 브라우저에서 열면 이 값이 보입니다.
 // 여기 값이 안 보이거나 옛 값이면 = 새 코드가 아직 반영 안 된 것(재배포 필요).
-var CODE_VERSION = '2026-08-12';
+var CODE_VERSION = '2026-10-07';
 
 // 제출 탭(리포트 요청 / 상담 신청) 열 순서
 var SUBMIT_HEADERS = [
   '담당자명', '직함', '회사명', '모바일 번호', '회사 이메일',
   'UTM 소스', 'UTM 매체', 'UTM 캠페인', 'UTM 콘텐츠', 'UTM 검색어',
-  '유입 경로', '제출일시', '제출 페이지'
+  '유입 경로', '선택동의(개인정보)', '선택동의(수신)', '제출일시', '제출 페이지'
 ];
 
 // 방문 로그 탭 열 순서
@@ -98,6 +98,8 @@ function doPost(e) {
     'UTM 콘텐츠': params.utm_content || '',
     'UTM 검색어': params.utm_term || '',
     '유입 경로': params.referrer || '',
+    '선택동의(개인정보)': params.agree_optional || '',
+    '선택동의(수신)': params.agree_marketing || '',
     '제출일시': new Date(),
     '제출 페이지': params.page || ''
   }, SUBMIT_HEADERS);

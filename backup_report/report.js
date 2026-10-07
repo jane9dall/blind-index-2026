@@ -363,6 +363,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const position = document.getElementById('gate-position').value.trim();
             const email = document.getElementById('gate-email').value.trim();
             const phone = document.getElementById('gate-phone').value.trim();
+            const agreeRequired = document.getElementById('gate-agree-required').checked;
+            const agreeOptional = document.getElementById('gate-agree-optional').checked;
+            const agreeMarketing = document.getElementById('gate-agree-marketing').checked;
 
             if (!company || !name || !position || !email || !phone) {
                 (window.gaEvent || function () {})('report_gate_error', { error_type: 'required' });
@@ -376,6 +379,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!/^010\d{8}$/.test(phoneDigits)) {
                 (window.gaEvent || function () {})('report_gate_error', { error_type: 'phone' });
                 gateMessage.textContent = '모바일 번호를 정확히 입력해 주세요.';
+                gateMessage.className = 'gate-message error';
+                return;
+            }
+
+            if (!agreeRequired) {
+                (window.gaEvent || function () {})('report_gate_error', { error_type: 'consent' });
+                gateMessage.textContent = '[필수] 개인정보 수집 및 이용에 동의해주세요.';
                 gateMessage.className = 'gate-message error';
                 return;
             }
@@ -402,7 +412,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: position,
                 email: email,
                 phone: phone,
-                page: window.location.href
+                page: window.location.href,
+                agree_optional: agreeOptional ? 'Y' : 'N',
+                agree_marketing: agreeMarketing ? 'Y' : 'N'
             }, getAttribution()));
 
             // 리포트 전문은 이메일로 발송한다. 화면의 성별 장표는 계속 잠긴 상태를 유지한다.
