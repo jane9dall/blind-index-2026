@@ -86,6 +86,16 @@ h2.top-pct{font-size:34px !important}
 }
 @media (max-width:640px){
 .pc-br{display:none}
+.cs-item+.cs-item{margin-top:9px;padding-top:9px;border-top:1px solid #ededf0}
+.cs-row{display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin:0}
+.cs-row input{width:15px;height:15px;margin:1px 0 0;accent-color:#D92525;flex:0 0 auto;cursor:pointer}
+.cs-row span{font-size:12px;line-height:1.5;color:#3a3a3e;font-weight:600}
+.cs-row span b{color:#D92525;font-weight:700}
+.cs-d summary{list-style:none;cursor:pointer;margin:3px 0 0 23px;font-size:11px;color:#9a9aa0;text-decoration:underline;width:fit-content}
+.cs-d summary::-webkit-details-marker{display:none}
+.cs-d[open] summary{margin-bottom:4px}
+.cs-d ul{margin:0 0 5px 23px;padding-left:14px;font-size:11.5px;line-height:1.6;color:#777}
+.cs-d p{margin:0 0 0 23px;font-size:11px;line-height:1.6;color:#9a9aa0}
 .m-br{display:inline}
 .m-row{flex-wrap:wrap;gap:6px 10px !important}
 .m-desc{flex:1 1 auto !important;min-width:0}
@@ -557,26 +567,39 @@ h2.top-pct{font-size:34px !important}
           </div>
           <input value="{{ leadEmail }}" onChange="{{ setLeadEmail }}" placeholder="회사 이메일*" type="email" style="border:1px solid #e0e0e3;border-radius:9px;padding:12px 14px;font-family:inherit;font-size:14px;outline:none"/>
           <div style="background:#f7f7f8;border:1px solid #ececee;border-radius:9px;padding:12px 14px;text-align:left">
-            <label style="display:flex;align-items:flex-start;gap:8px;margin:10px 0 2px;cursor:pointer;margin-top:0"><input type="checkbox" checked="{{ agreeRequired }}" onChange="{{ toggleAgreeRequired }}" style="width:15px;height:15px;margin:1px 0 0;accent-color:#D92525;flex:0 0 auto;cursor:pointer"/><span style="font-size:12px;line-height:1.5;color:#3a3a3e;font-weight:600"><b style="color:#D92525">[필수]</b> 개인정보 수집 및 이용 동의</span></label>
-            <ul style="margin:4px 0 6px;padding-left:28px;font-size:11.5px;line-height:1.65;color:#777">
-              <li>수집 주체: Teamblind Hub LLC</li>
-              <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
-              <li>이용 목적: 블라인드 기업서비스 상담 신청 및 문의처리</li>
-              <li>보유·이용 기간: 개인정보의 이용 목적 달성 시 또는 수집 동의 철회시까지</li>
-            </ul>
-            <p style="font-size:11px;line-height:1.6;color:#9a9aa0;margin:0 0 2px;padding-left:28px">귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 상담이 제공되지 않습니다. blindHub에서 수집하는 개인 정보는 블라인드(blind) 서비스와는 무관하며, 블라인드 사용자를 식별하는데 사용할 수 없습니다.</p>
-
-            <label style="display:flex;align-items:flex-start;gap:8px;margin:10px 0 2px;cursor:pointer"><input type="checkbox" checked="{{ agreeOptional }}" onChange="{{ toggleAgreeOptional }}" style="width:15px;height:15px;margin:1px 0 0;accent-color:#D92525;flex:0 0 auto;cursor:pointer"/><span style="font-size:12px;line-height:1.5;color:#3a3a3e;font-weight:600"><b style="color:#D92525">[선택]</b> 개인정보 수집 및 이용 동의</span></label>
-            <ul style="margin:4px 0 6px;padding-left:28px;font-size:11.5px;line-height:1.65;color:#777">
-              <li>수집 주체: Teamblind Hub LLC</li>
-              <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
-              <li>이용 목적: 블라인드 기업서비스 프로모션, 혜택, 뉴스 알림</li>
-              <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
-            </ul>
-            <p style="font-size:11px;line-height:1.6;color:#9a9aa0;margin:0 0 2px;padding-left:28px">귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 블라인드 기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 등의 안내를 받으실 수 없습니다.</p>
-
-            <label style="display:flex;align-items:flex-start;gap:8px;margin:10px 0 2px;cursor:pointer"><input type="checkbox" checked="{{ agreeMarketing }}" onChange="{{ toggleAgreeMarketing }}" style="width:15px;height:15px;margin:1px 0 0;accent-color:#D92525;flex:0 0 auto;cursor:pointer"/><span style="font-size:12px;line-height:1.5;color:#3a3a3e;font-weight:600"><b style="color:#D92525">[선택]</b> 서비스 및 프로모션 정보 수신</span></label>
-            <p style="font-size:11px;line-height:1.6;color:#9a9aa0;margin:0 0 2px;padding-left:28px">블라인드 기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 정보를 받으시려면 동의해 주세요.</p>
+            <div class="cs-item">
+              <label class="cs-row"><input type="checkbox" checked="{{ agreeRequired }}" onChange="{{ toggleAgreeRequired }}"/><span><b>[필수]</b> 개인정보 수집 및 이용 동의</span></label>
+              <details class="cs-d">
+                <summary>자세히 보기</summary>
+                <ul>
+                  <li>수집 주체: Teamblind Hub LLC</li>
+                  <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
+                  <li>이용 목적: 블라인드 기업서비스 상담 신청 및 문의처리</li>
+                  <li>보유·이용 기간: 개인정보의 이용 목적 달성 시 또는 수집 동의 철회시까지</li>
+                </ul>
+                <p>귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 상담이 제공되지 않습니다. blindHub에서 수집하는 개인 정보는 블라인드(blind) 서비스와는 무관하며, 블라인드 사용자를 식별하는데 사용할 수 없습니다.</p>
+              </details>
+            </div>
+            <div class="cs-item">
+              <label class="cs-row"><input type="checkbox" checked="{{ agreeOptional }}" onChange="{{ toggleAgreeOptional }}"/><span><b>[선택]</b> 개인정보 수집 및 이용 동의</span></label>
+              <details class="cs-d">
+                <summary>자세히 보기</summary>
+                <ul>
+                  <li>수집 주체: Teamblind Hub LLC</li>
+                  <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
+                  <li>이용 목적: 블라인드 기업서비스 프로모션, 혜택, 뉴스 알림</li>
+                  <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
+                </ul>
+                <p>귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 블라인드 기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 등의 안내를 받으실 수 없습니다.</p>
+              </details>
+            </div>
+            <div class="cs-item">
+              <label class="cs-row"><input type="checkbox" checked="{{ agreeMarketing }}" onChange="{{ toggleAgreeMarketing }}"/><span><b>[선택]</b> 서비스 및 프로모션 정보 수신</span></label>
+              <details class="cs-d">
+                <summary>자세히 보기</summary>
+                <p>블라인드 기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 정보를 받으시려면 동의해 주세요.</p>
+              </details>
+            </div>
           </div>
           <button onClick="{{ submitLead }}" disabled="{{ leadSubmitting }}" style="background:#D92525;color:#fff;border:none;border-radius:9px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;margin-top:2px;opacity:{{ leadButtonOpacity }}">{{ leadButtonLabel }}</button>
           <p style="font-size:11.5px;color:{{ leadMessageColor }};text-align:center;margin:2px 0 0">{{ leadMessage }}</p>

@@ -934,6 +934,42 @@ h1 {
     font-weight: 700;
 }
 
+.gate-item + .gate-item {
+    margin-top: 0.55rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid #ededf0;
+}
+
+.gate-agree {
+    margin: 0;
+}
+
+.gate-detail summary {
+    list-style: none;
+    cursor: pointer;
+    margin: 0.2rem 0 0 1.55rem;
+    font-size: 0.74rem;
+    color: #9a9aa0;
+    text-decoration: underline;
+    width: fit-content;
+}
+
+.gate-detail summary::-webkit-details-marker {
+    display: none;
+}
+
+.gate-detail[open] summary {
+    margin-bottom: 0.3rem;
+}
+
+.gate-detail ul {
+    margin: 0 0 0.35rem 1.55rem;
+}
+
+.gate-detail > p {
+    margin: 0 0 0 1.55rem;
+}
+
 /* Gender Gap Chart */
 .chart-title-internal {
     font-family: 'Outfit', sans-serif;

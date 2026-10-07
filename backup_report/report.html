@@ -21,7 +21,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="report.css?v=42">
+    <link rel="stylesheet" href="report.css?v=43">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="master-style.css">
@@ -680,37 +680,39 @@
                 </div>
                 <input type="email" id="gate-email" name="email" placeholder="회사 이메일*" required>
                 <div class="gate-consent">
-                    <label class="gate-agree">
-                        <input type="checkbox" id="gate-agree-required">
-                        <span class="gate-agree-label"><b>[필수]</b> 개인정보 수집 및 이용 동의</span>
-                    </label>
-                    <ul>
-                        <li>수집 주체: Teamblind Hub LLC</li>
-                        <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
-                        <li>이용 목적: 블라인드 지수 리포트 전문 제공 및 관련 개별 안내</li>
-                        <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
-                    </ul>
-                    <p class="gate-consent-extra">귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 블라인드 지수 리포트 전문을 받아보실 수
-                        없습니다. blindHub에서 수집하는 개인 정보는 블라인드(blind) 서비스와는 무관하며, 블라인드 사용자를 식별하는데 사용할 수 없습니다.</p>
-
-                    <label class="gate-agree">
-                        <input type="checkbox" id="gate-agree-optional">
-                        <span class="gate-agree-label"><b>[선택]</b> 개인정보 수집 및 이용 동의</span>
-                    </label>
-                    <ul>
-                        <li>수집 주체: Teamblind Hub LLC</li>
-                        <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
-                        <li>이용 목적: 블라인드 지수 관련 업데이트 안내, 블라인드 기업서비스 프로모션, 혜택, 뉴스 알림</li>
-                        <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
-                    </ul>
-                    <p class="gate-consent-extra">귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 블라인드 지수 업데이트 및 블라인드
-                        기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 등의 안내를 받으실 수 없습니다.</p>
-
-                    <label class="gate-agree">
-                        <input type="checkbox" id="gate-agree-marketing">
-                        <span class="gate-agree-label"><b>[선택]</b> 서비스 및 프로모션 정보 수신동의</span>
-                    </label>
-                    <p class="gate-consent-extra">블라인드 지수 업데이트 및 블라인드 기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 정보를 받으시려면 동의해 주세요.</p>
+                    <div class="gate-item">
+                        <label class="gate-agree"><input type="checkbox" id="gate-agree-required"><span class="gate-agree-label"><b>[필수]</b> 개인정보 수집 및 이용 동의</span></label>
+                        <details class="gate-detail">
+                            <summary>자세히 보기</summary>
+                            <ul>
+                                <li>수집 주체: Teamblind Hub LLC</li>
+                                <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
+                                <li>이용 목적: 블라인드 지수 리포트 전문 제공 및 관련 개별 안내</li>
+                                <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
+                            </ul>
+                            <p>귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 블라인드 지수 리포트 전문을 받아보실 수 없습니다. blindHub에서 수집하는 개인 정보는 블라인드(blind) 서비스와는 무관하며, 블라인드 사용자를 식별하는데 사용할 수 없습니다.</p>
+                        </details>
+                    </div>
+                    <div class="gate-item">
+                        <label class="gate-agree"><input type="checkbox" id="gate-agree-optional"><span class="gate-agree-label"><b>[선택]</b> 개인정보 수집 및 이용 동의</span></label>
+                        <details class="gate-detail">
+                            <summary>자세히 보기</summary>
+                            <ul>
+                                <li>수집 주체: Teamblind Hub LLC</li>
+                                <li>수집 항목: 담당자명, 직함, 회사명, 모바일 번호, 회사 이메일</li>
+                                <li>이용 목적: 블라인드 지수 관련 업데이트 안내, 블라인드 기업서비스 프로모션, 혜택, 뉴스 알림</li>
+                                <li>보유·이용 기간: 목적 달성 후 지체 없이 파기(최대 1년)</li>
+                            </ul>
+                            <p>귀하는 상기 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 거부하실 경우 블라인드 지수 업데이트 및 블라인드 기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 등의 안내를 받으실 수 없습니다.</p>
+                        </details>
+                    </div>
+                    <div class="gate-item">
+                        <label class="gate-agree"><input type="checkbox" id="gate-agree-marketing"><span class="gate-agree-label"><b>[선택]</b> 서비스 및 프로모션 정보 수신동의</span></label>
+                        <details class="gate-detail">
+                            <summary>자세히 보기</summary>
+                            <p>블라인드 지수 업데이트 및 블라인드 기업서비스와 관련된 유용한 프로모션, 혜택, 뉴스 정보를 받으시려면 동의해 주세요.</p>
+                        </details>
+                    </div>
                 </div>
                 <button type="submit">리포트 전문 받기</button>
             </form>
